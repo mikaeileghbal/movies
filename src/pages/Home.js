@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Home() {
   return (
-    <Grid container sm={12} mx={16}>
+    <Grid container sx={{ mx: 16 }}>
       <Grid item>
         <h1>Material UI</h1>
         <p>
