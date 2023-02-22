@@ -1,18 +1,18 @@
-import Button from "@mui/material/Button";
+import { Grid } from "@mui/material";
 import "./app.css";
 import Sidebar from "./components/Sidebar";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <Sidebar />
-      <h1>Material UI</h1>
-      <p>
-        lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet
-        lorem et lorem ipsum dolor sit amet
-      </p>
-      <Button variant="contained">Hello world</Button>
-    </div>
+    <Grid container>
+      <Grid item>
+        <Sidebar />
+      </Grid>
+      <Grid item>
+        <Home />
+      </Grid>
+    </Grid>
   );
 }
 

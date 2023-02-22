@@ -3,6 +3,7 @@ import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
       main: "#2779a7",
     },
@@ -12,6 +13,7 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    bgColor: "#333",
   },
 });
 
