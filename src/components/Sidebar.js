@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { Grid, ListItemButton } from "@mui/material";
+import { Grid, IconButton, ListItemButton, Toolbar } from "@mui/material";
 
 export default function Sidebar() {
   const showSearch = () => {
@@ -16,11 +16,48 @@ export default function Sidebar() {
   return (
     <AppBar
       position="fixed"
-      sx={{ left: "0", top: "0", bottom: "0", width: "100px" }}
+      color="primary"
+      sx={{
+        top: { xs: "auto", lg: 0 },
+        bottom: { xs: 0 },
+        left: 0,
+        width: { xs: "100%", lg: "100px" },
+      }}
     >
-      <nav>
-        <Grid container justifyContent="center">
-          <List>
+      <Toolbar
+        container
+        sx={{
+          flexDirection: {
+            xs: "row",
+            lg: "column",
+            justifyContent: "space-between",
+          },
+          px: { xs: 10, lg: 0 },
+        }}
+      >
+        <IconButton color="inherit" sx={{ my: { xs: 0, lg: 4 } }}>
+          <HomeIcon />
+        </IconButton>
+        <IconButton color="inherit" sx={{ my: { xs: 0, lg: 4 } }}>
+          <VideocamIcon />
+        </IconButton>
+        <IconButton color="inherit" sx={{ my: { xs: 0, lg: 4 } }}>
+          <LiveTvIcon />
+        </IconButton>
+        <IconButton
+          color="inherit"
+          sx={{ my: { xs: 0, lg: 4 } }}
+          onClick={showSearch}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
+}
+
+/* <Grid container justifyContent="center">
+          <List sx={{ sm: { flexDirection: "row", display: "flex" } }}>
             <ListItem>
               <ListItemButton component="a" href="/">
                 <HomeIcon />
@@ -42,8 +79,4 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
           </List>
-        </Grid>
-      </nav>
-    </AppBar>
-  );
-}
+        </Grid> */
