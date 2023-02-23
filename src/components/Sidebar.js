@@ -25,14 +25,13 @@ export default function Sidebar() {
       }}
     >
       <Toolbar
-        container
         sx={{
           flexDirection: {
             xs: "row",
             lg: "column",
             justifyContent: "space-between",
           },
-          px: { xs: 10, lg: 0 },
+          px: { xs: 1, sm: 8, lg: 0 },
         }}
       >
         <IconButton color="inherit" sx={{ my: { xs: 0, lg: 4 } }}>
