@@ -3,11 +3,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import SearchIcon from "@mui/icons-material/Search";
-
 import AppBar from "@mui/material/AppBar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import { Grid, IconButton, ListItemButton, Toolbar } from "@mui/material";
+import { IconButton, Toolbar } from "@mui/material";
 
 export default function Sidebar() {
   const showSearch = () => {
@@ -54,28 +51,3 @@ export default function Sidebar() {
     </AppBar>
   );
 }
-
-/* <Grid container justifyContent="center">
-          <List sx={{ sm: { flexDirection: "row", display: "flex" } }}>
-            <ListItem>
-              <ListItemButton component="a" href="/">
-                <HomeIcon />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton component="a" href="/video">
-                <VideocamIcon />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton component="a" href="/tv">
-                <LiveTvIcon />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton component="button" onClick={showSearch}>
-                <SearchIcon />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Grid> */
