@@ -1,18 +1,13 @@
-import { Grid } from "@mui/material";
 import "./app.css";
-import Sidebar from "./components/Sidebar";
+import { Sidebar } from "./components";
 import Home from "./pages/Home";
 
 function App() {
   return (
-    <Grid container>
-      <Grid item>
-        <Sidebar />
-      </Grid>
-      <Grid item>
-        <Home />
-      </Grid>
-    </Grid>
+    <>
+      <Sidebar />
+      <Home />
+    </>
   );
 }
 

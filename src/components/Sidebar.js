@@ -6,12 +6,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
 import { IconButton, Toolbar } from "@mui/material";
 
+import { Stack } from "@mui/system";
+
 export default function Sidebar() {
   const showSearch = () => {
     console.log("Search ....");
   };
   return (
     <AppBar
+      p={0}
       position="fixed"
       color="primary"
       sx={{
@@ -23,30 +26,34 @@ export default function Sidebar() {
     >
       <Toolbar
         sx={{
-          flexDirection: {
-            xs: "row",
-            lg: "column",
-            justifyContent: "space-between",
-          },
-          px: { xs: 1, sm: 8, lg: 0 },
+          justifyContent: "center",
+          py: { lg: 4 },
+          p: { xs: 0 },
+          m: 0,
+          minHeight: { xs: "0px" },
         }}
       >
-        <IconButton color="inherit" sx={{ my: { xs: 0, lg: 4 } }}>
-          <HomeIcon />
-        </IconButton>
-        <IconButton color="inherit" sx={{ my: { xs: 0, lg: 4 } }}>
-          <VideocamIcon />
-        </IconButton>
-        <IconButton color="inherit" sx={{ my: { xs: 0, lg: 4 } }}>
-          <LiveTvIcon />
-        </IconButton>
-        <IconButton
-          color="inherit"
-          sx={{ my: { xs: 0, lg: 4 } }}
-          onClick={showSearch}
+        <Stack
+          width="100%"
+          bgcolor="red"
+          spacing={8}
+          direction={{ xs: "row", lg: "column" }}
+          justifyContent="space-evenly"
+          alignItems="center"
         >
-          <SearchIcon />
-        </IconButton>
+          <IconButton color="inherit">
+            <HomeIcon varient="outlined" />
+          </IconButton>
+          <IconButton color="inherit">
+            <VideocamIcon />
+          </IconButton>
+          <IconButton color="inherit">
+            <LiveTvIcon />
+          </IconButton>
+          <IconButton color="inherit" onClick={showSearch}>
+            <SearchIcon />
+          </IconButton>
+        </Stack>
       </Toolbar>
     </AppBar>
   );
