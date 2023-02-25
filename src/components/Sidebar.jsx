@@ -35,7 +35,6 @@ export default function Sidebar() {
       >
         <Stack
           width="100%"
-          bgcolor="red"
           spacing={8}
           direction={{ xs: "row", lg: "column" }}
           justifyContent="space-evenly"

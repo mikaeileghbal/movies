@@ -1,17 +1,16 @@
-import { Button, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Hero } from "../components";
 
+const featuredMovie = {
+  title: "Women Talking",
+  image: "./images/women-talking.jpg",
+  description:
+    "A group of women in an isolated religious colony struggle to reconcile their faith with a series of sexual assaults committed by the colony's men.",
+  rating: 3.7,
+  reviews: 346,
+  year: 2022,
+  duration: "1h 57min",
+};
 export default function Home() {
-  return (
-    <Grid container sx={{ pl: 16 }}>
-      <Grid item>
-        <Typography variant="h1">Material UI</Typography>
-        <Typography variant="body1">
-          lorem ipsum dolor sit amet, consectetur adip lorem lorem ipsum dolor
-          sit amet, consectetur adip
-        </Typography>
-        <Button variant="contained">Hello world</Button>
-      </Grid>
-    </Grid>
-  );
+  return <Hero movie={featuredMovie} />;
 }
