@@ -3,42 +3,58 @@ import HomeIcon from "@mui/icons-material/Home";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import SearchIcon from "@mui/icons-material/Search";
-
 import AppBar from "@mui/material/AppBar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import { ListItemButton } from "@mui/material";
+import { IconButton, Toolbar } from "@mui/material";
+
+import { Stack } from "@mui/system";
 
 export default function Sidebar() {
+  const showSearch = () => {
+    console.log("Search ....");
+  };
   return (
     <AppBar
+      p={0}
       position="fixed"
-      sx={{ left: "0", top: "0", bottom: "0", width: "100px" }}
+      color="primary"
+      sx={{
+        top: { xs: "auto", lg: 0 },
+        bottom: { xs: 0 },
+        left: 0,
+        width: { xs: "100%", lg: "100px" },
+      }}
     >
-      <nav>
-        <List>
-          <ListItem>
-            <ListItemButton component="a" href="#simple-list">
-              <HomeIcon />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton component="a" href="#simple-list">
-              <VideocamIcon />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton component="a" href="#simple-list">
-              <LiveTvIcon />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton component="a" href="#simple-list">
-              <SearchIcon />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </nav>
+      <Toolbar
+        sx={{
+          justifyContent: "center",
+          py: { lg: 4 },
+          p: { xs: 0 },
+          m: 0,
+          minHeight: { xs: "0px" },
+        }}
+      >
+        <Stack
+          width="100%"
+          bgcolor="red"
+          spacing={8}
+          direction={{ xs: "row", lg: "column" }}
+          justifyContent="space-evenly"
+          alignItems="center"
+        >
+          <IconButton color="inherit">
+            <HomeIcon varient="outlined" />
+          </IconButton>
+          <IconButton color="inherit">
+            <VideocamIcon />
+          </IconButton>
+          <IconButton color="inherit">
+            <LiveTvIcon />
+          </IconButton>
+          <IconButton color="inherit" onClick={showSearch}>
+            <SearchIcon />
+          </IconButton>
+        </Stack>
+      </Toolbar>
     </AppBar>
   );
 }
