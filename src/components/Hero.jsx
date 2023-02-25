@@ -5,10 +5,10 @@ import {
   Card,
   CardMedia,
   Grid,
-  IconButton,
   Rating,
   Typography,
 } from "@mui/material";
+import { Stack } from "@mui/system";
 import React from "react";
 
 const StyledRating = styled(Rating)(({ theme }) => ({
@@ -22,12 +22,19 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",
   top: 0,
   right: 0,
+  left: 0,
   overflowX: "visible",
   objectFit: "cover",
 }));
 
+const StyledText = styled(Typography)(({ theme }) => ({
+  variant: "body2",
+  color: "gray",
+  fontSize: 14,
+}));
+
 export default function Hero({ movie }) {
-  const { image, title, rating, description } = movie;
+  const { image, title, rating, description, reviews, duration, year } = movie;
 
   return (
     <Grid
@@ -35,7 +42,7 @@ export default function Hero({ movie }) {
       component="main"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
       pb={5}
-      sx={{ paddingLeft: { xs: "0px", lg: "100px" } }}
+      sx={{ paddingLeft: { xs: "0px", lg: "100px", position: "relative" } }}
     >
       <Grid
         item
@@ -51,14 +58,17 @@ export default function Hero({ movie }) {
         <Typography variant="h1" fontSize={32}>
           {title}
         </Typography>
-        <StyledRating
-          name="read-only"
-          value={rating}
-          precision={0.1}
-          readOnly
-          color="primary"
-        />
-        <Typography variant="body1" mt={3}>
+        <Stack
+          direction="row"
+          sx={{ display: "flex", alignItems: "flex-end" }}
+          spacing={2}
+        >
+          <StyledRating value={rating} precision={0.1} readOnly />
+          <StyledText>{reviews} Reviews</StyledText>
+          <StyledText>{year}</StyledText>
+          <StyledText>{duration}</StyledText>
+        </Stack>
+        <Typography variant="body2" sx={{ lineHeight: 1.7 }} mt={3}>
           {description}
         </Typography>
         <Button
@@ -74,7 +84,6 @@ export default function Hero({ movie }) {
         sx={{
           xs: 12,
           lg: 6,
-          position: "relative",
           zIndex: -1,
         }}
         flex="auto"
@@ -82,14 +91,14 @@ export default function Hero({ movie }) {
         <Card
           sx={{
             maxwidth: 600,
-            height: { xs: 220, md: 320, lg: 520 },
+            height: { xs: 220, md: 320, lg: 520, overflowY: "hidden" },
           }}
         >
           <StyledCardMedia
             component="img"
-            sx={{ height: "100%" }}
             image={image}
             alt="title"
+            sx={{ height: "inherit" }}
           />
         </Card>
       </Grid>
