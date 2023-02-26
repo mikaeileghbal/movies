@@ -1,3 +1,4 @@
+import "../App.css";
 import styled from "@emotion/styled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import {
@@ -37,10 +38,10 @@ export default function Hero({ movie }) {
   return (
     <Grid
       container
-      component="main"
+      component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
-      pb={5}
-      sx={{ paddingLeft: { xs: "0px", lg: "100px", position: "relative" } }}
+      pb={6}
+      sx={{ paddingLeft: { xs: "0px", lg: "0", position: "relative" } }}
     >
       <FeaturedMovie movie={movie} />
       <FeaturedImage image={movie.image} />
@@ -57,11 +58,11 @@ function FeaturedMovie({ movie }) {
         xs: 12,
         lg: 6,
         fontWeight: "700",
-        minHeight: "520px",
-        backgroundImage:
-          "linear-gradient(to right, black 70%, transparent 100%)",
+        height: { xs: "auto", lg: "520px" },
+        alignSelf: "flex-start",
+        backgroundColor: "#000",
       }}
-      flex="0 0 600px"
+      flex={{ xs: "0 0 auto", lg: "0 0 600px" }}
       p={{ xs: 2, md: 6 }}
       pt={{ xs: 0, md: 0, lg: 6 }}
       display="flex"
@@ -99,6 +100,7 @@ function FeaturedMovie({ movie }) {
 function FeaturedImage({ image }) {
   return (
     <Grid
+      className="hero-image"
       item
       sx={{
         xs: 12,
@@ -111,6 +113,8 @@ function FeaturedImage({ image }) {
         sx={{
           maxwidth: 600,
           height: { xs: 220, md: 320, lg: 520, overflowY: "hidden" },
+          padding: 3,
+          bgcolor: "red",
         }}
       >
         <StyledCardMedia

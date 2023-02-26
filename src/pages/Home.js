@@ -1,5 +1,8 @@
+import { Box } from "@mui/system";
 import React from "react";
 import Hero from "../components/Hero";
+import TrendMovie from "../components/TrendMovie";
+import TrendTv from "../components/TrendTv";
 
 const featuredMovie = {
   title: "Women Talking",
@@ -13,5 +16,11 @@ const featuredMovie = {
 };
 
 export default function Home() {
-  return <Hero movie={featuredMovie} />;
+  return (
+    <Box component="main" sx={{ marginLeft: { xs: 0, lg: "100px" } }}>
+      <Hero movie={featuredMovie} />
+      <TrendMovie />
+      <TrendTv />
+    </Box>
+  );
 }
