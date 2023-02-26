@@ -5,7 +5,6 @@ import LiveTvIcon from "@mui/icons-material/LiveTv";
 import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
 import { IconButton, Toolbar } from "@mui/material";
-
 import { Stack } from "@mui/system";
 
 export default function Sidebar() {
@@ -16,7 +15,6 @@ export default function Sidebar() {
     <AppBar
       p={0}
       position="fixed"
-      color="primary"
       sx={{
         top: { xs: "auto", lg: 0 },
         bottom: { xs: 0 },

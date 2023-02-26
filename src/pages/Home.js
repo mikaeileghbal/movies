@@ -1,5 +1,5 @@
 import React from "react";
-import { Hero } from "../components";
+import Hero from "../components/Hero";
 
 const featuredMovie = {
   title: "Women Talking",
@@ -11,6 +11,7 @@ const featuredMovie = {
   year: 2022,
   duration: "1h 57min",
 };
+
 export default function Home() {
   return <Hero movie={featuredMovie} />;
 }
