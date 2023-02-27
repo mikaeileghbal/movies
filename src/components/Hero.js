@@ -1,23 +1,10 @@
 import "../App.css";
 import styled from "@emotion/styled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import {
-  Button,
-  Card,
-  CardMedia,
-  Grid,
-  Rating,
-  Typography,
-} from "@mui/material";
+import { Button, Card, CardMedia, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
-
-const StyledRating = styled(Rating)(({ theme }) => ({
-  "& .MuiRating-iconFilled": {
-    color: theme.palette.primary.main,
-  },
-  margin: "16px 0 0",
-}));
+import { StyledRating, StyledRatingStack, StyledText2 } from "../styles/global";
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",
@@ -26,12 +13,6 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   left: 0,
   overflowX: "visible",
   objectFit: "cover",
-}));
-
-const StyledText = styled(Typography)(({ theme }) => ({
-  variant: "body2",
-  color: "gray",
-  fontSize: 14,
 }));
 
 export default function Hero({ movie }) {
@@ -62,7 +43,8 @@ function FeaturedMovie({ movie }) {
         alignSelf: "flex-start",
         backgroundColor: "#000",
       }}
-      flex={{ xs: "0 0 auto", lg: "0 0 600px" }}
+      flex={{ xs: "1", lg: "0 0 600px" }}
+      width={{ xs: "100%" }}
       p={{ xs: 2, md: 6 }}
       pt={{ xs: 0, md: 0, lg: 6 }}
       display="flex"
@@ -79,9 +61,9 @@ function FeaturedMovie({ movie }) {
         spacing={2}
       >
         <StyledRating value={rating} precision={0.1} readOnly />
-        <StyledText>{reviews} Reviews</StyledText>
-        <StyledText>{year}</StyledText>
-        <StyledText>{duration}</StyledText>
+        <StyledText2>{reviews} Reviews</StyledText2>
+        <StyledText2>{year}</StyledText2>
+        <StyledText2>{duration}</StyledText2>
       </Stack>
       <Typography variant="body2" sx={{ lineHeight: 1.7 }} mt={3}>
         {description}
