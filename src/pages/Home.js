@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import React from "react";
+import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import TrendMovie from "../components/TrendMovie";
 import TrendTv from "../components/TrendTv";
@@ -21,6 +22,7 @@ export default function Home() {
       <Hero movie={featuredMovie} />
       <TrendMovie />
       <TrendTv />
+      <Footer />
     </Box>
   );
 }

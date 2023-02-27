@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Rating, Typography } from "@mui/material";
+import { IconButton, Rating, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 
 export const StyledText2 = styled(Typography)(({ theme }) => ({
@@ -29,4 +29,11 @@ export const StyledRatingStack = styled(Stack)(() => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-end",
+}));
+
+export const StyledIconButton = styled(IconButton)(() => ({
+  transition: "0.3s",
+  "&:hover": {
+    color: "white",
+  },
 }));
