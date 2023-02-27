@@ -5,6 +5,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { Stack } from "@mui/system";
+import { StyledIconButton } from "../styles/global";
 
 export default function Footer() {
   return (
@@ -22,18 +23,18 @@ export default function Footer() {
         mb={{ xs: 10, lg: 4 }}
         color="gray"
       >
-        <IconButton color="inherit">
+        <StyledIconButton color="inherit">
           <TwitterIcon />
-        </IconButton>
-        <IconButton color="inherit">
+        </StyledIconButton>
+        <StyledIconButton color="inherit">
           <GitHubIcon />
-        </IconButton>
-        <IconButton color="inherit">
+        </StyledIconButton>
+        <StyledIconButton color="inherit">
           <LinkedInIcon />
-        </IconButton>
-        <IconButton color="inherit">
+        </StyledIconButton>
+        <StyledIconButton color="inherit">
           <EmailOutlinedIcon />
-        </IconButton>
+        </StyledIconButton>
       </Stack>
     </Box>
   );
