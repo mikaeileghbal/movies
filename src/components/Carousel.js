@@ -6,7 +6,6 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  grid2Classes,
   IconButton,
   Rating,
   Typography,
@@ -16,18 +15,13 @@ import React from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import StarIcon from "@mui/icons-material/Star";
-import {
-  StyledCardTitle,
-  StyledRating,
-  StyledRatingStack,
-  StyledText2,
-} from "../styles/global";
+import { StyledCardTitle } from "../styles/global";
 
-export default function Carousel() {
+export default function Carousel({ movies }) {
   return (
     <Box component="section" mb={6}>
       <CarouselHeader />
-      <CarouselBody />
+      <CarouselBody movies={movies} />
     </Box>
   );
 }
@@ -55,7 +49,7 @@ function CarouselHeader() {
   );
 }
 
-function CarouselBody() {
+function CarouselBody({ movies }) {
   return (
     <Stack
       direction="row"
@@ -82,316 +76,72 @@ function CarouselBody() {
             whiteSpace: "nowrap",
           }}
         >
-          <Grid
-            item
-            xs={4}
-            md={3}
-            lg={12 / 5}
-            sx={{ scrollSnapAlign: "start" }}
-          >
-            <Card sx={{ maxWidth: 330 }}>
-              <CardActionArea>
-                <Box
-                  sx={{
-                    pt: "150%",
-                    position: "relative",
-                    backgroundColor: "#202124",
-                    height: 0,
-                    overflow: "hidden",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image="/images/women-talking.jpg"
-                    alt="women talking"
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      transform: "scale(0.97)",
-                    }}
-                  />
-                </Box>
-                <CardContent>
-                  <StyledCardTitle>
-                    Women Talking : Rise Of The Titans In THe Middle Of Time
-                  </StyledCardTitle>
-
+          {movies?.map((movie) => (
+            <Grid
+              item
+              xs={4}
+              md={3}
+              lg={12 / 5}
+              sx={{ scrollSnapAlign: "start" }}
+            >
+              <Card sx={{ maxWidth: 330 }}>
+                <CardActionArea>
                   <Box
                     sx={{
-                      width: 200,
-                      display: "flex",
-                      alignItems: "center",
+                      pt: "150%",
+                      position: "relative",
+                      backgroundColor: "#202124",
+                      height: 0,
+                      overflow: "hidden",
                     }}
                   >
-                    <Rating
-                      size="small"
-                      value={3.5}
-                      readOnly
-                      precision={0.1}
-                      emptyIcon={
-                        <StarIcon
-                          style={{ opacity: 0.55 }}
-                          fontSize="inherit"
-                        />
-                      }
+                    <CardMedia
+                      component="img"
+                      image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt={movie.title}
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        transform: "scale(0.97)",
+                      }}
                     />
-                    <Box sx={{ ml: 2, color: "gray" }}>6.625</Box>
                   </Box>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid
-            item
-            xs={4}
-            md={3}
-            lg={12 / 5}
-            sx={{ scrollSnapAlign: "start" }}
-          >
-            <Card sx={{ maxWidth: 330 }}>
-              <CardActionArea>
-                <Box
-                  sx={{
-                    pt: "150%",
-                    position: "relative",
-                    backgroundColor: "#202124",
-                    height: 0,
-                    overflow: "hidden",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image="/images/women-talking.jpg"
-                    alt="women talking"
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      transform: "scale(0.97)",
-                    }}
-                  />
-                </Box>
-                <CardContent>
-                  <StyledCardTitle>
-                    Women Talking : Rise Of The Titans In THe Middle Of Time
-                  </StyledCardTitle>
+                  <CardContent>
+                    <StyledCardTitle>
+                      {movie.title ? movie.title : movie.name}
+                    </StyledCardTitle>
 
-                  <Box
-                    sx={{
-                      width: 200,
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Rating
-                      size="small"
-                      value={3.5}
-                      readOnly
-                      precision={0.1}
-                      emptyIcon={
-                        <StarIcon
-                          style={{ opacity: 0.55 }}
-                          fontSize="inherit"
-                        />
-                      }
-                    />
-                    <Box sx={{ ml: 2, color: "gray" }}>6.625</Box>
-                  </Box>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid
-            item
-            xs={4}
-            md={3}
-            lg={12 / 5}
-            sx={{ scrollSnapAlign: "start" }}
-          >
-            <Card sx={{ maxWidth: 330 }}>
-              <CardActionArea>
-                <Box
-                  sx={{
-                    pt: "150%",
-                    position: "relative",
-                    backgroundColor: "#202124",
-                    height: 0,
-                    overflow: "hidden",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image="/images/women-talking.jpg"
-                    alt="women talking"
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      transform: "scale(0.97)",
-                    }}
-                  />
-                </Box>
-                <CardContent>
-                  <StyledCardTitle>
-                    Women Talking : Rise Of The Titans In THe Middle Of Time
-                  </StyledCardTitle>
-
-                  <Box
-                    sx={{
-                      width: 200,
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Rating
-                      size="small"
-                      value={3.5}
-                      readOnly
-                      precision={0.1}
-                      emptyIcon={
-                        <StarIcon
-                          style={{ opacity: 0.55 }}
-                          fontSize="inherit"
-                        />
-                      }
-                    />
-                    <Box sx={{ ml: 2, color: "gray" }}>6.625</Box>
-                  </Box>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid
-            item
-            xs={4}
-            md={3}
-            lg={12 / 5}
-            sx={{ scrollSnapAlign: "start" }}
-          >
-            <Card sx={{ maxWidth: 330 }}>
-              <CardActionArea>
-                <Box
-                  sx={{
-                    pt: "150%",
-                    position: "relative",
-                    backgroundColor: "#202124",
-                    height: 0,
-                    overflow: "hidden",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image="/images/women-talking.jpg"
-                    alt="women talking"
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      transform: "scale(0.97)",
-                    }}
-                  />
-                </Box>
-                <CardContent>
-                  <StyledCardTitle>
-                    Women Talking : Rise Of The Titans In THe Middle Of Time
-                  </StyledCardTitle>
-
-                  <Box
-                    sx={{
-                      width: 200,
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Rating
-                      size="small"
-                      value={3.5}
-                      readOnly
-                      precision={0.1}
-                      emptyIcon={
-                        <StarIcon
-                          style={{ opacity: 0.55 }}
-                          fontSize="inherit"
-                        />
-                      }
-                    />
-                    <Box sx={{ ml: 2, color: "gray" }}>6.625</Box>
-                  </Box>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid
-            item
-            xs={4}
-            md={3}
-            lg={12 / 5}
-            sx={{ scrollSnapAlign: "start" }}
-          >
-            <Card sx={{ maxWidth: 330 }}>
-              <CardActionArea>
-                <Box
-                  sx={{
-                    pt: "150%",
-                    position: "relative",
-                    backgroundColor: "#202124",
-                    height: 0,
-                    overflow: "hidden",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image="/images/women-talking.jpg"
-                    alt="women talking"
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      transform: "scale(0.97)",
-                    }}
-                  />
-                </Box>
-                <CardContent>
-                  <StyledCardTitle>
-                    Women Talking : Rise Of The Titans In THe Middle Of Time
-                  </StyledCardTitle>
-
-                  <Box
-                    sx={{
-                      width: 200,
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Rating
-                      size="small"
-                      value={3.5}
-                      readOnly
-                      precision={0.1}
-                      emptyIcon={
-                        <StarIcon
-                          style={{ opacity: 0.55 }}
-                          fontSize="inherit"
-                        />
-                      }
-                    />
-                    <Box sx={{ ml: 2, color: "gray" }}>6.625</Box>
-                  </Box>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
+                    <Box
+                      sx={{
+                        width: 200,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Rating
+                        size="small"
+                        value={movie.vote_average / 2}
+                        readOnly
+                        precision={0.1}
+                        emptyIcon={
+                          <StarIcon
+                            style={{ opacity: 0.55 }}
+                            fontSize="inherit"
+                          />
+                        }
+                      />
+                      <Box sx={{ ml: 2, color: "gray" }}>
+                        {movie.vote_average}
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </Box>
       <IconButton disableRipple size="large">

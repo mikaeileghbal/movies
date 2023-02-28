@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import TrendMovie from "../components/TrendMovie";
@@ -17,9 +17,25 @@ const featuredMovie = {
 };
 
 export default function Home() {
+  const [movie, setMovie] = useState([]);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      const res = await fetch(
+        "https://api.themoviedb.org/3/movie/500?api_key=3e35d5ea16674bcc971aee7ed10f0919"
+      );
+      const result = await res.json();
+
+      console.log(result);
+      setMovie(result);
+    };
+
+    getMovies();
+  }, []);
+
   return (
     <Box component="main" sx={{ marginLeft: { xs: 0, lg: "100px" } }}>
-      <Hero movie={featuredMovie} />
+      <Hero movie={movie} />
       <TrendMovie />
       <TrendTv />
       <Footer />
