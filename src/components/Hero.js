@@ -25,13 +25,15 @@ export default function Hero({ movie }) {
       sx={{ paddingLeft: { xs: "0px", lg: "0", position: "relative" } }}
     >
       <FeaturedMovie movie={movie} />
-      <FeaturedImage image={movie.image} />
+      <FeaturedImage
+        image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+      />
     </Grid>
   );
 }
 
 function FeaturedMovie({ movie }) {
-  const { title, rating, description, reviews, duration, year } = movie;
+  const { title, rating, overview, reviews, duration, year } = movie;
   return (
     <Grid
       item
@@ -66,7 +68,7 @@ function FeaturedMovie({ movie }) {
         <StyledText2>{duration}</StyledText2>
       </Stack>
       <Typography variant="body2" sx={{ lineHeight: 1.7 }} mt={3}>
-        {description}
+        {overview}
       </Typography>
       <Button
         variant="contained"
@@ -96,7 +98,6 @@ function FeaturedImage({ image }) {
           maxwidth: 600,
           height: { xs: 220, md: 320, lg: 520, overflowY: "hidden" },
           padding: 3,
-          bgcolor: "red",
         }}
       >
         <StyledCardMedia
