@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import renderMovie from "../utils/renderMovie";
 import Carousel from "./Carousel";
 
 export default function TrendTv() {
@@ -18,5 +19,13 @@ export default function TrendTv() {
     getMovies();
   }, []);
 
-  return <Carousel movies={movies} />;
+  return (
+    <Carousel
+      items={movies}
+      heading="Trending TV"
+      url="/tv/category/trending"
+      render={renderMovie}
+      groupSize={5}
+    />
+  );
 }
