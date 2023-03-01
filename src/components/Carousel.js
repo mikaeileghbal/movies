@@ -57,7 +57,7 @@ export default function Carousel({ items, heading, url, groupSize, render }) {
 
   return (
     <Box component="section" mb={6}>
-      <CarouselHeader heading={heading} />
+      <CarouselHeader heading={heading} url={url} />
       <CarouselBody
         movies={groupedItems}
         url={url}
@@ -105,7 +105,13 @@ function CarouselBody({ movies, onNext, onPrev, currentIndex, groupCount }) {
         alignItems: "stretch",
       }}
     >
-      <IconButton disableRipple size="large" onClick={onPrev}>
+      <IconButton
+        disableRipple
+        size="large"
+        onClick={onPrev}
+        className={`${currentIndex === 0 ? "hidden" : ""}`}
+        disabled={currentIndex === 0}
+      >
         <ArrowBackIosIcon fontSize="inherit" />
       </IconButton>
 
@@ -124,86 +130,13 @@ function CarouselBody({ movies, onNext, onPrev, currentIndex, groupCount }) {
         </div>
       </div>
 
-      {/* <Box className="outer">
-        <Grid
-          container
-          columnSpacing={1}
-          sx={{
-            scrollSnapType: "x mandatory",
-            scrollPadding: "10px",
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {movies?.map((movie) => (
-            <Grid
-              item
-              xs={4}
-              md={3}
-              lg={12 / 5}
-              sx={{ scrollSnapAlign: "start" }}
-            >
-              <Card sx={{ maxWidth: 330 }}>
-                <CardActionArea>
-                  <Box
-                    sx={{
-                      pt: "150%",
-                      position: "relative",
-                      backgroundColor: "#202124",
-                      height: 0,
-                      overflow: "hidden",
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt={movie.title}
-                      sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        transform: "scale(0.97)",
-                      }}
-                    />
-                  </Box>
-                  <CardContent>
-                    <StyledCardTitle>
-                      {movie.title ? movie.title : movie.name}
-                    </StyledCardTitle>
-
-                    <Box
-                      sx={{
-                        width: 200,
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Rating
-                        size="small"
-                        value={movie.vote_average / 2}
-                        readOnly
-                        precision={0.1}
-                        emptyIcon={
-                          <StarIcon
-                            style={{ opacity: 0.55 }}
-                            fontSize="inherit"
-                          />
-                        }
-                      />
-                      <Box sx={{ ml: 2, color: "gray" }}>
-                        {movie.vote_average}
-                      </Box>
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box> */}
-      <IconButton disableRipple size="large" onClick={onNext}>
+      <IconButton
+        disableRipple
+        size="large"
+        onClick={onNext}
+        className={`${currentIndex === movies.length - 1 ? "hidden" : ""}`}
+        disabled={currentIndex === movies.length - 1}
+      >
         <ArrowForwardIosIcon fontSize="inherit" />
       </IconButton>
     </Stack>
