@@ -4,7 +4,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Button, Card, CardMedia, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
-import { StyledRating, StyledRatingStack, StyledText2 } from "../styles/global";
+import { StyledRating, StyledText2 } from "../styles/global";
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",
@@ -33,7 +33,8 @@ export default function Hero({ movie }) {
 }
 
 function FeaturedMovie({ movie }) {
-  const { title, rating, overview, reviews, duration, year } = movie;
+  const { title, vote_average, overview, reviews, duration, release_date } =
+    movie;
   return (
     <Grid
       item
@@ -62,9 +63,9 @@ function FeaturedMovie({ movie }) {
         sx={{ display: "flex", alignItems: "flex-end" }}
         spacing={2}
       >
-        <StyledRating value={rating} precision={0.1} readOnly />
+        <StyledRating value={vote_average / 2} precision={0.1} readOnly />
         <StyledText2>{reviews} Reviews</StyledText2>
-        <StyledText2>{year}</StyledText2>
+        <StyledText2>{release_date?.slice(0, 4)}</StyledText2>
         <StyledText2>{duration}</StyledText2>
       </Stack>
       <Typography variant="body2" sx={{ lineHeight: 1.7 }} mt={3}>

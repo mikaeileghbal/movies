@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import renderMovie from "../utils/renderMovie";
 import Carousel from "./Carousel";
 
 export default function TrendMovie() {
@@ -19,5 +19,13 @@ export default function TrendMovie() {
     getMovies();
   }, []);
 
-  return <Carousel movies={movies} />;
+  return (
+    <Carousel
+      items={movies}
+      heading="Trending Movies"
+      url="/movie/category/trending"
+      render={renderMovie}
+      groupSize={5}
+    />
+  );
 }
