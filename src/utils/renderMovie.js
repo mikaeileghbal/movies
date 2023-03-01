@@ -3,7 +3,6 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  Grid,
   Rating,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
@@ -12,18 +11,6 @@ import { StyledCardTitle } from "../styles/global";
 
 export default function renderMovie(item) {
   return (
-    // <Box className="outer">
-    //   <Grid
-    //     container
-    //     columnSpacing={1}
-    //     sx={{
-    //       scrollSnapType: "x mandatory",
-    //       scrollPadding: "10px",
-    //       overflow: "hidden",
-    //       whiteSpace: "nowrap",
-    //     }}
-    //   >
-    //     <Grid item xs={4} md={3} lg={12 / 5} sx={{ scrollSnapAlign: "start" }}>
     <Card sx={{ maxWidth: 330 }}>
       <CardActionArea>
         <Box
@@ -75,8 +62,5 @@ export default function renderMovie(item) {
         </CardContent>
       </CardActionArea>
     </Card>
-    //</Grid>
-    //</Grid>
-    //</Box>
   );
 }

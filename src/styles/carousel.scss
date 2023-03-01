@@ -18,3 +18,8 @@
     margin: 0;
   }
 }
+
+.hidden:disabled {
+  color: red;
+  visibility: hidden;
+}

@@ -22,7 +22,7 @@ export default function TrendTv() {
   return (
     <Carousel
       items={movies}
-      heading="Trending TV"
+      heading="Trending TV Shows"
       url="/tv/category/trending"
       render={renderMovie}
       groupSize={5}
