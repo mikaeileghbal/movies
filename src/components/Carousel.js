@@ -4,15 +4,17 @@ import React, { useEffect, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "../styles/carousel.scss";
+import Explore from "./Explore";
 
 export default function Carousel({ items, heading, url, groupSize, render }) {
-  console.log("in carousel :", items);
+  //console.log("in carousel :", items);
   const [currentIndex, setCurrentIndex] = useState(0);
   const groupCount = Math.ceil(items.length / groupSize);
 
   const groupItems = (items, groupSize) => {
     let rows = items
-      .map(function (item) {
+      .map(function (item, index) {
+        if (index === items.length - 1) return <Explore />;
         return render(item);
       })
       .reduce((r, element, index) => {

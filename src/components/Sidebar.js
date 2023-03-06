@@ -1,6 +1,6 @@
 import React from "react";
-import HomeIcon from "@mui/icons-material/Home";
-import VideocamIcon from "@mui/icons-material/Videocam";
+import CameraOutdoorOutlinedIcon from "@mui/icons-material/CameraOutdoorOutlined";
+import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
@@ -39,10 +39,10 @@ export default function Sidebar() {
           alignItems="center"
         >
           <IconButton color="inherit">
-            <HomeIcon varient="outlined" />
+            <CameraOutdoorOutlinedIcon />
           </IconButton>
           <IconButton color="inherit">
-            <VideocamIcon />
+            <MovieOutlinedIcon />
           </IconButton>
           <IconButton color="inherit">
             <LiveTvIcon />
