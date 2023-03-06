@@ -13,6 +13,7 @@
     width: 100%;
     display: grid;
     column-gap: 10px;
+    grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
 
     margin: 0;

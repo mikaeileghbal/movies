@@ -33,7 +33,7 @@ export default function Hero({ movie }) {
 }
 
 function FeaturedMovie({ movie }) {
-  const { title, vote_average, overview, reviews, duration, release_date } =
+  const { title, vote_average, overview, vote_count, duration, release_date } =
     movie;
   return (
     <Grid
@@ -64,7 +64,7 @@ function FeaturedMovie({ movie }) {
         spacing={2}
       >
         <StyledRating value={vote_average / 2} precision={0.1} readOnly />
-        <StyledText2>{reviews} Reviews</StyledText2>
+        <StyledText2>{vote_count} Reviews</StyledText2>
         <StyledText2>{release_date?.slice(0, 4)}</StyledText2>
         <StyledText2>{duration}</StyledText2>
       </Stack>
