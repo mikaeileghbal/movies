@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import useResize from "../hooks/useResize";
 import renderMovie from "../utils/renderMovie";
 import Carousel from "./Carousel";
 
 export default function TrendMovie() {
   const [movies, setMovies] = useState([]);
+  const { groupSize } = useResize();
 
   useEffect(() => {
     const getMovies = async () => {
@@ -25,7 +27,7 @@ export default function TrendMovie() {
       heading="Trending Movies"
       url="/movie/category/trending"
       render={renderMovie}
-      groupSize={5}
+      groupSize={groupSize}
     />
   );
 }

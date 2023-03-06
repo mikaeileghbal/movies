@@ -74,7 +74,7 @@ function FeaturedMovie({ movie }) {
       <Button
         variant="contained"
         startIcon={<PlayArrowIcon />}
-        sx={{ marginTop: "25px", py: "12px", px: "20px" }}
+        sx={{ marginTop: "25px", py: "10px", px: "20px" }}
       >
         Watch Trailer
       </Button>

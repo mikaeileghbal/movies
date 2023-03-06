@@ -32,11 +32,11 @@ export default function renderMovie(item) {
               left: 0,
               width: "100%",
               height: "100%",
-              transform: "scale(0.97)",
+              //transform: "scale(0.97)",
             }}
           />
         </Box>
-        <CardContent>
+        <CardContent sx={{ display: { xs: "none", md: "block" } }}>
           <StyledCardTitle>
             {item.title ? item.title : item.name}
           </StyledCardTitle>
