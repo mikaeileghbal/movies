@@ -2,11 +2,14 @@
   margin: 0 0;
   overflow: hidden;
   position: relative;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0px;
 
   .inner {
     display: grid;
     transition: transform 0.6s ease-in-out;
     margin: 0;
+    scroll-snap-align: start;
   }
 
   .carousel-group {
