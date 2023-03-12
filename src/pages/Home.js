@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
-import Hero from "../components/Hero";
+import Hero from "../components/Header";
 import TrendMovie from "../components/TrendMovie";
 import TrendTv from "../components/TrendTv";
 
