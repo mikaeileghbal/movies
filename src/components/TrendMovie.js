@@ -14,7 +14,6 @@ export default function TrendMovie() {
       );
       const result = await res.json();
 
-      console.log(result.results);
       setMovies(result.results);
     };
 
