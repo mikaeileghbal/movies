@@ -5,7 +5,6 @@ import Carousel from "./Carousel";
 
 export default function TrendTv() {
   const [movies, setMovies] = useState([]);
-
   const { groupSize } = useResize();
 
   useEffect(() => {
