@@ -15,7 +15,7 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   objectFit: "cover",
 }));
 
-export default function Hero({ movie }) {
+export default function Header({ movie }) {
   return (
     <Grid
       container

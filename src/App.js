@@ -8,12 +8,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movie />} />
-        <Route path="/tv" element={<Tv />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/movie" element={<Movie />} />
+        <Route exact path="/tv" element={<Tv />} />
       </Routes>
       <Sidebar />
-      <Home />
     </Router>
   );
 }
