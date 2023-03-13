@@ -33,6 +33,8 @@ export default function Sidebar() {
           bottom: { xs: 0 },
           left: 0,
           width: { xs: "100%", lg: "100px" },
+          background: "black",
+          borderRight: { xs: "none", lg: "1px solid #222" },
         }}
       >
         <Toolbar

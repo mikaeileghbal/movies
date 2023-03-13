@@ -8,10 +8,19 @@ import {
 import StarIcon from "@mui/icons-material/Star";
 import { Box } from "@mui/system";
 import { StyledCardTitle } from "../styles/global";
+import { BorderClearRounded } from "@mui/icons-material";
 
 export default function renderMovie(item) {
   return (
-    <Card sx={{ maxWidth: 330 }}>
+    <Card
+      sx={{
+        maxWidth: 330,
+        background: "transparent",
+        border: "none",
+        borderRadius: "0",
+        boxShadow: "none",
+      }}
+    >
       <CardActionArea>
         <Box
           sx={{
@@ -36,7 +45,12 @@ export default function renderMovie(item) {
             }}
           />
         </Box>
-        <CardContent sx={{ display: { xs: "none", md: "block" } }}>
+        <CardContent
+          sx={{
+            display: { xs: "none", md: "block" },
+            border: "none",
+          }}
+        >
           <StyledCardTitle>
             {item.title ? item.title : item.name}
           </StyledCardTitle>
