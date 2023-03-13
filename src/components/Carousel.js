@@ -80,7 +80,13 @@ function CarouselHeader({ heading, url }) {
       spacing={1}
       sx={{ ml: 6, mb: 2 }}
     >
-      <Typography variant="h2" fontSize={24} fontWeight={400} ml={1}>
+      <Typography
+        variant="h2"
+        fontSize={24}
+        fontWeight={400}
+        ml={1}
+        sx={{ textTransform: "capitalize" }}
+      >
         {heading}
       </Typography>
       <Button
