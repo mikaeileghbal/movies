@@ -1,16 +1,17 @@
 import React from "react";
+import NowPlaying from "../components/movie/NowPlaying";
 import Popular from "../components/movie/Popular";
-import TrendMovie from "../components/TrendMovie";
-import TrendTv from "../components/TrendTv";
+import TopRated from "../components/movie/TopRated";
+import Upcoming from "../components/movie/Upcoming";
 import ViewSelection from "../components/ViewSelection";
 
 export default function Movie() {
   return (
     <ViewSelection>
       <Popular />
-      <TrendTv />
-      <TrendMovie />
-      <TrendTv />
+      <TopRated />
+      <Upcoming />
+      <NowPlaying />
     </ViewSelection>
   );
 }
