@@ -36,7 +36,12 @@ export default function renderMovie(item) {
             }}
           />
         </Box>
-        <CardContent sx={{ display: { xs: "none", md: "block" } }}>
+        <CardContent
+          sx={{
+            display: { xs: "none", md: "block" },
+            backgroundColor: "bgColor",
+          }}
+        >
           <StyledCardTitle>
             {item.title ? item.title : item.name}
           </StyledCardTitle>

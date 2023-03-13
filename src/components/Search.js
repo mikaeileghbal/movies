@@ -23,7 +23,7 @@ export default function Search() {
           inputProps={{
             style: {
               fontWeight: 300,
-              color: "lightgray",
+              color: "white",
               fontSize: 16,
             },
           }}
