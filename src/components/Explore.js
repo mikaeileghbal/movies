@@ -8,8 +8,7 @@ export default function Explore({ url }) {
         sx={{
           position: "relative",
           width: "100%",
-          height: "100%",
-
+          height: "80%",
           overflow: "hidden",
           display: "flex",
           alignItems: "center",
