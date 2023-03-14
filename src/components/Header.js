@@ -5,6 +5,7 @@ import { Button, Card, CardMedia, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import { StyledRating, StyledText2 } from "../styles/global";
+import { CSSTransition } from "react-transition-group";
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",
@@ -24,7 +25,17 @@ export default function Header({ movie }) {
       pb={6}
       sx={{ paddingLeft: { xs: "0px", lg: "0", position: "relative" } }}
     >
-      <FeaturedMovie movie={movie} />
+      {(movie.title || movie.name) && (
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={300}
+          classNames="slideUp"
+          key={movie}
+        >
+          <FeaturedMovie movie={movie} />
+        </CSSTransition>
+      )}
       <FeaturedImage
         image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
       />

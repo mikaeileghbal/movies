@@ -1,6 +1,4 @@
 import React from "react";
-import TrendMovie from "../components/TrendMovie";
-import TrendTv from "../components/TrendTv";
 import CurrentTv from "../components/tv/CurrentTv";
 import PopularTv from "../components/tv/PopularTv";
 import TodayTv from "../components/tv/TodayTv";
