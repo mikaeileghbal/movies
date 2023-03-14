@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
 
 export default function Sidebar() {
-  const [showSearch, setShowSearch] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

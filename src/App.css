@@ -21,3 +21,65 @@
     transparent
   );
 }
+
+.slideUp-appear {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.slideUp-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease-out;
+}
+.slideUp-appear-done {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slideUp-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.slideUp-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease-out;
+}
+.slideUp-enter-done {
+  opacity: 1;
+}
+
+/* .slideUp-exit {
+  opacity: 1;
+}
+.slideUp-exit-active {
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.slideUp-exit-done {
+  opacity: 0;
+} */
+
+.fadeIn-enter {
+  opacity: 0;
+}
+.fadefadeIn-enter.fadefadeIn-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.fadefadeIn-enter.fadefadeIn.enter-done {
+  opacity: 1;
+}
+
+.fadefadeIn-exit {
+  opacity: 1;
+}
+
+.fadeIn-exit.fadeIn-exit-active {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.fadeIn-exit.fadeIn-exit-done {
+  opacity: 0;
+}

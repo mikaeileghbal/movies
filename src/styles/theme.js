@@ -1,4 +1,4 @@
-import { amber, deepOrange, green, grey, red } from "@mui/material/colors";
+import { amber, green, grey, red } from "@mui/material/colors";
 import { createTheme } from "@mui/material";
 
 const getDesignTokens = (mode) => ({
