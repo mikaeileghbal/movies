@@ -6,7 +6,7 @@ export default function Search() {
   return (
     <Box
       sx={{
-        bgcolor: "bgColor",
+        bgcolor: "#333",
         position: "fixed",
         top: 0,
         left: { xs: 0, lg: "100px" },
@@ -14,17 +14,19 @@ export default function Search() {
         m: 0,
       }}
     >
-      <Box sx={{}} fontFamily={200} py={1} px={4}>
+      <Box sx={{}} fontFamily={200} py={3} px={6}>
         <TextField
           id="search"
-          m={0}
+          py={0}
           fullWidth
           placeholder="Search for a  movie, tv show or a person..."
-          inputProps={{
+          variant="standard"
+          InputProps={{
+            disableUnderline: true,
             style: {
               fontWeight: 300,
               color: "white",
-              fontSize: 16,
+              fontSize: 15,
             },
           }}
         />

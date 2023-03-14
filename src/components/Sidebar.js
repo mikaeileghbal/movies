@@ -1,18 +1,26 @@
 import React, { useState } from "react";
+import "../App.css";
 import CameraOutdoorOutlinedIcon from "@mui/icons-material/CameraOutdoorOutlined";
 import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
-import { Collapse, IconButton, Toolbar } from "@mui/material";
+import { IconButton, Toolbar } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useColorMode } from "../App";
+import { useTheme } from "@emotion/react";
+import { CSSTransition } from "react-transition-group";
 
 export default function Sidebar() {
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const colorMode = useColorMode();
+  const theme = useTheme();
 
   const goToUrl = (url) => {
     navigate(url);
@@ -69,13 +77,24 @@ export default function Sidebar() {
             <IconButton color="inherit" onClick={toggleSearch}>
               <SearchIcon color={showSearch === true ? "primary" : "white"} />
             </IconButton>
+            <IconButton onClick={colorMode.toggleColorMode}>
+              {theme.palette.mode === "dark" ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
           </Stack>
         </Toolbar>
       </AppBar>
-
-      <Collapse in={showSearch}>
+      <CSSTransition
+        in={showSearch}
+        classNames="slideDown"
+        timeout={300}
+        key={1}
+      >
         <Search />
-      </Collapse>
+      </CSSTransition>
     </>
   );
 }
