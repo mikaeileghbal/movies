@@ -10,37 +10,51 @@ import {
 import Movie from "./pages/Movie";
 import Tv from "./pages/Tv";
 import getTheme from "./styles/theme";
-import { useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
+const ColorModeContext = createContext({});
+export const useColorMode = () => useContext(ColorModeContext);
+
 function App() {
   const location = useLocation();
   const [mode, setMode] = useState("dark");
-  const theme = getTheme(mode);
+  const theme = useMemo(() => getTheme(mode), [mode]);
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((mode) => (mode === "light" ? "dark" : "light"));
+        console.log("called...");
+      },
+    }),
+    []
+  );
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-      <TransitionGroup>
-        <CSSTransition
-          key={location.pathname}
-          timeout={500}
-          classNames="fadeIn"
-        >
-          <div>
-            <Routes location={location}>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/movie" element={<Movie />} />
-              <Route exact path="/tv" element={<Tv />} />
-            </Routes>
-          </div>
-        </CSSTransition>
-      </TransitionGroup>
-      <Sidebar />
-    </ThemeProvider>
+        <TransitionGroup>
+          <CSSTransition
+            key={location.pathname}
+            timeout={500}
+            classNames="fadeIn"
+          >
+            <div>
+              <Routes location={location}>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/movie" element={<Movie />} />
+                <Route exact path="/tv" element={<Tv />} />
+              </Routes>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+        <Sidebar />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
