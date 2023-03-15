@@ -91,7 +91,8 @@ export default function Sidebar() {
         in={showSearch}
         classNames="slideDown"
         timeout={300}
-        key={1}
+        unmountOnExit
+        mountOnEnter
       >
         <Search />
       </CSSTransition>

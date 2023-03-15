@@ -37,19 +37,18 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <TransitionGroup>
+        <TransitionGroup component="div">
           <CSSTransition
             key={location.pathname}
-            timeout={500}
+            timeout={{ enter: 800, exit: 500 }}
             classNames="fadeIn"
+            appear
           >
-            <div>
-              <Routes location={location}>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/movie" element={<Movie />} />
-                <Route exact path="/tv" element={<Tv />} />
-              </Routes>
-            </div>
+            <Routes location={location}>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/movie" element={<Movie />} />
+              <Route exact path="/tv" element={<Tv />} />
+            </Routes>
           </CSSTransition>
         </TransitionGroup>
         <Sidebar />

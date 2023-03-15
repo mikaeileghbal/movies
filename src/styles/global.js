@@ -15,6 +15,10 @@ export const StyledRating = styled(Rating)(({ theme }) => ({
   margin: "16px 0 0",
 }));
 
+export const StyledRatingSmall = styled(StyledRating)(({ theme }) => ({
+  margin: "0",
+}));
+
 export const StyledCardTitle = styled(Typography)(() => ({
   variant: "h5",
   component: "div",

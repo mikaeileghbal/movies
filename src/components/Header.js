@@ -32,6 +32,7 @@ export default function Header({ movie }) {
           timeout={300}
           classNames="slideUp"
           key={movie}
+          unmountOnExit
         >
           <FeaturedMovie movie={movie} />
         </CSSTransition>
