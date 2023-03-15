@@ -1,14 +1,12 @@
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
-  Rating,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import { Box } from "@mui/system";
-import { StyledCardTitle } from "../styles/global";
-import { BorderClearRounded } from "@mui/icons-material";
+import { StyledCardTitle, StyledRatingSmall } from "../styles/global";
 
 export default function renderMovie(item) {
   return (
@@ -62,7 +60,7 @@ export default function renderMovie(item) {
               alignItems: "center",
             }}
           >
-            <Rating
+            <StyledRatingSmall
               size="small"
               value={item.vote_average / 2}
               readOnly
