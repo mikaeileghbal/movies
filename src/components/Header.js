@@ -23,13 +23,16 @@ export default function Header({ movie }) {
       component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
       pb={6}
-      sx={{ paddingLeft: { xs: "0px", lg: "0", position: "relative" } }}
+      sx={{
+        paddingLeft: { xs: "0px", lg: "0", position: "relative" },
+        backgroundColor: "#000",
+      }}
     >
       {(movie.title || movie.name) && (
         <CSSTransition
           in={true}
           appear={true}
-          timeout={300}
+          timeout={400}
           classNames="slideUp"
           key={movie}
           unmountOnExit
@@ -56,7 +59,6 @@ function FeaturedMovie({ movie }) {
         fontWeight: "700",
         height: { xs: "auto", lg: "520px" },
         alignSelf: "flex-start",
-        backgroundColor: "#000",
       }}
       flex={{ xs: "1", lg: "0 0 600px" }}
       width={{ xs: "100%" }}
