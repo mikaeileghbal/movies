@@ -29,7 +29,7 @@
 .slideUp-appear-active {
   opacity: 1;
   transform: translateY(0);
-  transition: all 300ms ease-out;
+  transition: all 400ms ease-out;
 }
 .slideUp-appear-done {
   opacity: 1;
@@ -37,13 +37,13 @@
 }
 
 .slideUp-enter {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(20px);
 }
 .slideUp-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: all 300ms ease-out;
+  transition: all 400ms ease-out;
 }
 .slideUp-enter-done {
   opacity: 1;
@@ -73,7 +73,7 @@
 }
 .fadeIn-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in 300ms;
+  transition: opacity 300ms ease-in 300ms;
 }
 
 .fadeIn-enter-done {
@@ -87,7 +87,7 @@
 
 .fadeIn-exit-active {
   opacity: 0;
-  transition: opacity 500ms ease-in;
+  transition: opacity 300ms ease-in;
 }
 
 .fadeIn-exit-done {
