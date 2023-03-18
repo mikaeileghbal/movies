@@ -29,7 +29,10 @@ export default function Explore({ url }) {
               left: 0,
               width: "100%",
               height: "100%",
-              display:
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+
               //transform: "scale(0.97)",
             }}
           >
