@@ -58,7 +58,7 @@ export default function Carousel({ items, heading, url, groupSize, render }) {
   });
 
   return (
-    <Box component="section" mb={6}>
+    <Box component="section" mb={6} ml={-7}>
       <CarouselHeader heading={heading} url={url} />
       <CarouselBody
         movies={groupedItems}

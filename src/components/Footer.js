@@ -9,7 +9,7 @@ import { StyledIconButton } from "../styles/global";
 
 export default function Footer() {
   return (
-    <Box sx={{ ml: 7 }}>
+    <Box>
       <Typography component="p" variant="body2" sx={{ color: "gray", mb: 1 }}>
         © 2023 Jason Ujma-Alvis. All rights reserved. Cookie Policy.
       </Typography>

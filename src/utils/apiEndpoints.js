@@ -2,7 +2,7 @@ const BASE_URL = "https://api.themoviedb.org/3/";
 
 const apiEndpoint = {
   movie: {
-    trendding: {
+    trending: {
       title: "trending movies",
       url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/movie/category/trending",
@@ -20,7 +20,7 @@ const apiEndpoint = {
     upcoming: {
       title: "upcoming movies",
       url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
-      exploreUrl: "/movie/category/up_comming",
+      exploreUrl: "/movie/category/upcoming",
     },
     now_playing: {
       title: "now playing movies",
@@ -29,7 +29,7 @@ const apiEndpoint = {
     },
   },
   tv: {
-    trendding: {
+    trending: {
       title: "trending tv shows",
       url: `${BASE_URL}trending/tv/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/tv/category/trending",
