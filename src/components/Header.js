@@ -28,18 +28,16 @@ export default function Header({ movie }) {
         backgroundColor: "#000",
       }}
     >
-      {(movie.title || movie.name) && (
-        <CSSTransition
-          in={true}
-          appear={true}
-          timeout={400}
-          classNames="slideUp"
-          key={movie}
-          unmountOnExit
-        >
-          <FeaturedMovie movie={movie} />
-        </CSSTransition>
-      )}
+      <CSSTransition
+        in={movie.id}
+        appear={true}
+        timeout={400}
+        classNames="slideUp"
+        key={movie}
+        unmountOnExit
+      >
+        <FeaturedMovie movie={movie} />
+      </CSSTransition>
       <FeaturedImage
         image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
       />
