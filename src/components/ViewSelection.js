@@ -23,11 +23,13 @@ export default function ViewSelection({ children }) {
   return (
     <Box
       component="main"
-      pl={7}
+      //pl={7}
       sx={{ marginLeft: { xs: 0, lg: "100px" }, position: "absolute" }}
     >
       <Header movie={movie} />
-      <main>{children}</main>
+      <Box component="main" pl={7}>
+        {children}
+      </Box>
       <Footer />
     </Box>
   );
