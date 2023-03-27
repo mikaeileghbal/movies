@@ -35,9 +35,16 @@ export default function List() {
       >
         {title}
       </Typography>
-      <Grid container gap={1} mb={6}>
+      <Grid
+        container
+        spacing={1}
+        mb={6}
+        sx={{
+          backgroundColor: "transparent",
+        }}
+      >
         {items?.map((item) => (
-          <Grid item>
+          <Grid item xs={12 / 5}>
             <MovieCar item={item} />
           </Grid>
         ))}
