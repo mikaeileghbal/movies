@@ -14,6 +14,7 @@ import { createContext, useContext, useMemo, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import List from "./pages/List";
 
 const ColorModeContext = createContext({});
 export const useColorMode = () => useContext(ColorModeContext);
@@ -48,6 +49,12 @@ function App() {
               <Route exact path="/" element={<Home />} />
               <Route exact path="/movie" element={<Movie />} />
               <Route exact path="/tv" element={<Tv />} />
+              <Route
+                exact
+                path="/movie/category/:category"
+                element={<List />}
+              />
+              <Route exact path="/tv/category/:category" element={<List />} />
             </Routes>
           </CSSTransition>
         </TransitionGroup>
