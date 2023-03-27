@@ -22,9 +22,9 @@ export default function Header({ movie }) {
       container
       component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
-      pb={6}
+      mb={7}
       sx={{
-        paddingLeft: { xs: "0px", lg: "0", position: "relative" },
+        paddingLeft: { xs: "0px", lg: 7, position: "relative" },
         backgroundColor: "#000",
       }}
     >
@@ -55,19 +55,19 @@ function FeaturedMovie({ movie }) {
         xs: 12,
         lg: 6,
         fontWeight: "700",
-        height: { xs: "auto", lg: "520px" },
+        height: { xs: "auto", lg: "530px" },
         alignSelf: "flex-start",
       }}
-      flex={{ xs: "1", lg: "0 0 600px" }}
+      flex={{ xs: "1", lg: "0 0 500px" }}
       width={{ xs: "100%" }}
       //p={{ xs: 2, md: 6 }}
-      pt={{ xs: 0, md: 0, lg: 6 }}
+      pt={{ xs: 0, md: 0, lg: 2 }}
       display="flex"
       flexDirection="column"
       justifyContent={{ xs: "flex-start", lg: "center" }}
       alignItems="flex-start"
     >
-      <Typography variant="h1" fontSize={32} fontWeight={400}>
+      <Typography variant="h1" fontSize={34} fontWeight={400}>
         {title}
       </Typography>
       <Stack
@@ -102,7 +102,7 @@ function FeaturedImage({ image }) {
       sx={{
         xs: 12,
         lg: 6,
-        zIndex: -1,
+        zIndex: 2,
       }}
       flex="auto"
     >
