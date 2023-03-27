@@ -6,12 +6,10 @@ export default function ViewList({ children }) {
   return (
     <Box
       component="main"
-      pl={6}
-      pr={2}
       mt={7}
       sx={{
         marginLeft: { xs: 0, lg: "100px" },
-        px: { xs: 2, lg: 6 },
+        px: { xs: 0, lg: 0 },
       }}
     >
       <main>{children}</main>

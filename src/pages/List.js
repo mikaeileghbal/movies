@@ -31,7 +31,7 @@ export default function List() {
         fontSize={24}
         fontWeight={400}
         my={3}
-        sx={{ textTransform: "capitalize" }}
+        sx={{ textTransform: "capitalize", px: { xs: 1, lg: 7 } }}
       >
         {title}
       </Typography>
@@ -41,6 +41,7 @@ export default function List() {
         mb={6}
         sx={{
           backgroundColor: "transparent",
+          px: { xs: 1, lg: 7 },
         }}
       >
         {items?.map((item) => (
