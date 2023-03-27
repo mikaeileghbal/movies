@@ -1,17 +1,15 @@
 import React from "react";
-import CurrentTv from "../components/tv/CurrentTv";
-import PopularTv from "../components/tv/PopularTv";
-import TodayTv from "../components/tv/TodayTv";
-import TopRatedTv from "../components/tv/TopRatedTv";
 import ViewSelection from "../components/ViewSelection";
+import ViewSelectionItem from "../components/ViewSelectionItem";
+import apiEndpoint from "../utils/apiEndpoints";
 
 export default function Tv() {
   return (
     <ViewSelection>
-      <PopularTv />
-      <TopRatedTv />
-      <CurrentTv />
-      <TodayTv />
+      <ViewSelectionItem routePath={apiEndpoint.tv.popular} />
+      <ViewSelectionItem routePath={apiEndpoint.tv.top_rated} />
+      <ViewSelectionItem routePath={apiEndpoint.tv.on_the_air} />
+      <ViewSelectionItem routePath={apiEndpoint.tv.airing_today} />
     </ViewSelection>
   );
 }
