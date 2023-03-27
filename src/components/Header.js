@@ -60,7 +60,7 @@ function FeaturedMovie({ movie }) {
       }}
       flex={{ xs: "1", lg: "0 0 600px" }}
       width={{ xs: "100%" }}
-      p={{ xs: 2, md: 6 }}
+      //p={{ xs: 2, md: 6 }}
       pt={{ xs: 0, md: 0, lg: 6 }}
       display="flex"
       flexDirection="column"
