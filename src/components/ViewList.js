@@ -1,7 +1,15 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import React from "react";
+import Footer from "./Footer";
 
-export default function ViewList() {
+export default function ViewList({ children }) {
   return (
-    <div>ViewList</div>
-  )
+    <Box
+      component="main"
+      sx={{ marginLeft: { xs: 0, lg: "100px" }, position: "absolute" }}
+    >
+      <main>{children}</main>
+      <Footer />
+    </Box>
+  );
 }
