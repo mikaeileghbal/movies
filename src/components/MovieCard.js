@@ -48,6 +48,7 @@ export default function MovieCard({ item }) {
           sx={{
             display: { xs: "none", md: "block" },
             border: "none",
+            padding: "10px 0 16px",
           }}
         >
           <StyledCardTitle>
@@ -70,7 +71,7 @@ export default function MovieCard({ item }) {
                 <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
               }
             />
-            <Box sx={{ ml: 2, color: "gray" }}>{item.vote_average}</Box>
+            <Box sx={{ ml: 0, color: "gray" }}>{item.vote_average}</Box>
           </Box>
         </CardContent>
       </CardActionArea>

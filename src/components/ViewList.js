@@ -8,8 +8,11 @@ export default function ViewList({ children }) {
       component="main"
       pl={6}
       pr={2}
-      mt={4}
-      sx={{ marginLeft: { xs: 0, lg: "100px" }, position: "absolute" }}
+      mt={7}
+      sx={{
+        marginLeft: { xs: 0, lg: "100px" },
+        px: { xs: 2, lg: 6 },
+      }}
     >
       <main>{children}</main>
       <Footer />
