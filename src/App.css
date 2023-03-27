@@ -65,7 +65,7 @@
 }
 .fadeIn-appear-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 300ms ease-in 400ms;
 }
 
 .fadeIn-enter {
@@ -73,7 +73,7 @@
 }
 .fadeIn-enter-active {
   opacity: 1;
-  transition: opacity 300ms ease-in 300ms;
+  transition: opacity 300ms ease-in 400ms;
 }
 
 .fadeIn-enter-done {
