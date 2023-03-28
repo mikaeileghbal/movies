@@ -1,27 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import ViewList from "../components/ViewList";
 import apiEndpoint from "../utils/apiEndpoints";
 import MovieCar from "../components/MovieCard";
 import { Grid, Typography } from "@mui/material";
+import Loading from "../components/Loading";
 
 export default function List() {
+  const [page, setPage] = useState(1);
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const { category } = useParams();
   const location = useLocation();
 
   const type = location.pathname.split("/")[1];
   const { url, title } = apiEndpoint[type][category];
-  console.log(url);
+  const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);
+
+  const handlePage = () => {
+    console.log("page: ", page);
+    setPage((page) => page + 1);
+  };
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(url);
-      const result = await res.json();
-      setItems(result.results);
+      setLoading(true);
+      try {
+        const res = await fetch(urlWithPage);
+        const result = await res.json();
+        setLoading(false);
+        setItems((state) => [...state, ...result.results]);
+      } catch (err) {
+        setLoading(false);
+      }
     };
     getData();
-  }, [url]);
+  }, [urlWithPage, page]);
 
   console.log("items", items);
   return (
@@ -45,11 +60,13 @@ export default function List() {
         }}
       >
         {items?.map((item) => (
-          <Grid item xs={12 / 5}>
+          <Grid item xs={12 / 5} key={item.id}>
             <MovieCar item={item} />
           </Grid>
         ))}
       </Grid>
+      {loading && <Loading />}
+      <button onClick={handlePage}>Load more</button>
     </ViewList>
   );
 }

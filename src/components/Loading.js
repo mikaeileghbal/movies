@@ -8,7 +8,7 @@ export default function Loading() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "320px",
+        minHeight: "100px",
         margin: "10px",
       }}
     >
