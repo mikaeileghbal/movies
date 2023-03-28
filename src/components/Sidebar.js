@@ -68,11 +68,13 @@ export default function Sidebar() {
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/movie")}>
               <MovieOutlinedIcon
-                color={pathname === "/movie" ? "primary" : "white"}
+                color={pathname.startsWith("/movie") ? "primary" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/tv")}>
-              <LiveTvIcon color={pathname === "/tv" ? "primary" : "white"} />
+              <LiveTvIcon
+                color={pathname.startsWith("/tv") ? "primary" : "white"}
+              />
             </IconButton>
             <IconButton color="inherit" onClick={toggleSearch}>
               <SearchIcon color={showSearch === true ? "primary" : "white"} />

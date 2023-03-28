@@ -1,8 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useLocation, useParams } from "react-router-dom";
 import ViewList from "../components/ViewList";
 import apiEndpoint from "../utils/apiEndpoints";
-import MovieCar from "../components/MovieCard";
+import MovieCard from "../components/MovieCard";
 import { Grid, Typography } from "@mui/material";
 import Loading from "../components/Loading";
 
@@ -16,29 +22,45 @@ export default function List() {
 
   const type = location.pathname.split("/")[1];
   const { url, title } = apiEndpoint[type][category];
-  const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);
 
-  const handlePage = () => {
-    console.log("page: ", page);
-    setPage((page) => page + 1);
-  };
+  const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      try {
-        const res = await fetch(urlWithPage);
-        const result = await res.json();
-        setLoading(false);
-        setItems((state) => [...state, ...result.results]);
-      } catch (err) {
-        setLoading(false);
-      }
+      const res = await fetch(urlWithPage);
+      const result = await res.json();
+      setItems((state) => [...state, ...result.results]);
+      setLoading(false);
     };
     getData();
-  }, [urlWithPage, page]);
+  }, [page]);
 
-  console.log("items", items);
+  let bottomBoundryRef = useRef(null);
+
+  const scrollObserver = useCallback(
+    (node) => {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0) {
+            setPage((page) => page + 1);
+          }
+        });
+      }).observe(node);
+    },
+    [setPage]
+  );
+
+  useEffect(() => {
+    if (bottomBoundryRef.current) {
+      scrollObserver(bottomBoundryRef.current);
+    }
+  }, [bottomBoundryRef]);
+
+  console.log(loading);
+  console.log(items);
+  console.log(urlWithPage);
+
   return (
     <ViewList>
       <Typography
@@ -61,12 +83,13 @@ export default function List() {
       >
         {items?.map((item) => (
           <Grid item xs={12 / 5} key={item.id}>
-            <MovieCar item={item} />
+            <MovieCard item={item} />
           </Grid>
         ))}
       </Grid>
+      <div ref={bottomBoundryRef}></div>
       {loading && <Loading />}
-      <button onClick={handlePage}>Load more</button>
+      {/* <button onClick={handlePage}>Load more {page}</button> */}
     </ViewList>
   );
 }

@@ -5,11 +5,13 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-import React from "react";
+import React, { memo } from "react";
 import { StyledCardTitle, StyledRatingSmall } from "../styles/global";
 import StarIcon from "@mui/icons-material/Star";
 
-export default function MovieCard({ item }) {
+export default memo(MovieCard);
+
+function MovieCard({ item }) {
   return (
     <Card
       sx={{
@@ -32,7 +34,7 @@ export default function MovieCard({ item }) {
         >
           <CardMedia
             component="img"
-            image={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+            image={`https://image.tmdb.org/t/p/w400${item.poster_path}`}
             alt={item.title}
             sx={{
               position: "absolute",
