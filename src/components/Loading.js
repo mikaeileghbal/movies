@@ -12,7 +12,7 @@ export default function Loading() {
         margin: "10px",
       }}
     >
-      <CircularProgress />
+      <CircularProgress disableShrink />
     </Box>
   );
 }

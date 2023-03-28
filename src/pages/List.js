@@ -9,7 +9,7 @@ import Loading from "../components/Loading";
 export default function List() {
   const [page, setPage] = useState(1);
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { category } = useParams();
   const location = useLocation();
@@ -24,8 +24,8 @@ export default function List() {
   };
 
   useEffect(() => {
+    setLoading(true);
     const getData = async () => {
-      setLoading(true);
       try {
         const res = await fetch(urlWithPage);
         const result = await res.json();
@@ -33,10 +33,11 @@ export default function List() {
         setItems((state) => [...state, ...result.results]);
       } catch (err) {
         setLoading(false);
+        return err;
       }
     };
     getData();
-  }, [urlWithPage, page]);
+  }, [urlWithPage]);
 
   console.log("items", items);
   return (
@@ -66,7 +67,7 @@ export default function List() {
         ))}
       </Grid>
       {loading && <Loading />}
-      <button onClick={handlePage}>Load more</button>
+      <button onClick={handlePage}>Load more {page}</button>
     </ViewList>
   );
 }
