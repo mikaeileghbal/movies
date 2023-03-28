@@ -9,22 +9,22 @@ const apiEndpoint = {
     },
     popular: {
       title: "popular movies",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}movie/popular?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/movie/category/popular",
     },
     top_rated: {
       title: "top rated movies",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}movie/top_rated?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/movie/category/top_rated",
     },
     upcoming: {
       title: "upcoming movies",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}movie/upcoming?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/movie/category/upcoming",
     },
     now_playing: {
       title: "now playing movies",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}movie/now_playing?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/movie/category/now_playing",
     },
   },
@@ -36,22 +36,22 @@ const apiEndpoint = {
     },
     popular: {
       title: "popular tv shows",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}tv/popular?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/tv/category/popular",
     },
     top_rated: {
       title: "top rated tv shows",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}tv/top_rated?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/tv/category/top_rated",
     },
     on_the_air: {
       title: "currently airing tv shows",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}tv/on_the_air?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/tv/category/on_the_air",
     },
     airing_today: {
       title: "tv shows airing today",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}tv/airing_today?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/tv/category/airing_today",
     },
   },
