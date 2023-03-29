@@ -57,6 +57,7 @@ export default function List() {
         sx={{
           backgroundColor: "transparent",
           px: { xs: 1, lg: 7 },
+          minHeight: "100vh",
         }}
       >
         {items?.map((item) => (
