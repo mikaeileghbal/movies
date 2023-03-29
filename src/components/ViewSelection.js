@@ -2,10 +2,10 @@ import React from "react";
 import { Box } from "@mui/system";
 import Footer from "./Footer";
 import Header from "./Header";
-import useFeaturedMovie from "../hooks/useFeaturedMovie";
+import useMovieFeatured from "../hooks/useMovieFeatured";
 
 export default function ViewSelection({ children }) {
-  const { movie } = useFeaturedMovie();
+  const { movie } = useMovieFeatured();
 
   return (
     <Box
