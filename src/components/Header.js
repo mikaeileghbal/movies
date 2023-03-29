@@ -24,7 +24,7 @@ export default function Header({ movie }) {
       flexDirection={{ xs: "column-reverse", lg: "row" }}
       mb={7}
       sx={{
-        paddingLeft: { xs: "0px", lg: 7, position: "relative" },
+        paddingLeft: { xs: 5, lg: 7, position: "relative" },
         backgroundColor: "#000",
       }}
     >
@@ -57,6 +57,7 @@ function FeaturedMovie({ movie }) {
         fontWeight: "700",
         height: { xs: "auto", lg: "530px" },
         alignSelf: "flex-start",
+        zIndex: 3,
       }}
       flex={{ xs: "1", lg: "0 0 500px" }}
       width={{ xs: "100%" }}
