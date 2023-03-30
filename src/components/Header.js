@@ -22,7 +22,6 @@ export default function Header({ movie }) {
       container
       component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
-      mb={7}
       sx={{
         paddingLeft: { xs: 5, lg: 7, position: "relative" },
         backgroundColor: "#000",

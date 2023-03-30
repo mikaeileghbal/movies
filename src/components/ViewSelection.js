@@ -16,7 +16,7 @@ export default function ViewSelection({ children }) {
       }}
     >
       <Header movie={movie} />
-      <Box component="main" pl={7}>
+      <Box component="main" pl={7} mt={7}>
         {children}
       </Box>
       <Footer />

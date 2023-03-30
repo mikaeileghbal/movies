@@ -1,4 +1,5 @@
 import { Box, Button } from "@mui/material";
+import { Stack } from "@mui/system";
 import React, { Children, useState } from "react";
 
 export default function Tab({ children }) {
@@ -7,15 +8,22 @@ export default function Tab({ children }) {
   const items = Children.toArray(children);
 
   return (
-    <Box>
-      <Box>
+    <Box mt={-4} pr={8} mb={7}>
+      <Stack
+        direction="row"
+        spacing={8}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         {items.map((item) => (
           <Button
             disableRipple
             sx={{
               color: item.props.name === active ? "white" : "#585858",
               fontSize: "20px",
-              padding: "4px 0",
+              padding: "6px 0",
               borderRadius: "0",
               borderBottom: `2px solid ${
                 item.props.name === active ? "white" : "transparent"
@@ -31,8 +39,10 @@ export default function Tab({ children }) {
             {item.props.name}
           </Button>
         ))}
+      </Stack>
+      <Box sx={{ backgroundColor: "transparent" }} py={5}>
+        {items.filter((item) => item.props.name === active)}
       </Box>
-      <Box>{items.filter((item) => item.props.name === active)}</Box>
     </Box>
   );
 }
