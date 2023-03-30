@@ -15,6 +15,7 @@ import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import List from "./pages/List";
+import Detail from "./pages/Detail";
 
 const ColorModeContext = createContext({});
 export const useColorMode = () => useContext(ColorModeContext);
@@ -57,6 +58,7 @@ function App() {
                 element={<List />}
               />
               <Route exact path="/tv/category/:category" element={<List />} />
+              <Route exact path="/:type/:id" element={<Detail />} />
             </Routes>
           </CSSTransition>
         </TransitionGroup>

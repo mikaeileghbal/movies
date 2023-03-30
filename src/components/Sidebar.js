@@ -79,13 +79,13 @@ export default function Sidebar() {
             <IconButton color="inherit" onClick={toggleSearch}>
               <SearchIcon color={showSearch === true ? "primary" : "white"} />
             </IconButton>
-            <IconButton onClick={colorMode.toggleColorMode}>
+            {/* <IconButton onClick={colorMode.toggleColorMode}>
               {theme.palette.mode === "dark" ? (
                 <Brightness7Icon />
               ) : (
                 <Brightness4Icon />
               )}
-            </IconButton>
+            </IconButton> */}
           </Stack>
         </Toolbar>
       </AppBar>
