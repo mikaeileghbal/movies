@@ -5,7 +5,7 @@ import Carousel from "./Carousel";
 import Loading from "./Loading";
 
 export default function Listing({ moviesUrl, exploreUrl, heading }) {
-  const { groupSize } = useResize();
+  //const { groupSize } = useResize();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +34,7 @@ export default function Listing({ moviesUrl, exploreUrl, heading }) {
       heading={heading}
       url={exploreUrl}
       render={renderMovie}
-      groupSize={groupSize}
+      groupSize={5}
     />
   );
 }
