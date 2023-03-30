@@ -1,7 +1,7 @@
 import "../App.css";
 import styled from "@emotion/styled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { Button, Card, CardMedia, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardMedia, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import { StyledRating, StyledText2 } from "../styles/global";
@@ -26,9 +26,29 @@ export default function Header({ movie }) {
       sx={{
         paddingLeft: { xs: 5, lg: 7, position: "relative" },
         backgroundColor: "#000",
+        overflow: "hidden",
+        height: { xs: "auto", lg: "530px" },
       }}
     >
-      <CSSTransition
+      <Grid
+        item
+        xs={12}
+        lg={6}
+        sx={{
+          backgroundColor: "red",
+        }}
+      ></Grid>
+
+      <Grid
+        item
+        xs={12}
+        lg={6}
+        sx={{
+          backgroundColor: "green",
+        }}
+      ></Grid>
+
+      {/* <CSSTransition
         in={movie.id}
         appear={true}
         timeout={400}
@@ -39,8 +59,9 @@ export default function Header({ movie }) {
         <FeaturedMovie movie={movie} />
       </CSSTransition>
       <FeaturedImage
-        image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-      />
+        //image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        image={`/images/thelastofus.jpg`}
+      /> */}
     </Grid>
   );
 }
@@ -49,16 +70,7 @@ function FeaturedMovie({ movie }) {
   const { title, vote_average, overview, vote_count, duration, release_date } =
     movie;
   return (
-    <Grid
-      item
-      sx={{
-        xs: 12,
-        lg: 6,
-        fontWeight: "700",
-        height: { xs: "auto", lg: "530px" },
-        alignSelf: "flex-start",
-        zIndex: 3,
-      }}
+    <Box
       flex={{ xs: "1", lg: "0 0 500px" }}
       width={{ xs: "100%" }}
       //p={{ xs: 2, md: 6 }}
@@ -68,7 +80,7 @@ function FeaturedMovie({ movie }) {
       justifyContent={{ xs: "flex-start", lg: "center" }}
       alignItems="flex-start"
     >
-      <Typography variant="h1" fontSize={34} fontWeight={400}>
+      {/* <Typography variant="h1" fontSize={34} fontWeight={400}>
         {title}
       </Typography>
       <Stack
@@ -90,37 +102,27 @@ function FeaturedMovie({ movie }) {
         sx={{ marginTop: "25px", py: "10px", px: "20px", color: "white" }}
       >
         Watch Trailer
-      </Button>
-    </Grid>
+      </Button> */}
+    </Box>
   );
 }
 
 function FeaturedImage({ image }) {
   return (
-    <Grid
+    <Box
       className="hero-image"
-      item
       sx={{
-        xs: 12,
-        lg: 6,
-        zIndex: 2,
+        maxwidth: 600,
+        height: { xs: 220, md: 320, lg: 530, overflowY: "hidden" },
+        padding: 3,
       }}
-      flex="auto"
     >
-      <Card
-        sx={{
-          maxwidth: 600,
-          height: { xs: 220, md: 320, lg: 520, overflowY: "hidden" },
-          padding: 3,
-        }}
-      >
-        <StyledCardMedia
+      {/* <StyledCardMedia
           component="img"
           image={image}
           alt="title"
           sx={{ height: "inherit" }}
-        />
-      </Card>
-    </Grid>
+        /> */}
+    </Box>
   );
 }

@@ -44,6 +44,8 @@ function App() {
             timeout={{ enter: 700, exit: 300 }}
             classNames="fadeIn"
             appear
+            unmountOnExit
+            mountOnEnter
           >
             <Routes location={location}>
               <Route exact path="/" element={<Home />} />

@@ -9,8 +9,11 @@ export default function ViewSelection({ children }) {
 
   return (
     <Box
-      component="main"
-      sx={{ marginLeft: { xs: 0, lg: "100px" }, position: "absolute" }}
+      sx={{
+        paddingLeft: { xs: 0, lg: "100px" },
+        position: "absolute",
+        width: "100%",
+      }}
     >
       <Header movie={movie} />
       <Box component="main" pl={7}>

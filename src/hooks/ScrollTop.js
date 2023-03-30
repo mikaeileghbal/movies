@@ -5,10 +5,12 @@ export function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    document.documentElement.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
+    setTimeout(() => {
+      document.documentElement.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "instant",
+      });
+    }, 200);
   }, [pathname]);
 }
