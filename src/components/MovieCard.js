@@ -8,10 +8,18 @@ import {
 import React, { memo } from "react";
 import { StyledCardTitle, StyledRatingSmall } from "../styles/global";
 import StarIcon from "@mui/icons-material/Star";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default memo(MovieCard);
 
 function MovieCard({ item }) {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const type = pathname.split("/")[1];
+
+  const gotoUrl = () => navigate(`/${type}/${item.id}`);
+
   return (
     <Card
       sx={{
@@ -21,6 +29,7 @@ function MovieCard({ item }) {
         borderRadius: "0",
         boxShadow: "none",
       }}
+      onClick={gotoUrl}
     >
       <CardActionArea>
         <Box
