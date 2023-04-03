@@ -1,6 +1,7 @@
 import React from "react";
 import ViewSelection from "../components/ViewSelection";
 import ViewSelectionItem from "../components/ViewSelectionItem";
+import useMovieFeatured from "../hooks/useMovieFeatured";
 import apiEndpoint from "../utils/apiEndpoints";
 
 export default function Movie() {

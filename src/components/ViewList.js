@@ -5,12 +5,12 @@ import Footer from "./Footer";
 export default function ViewList({ children }) {
   return (
     <Box
-      component="main"
-      mt={7}
       sx={{
-        marginLeft: { xs: 0, lg: "100px" },
-        px: { xs: 0, lg: 0 },
+        paddingLeft: { xs: 0, lg: "100px" },
+        position: "absolute",
+        width: "100%",
       }}
+      mt={7}
     >
       <main>{children}</main>
       <Footer />

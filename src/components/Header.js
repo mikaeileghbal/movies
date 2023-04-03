@@ -1,7 +1,7 @@
 import "../App.css";
 import styled from "@emotion/styled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { Button, Card, CardMedia, Grid, Typography } from "@mui/material";
+import { Box, Button, CardMedia, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import { StyledRating, StyledText2 } from "../styles/global";
@@ -22,45 +22,63 @@ export default function Header({ movie }) {
       container
       component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
-      mb={7}
       sx={{
-        paddingLeft: { xs: "0px", lg: 7, position: "relative" },
+        paddingLeft: { xs: 5, lg: 7, position: "relative" },
         backgroundColor: "#000",
+        overflow: "hidden",
+        height: { xs: "auto", lg: "530px" },
       }}
     >
-      <CSSTransition
-        in={movie.id}
-        appear={true}
-        timeout={400}
-        classNames="slideUp"
-        key={movie}
-        unmountOnExit
+      <Grid
+        item
+        xs={12}
+        lg={6}
+        sx={{
+          backgroundColor: "transparent",
+        }}
       >
-        <FeaturedMovie movie={movie} />
-      </CSSTransition>
-      <FeaturedImage
-        image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-      />
+        <CSSTransition
+          in={movie.id}
+          appear={true}
+          timeout={400}
+          classNames="slideUp"
+          key={movie}
+          unmountOnExit
+        >
+          <FeaturedMovie movie={movie} />
+        </CSSTransition>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        lg={6}
+        sx={{
+          backgroundColor: "transparent",
+        }}
+      >
+        <FeaturedImage
+          image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        />
+      </Grid>
     </Grid>
   );
 }
 
 function FeaturedMovie({ movie }) {
-  const { title, vote_average, overview, vote_count, duration, release_date } =
-    movie;
+  const {
+    title,
+    vote_average,
+    overview,
+    vote_count,
+    duration,
+    release_date,
+    name,
+  } = movie;
   return (
-    <Grid
-      item
-      sx={{
-        xs: 12,
-        lg: 6,
-        fontWeight: "700",
-        height: { xs: "auto", lg: "530px" },
-        alignSelf: "flex-start",
-      }}
+    <Box
       flex={{ xs: "1", lg: "0 0 500px" }}
-      width={{ xs: "100%" }}
-      //p={{ xs: 2, md: 6 }}
+      width={{ xs: "80%" }}
+      height="100%"
       pt={{ xs: 0, md: 0, lg: 2 }}
       display="flex"
       flexDirection="column"
@@ -68,7 +86,7 @@ function FeaturedMovie({ movie }) {
       alignItems="flex-start"
     >
       <Typography variant="h1" fontSize={34} fontWeight={400}>
-        {title}
+        {title || name}
       </Typography>
       <Stack
         direction="row"
@@ -90,36 +108,26 @@ function FeaturedMovie({ movie }) {
       >
         Watch Trailer
       </Button>
-    </Grid>
+    </Box>
   );
 }
 
 function FeaturedImage({ image }) {
   return (
-    <Grid
+    <Box
       className="hero-image"
-      item
       sx={{
-        xs: 12,
-        lg: 6,
-        zIndex: 2,
+        maxwidth: 600,
+        height: { xs: 220, md: 320, lg: 530, overflowY: "hidden" },
+        padding: 3,
       }}
-      flex="auto"
     >
-      <Card
-        sx={{
-          maxwidth: 600,
-          height: { xs: 220, md: 320, lg: 520, overflowY: "hidden" },
-          padding: 3,
-        }}
-      >
-        <StyledCardMedia
-          component="img"
-          image={image}
-          alt="title"
-          sx={{ height: "inherit" }}
-        />
-      </Card>
-    </Grid>
+      <StyledCardMedia
+        component="img"
+        image={image}
+        alt="title"
+        sx={{ height: "inherit" }}
+      />
+    </Box>
   );
 }

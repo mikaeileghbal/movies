@@ -2,18 +2,25 @@ import React from "react";
 import { Box } from "@mui/system";
 import Footer from "./Footer";
 import Header from "./Header";
+import { useParams } from "react-router-dom";
+import useMovieDetail from "../hooks/useMovieDetail";
 import useMovieFeatured from "../hooks/useMovieFeatured";
 
 export default function ViewSelection({ children }) {
-  const { movie } = useMovieFeatured();
+  const { type, id } = useParams();
+
+  const { featured } = useMovieFeatured();
 
   return (
     <Box
-      component="main"
-      sx={{ marginLeft: { xs: 0, lg: "100px" }, position: "absolute" }}
+      sx={{
+        paddingLeft: { xs: 0, lg: "100px" },
+        position: "absolute",
+        width: "100%",
+      }}
     >
-      <Header movie={movie} />
-      <Box component="main" pl={7}>
+      <Header movie={featured} />
+      <Box component="main" pl={7} mt={7}>
         {children}
       </Box>
       <Footer />
