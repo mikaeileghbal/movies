@@ -65,8 +65,15 @@ export default function Header({ movie }) {
 }
 
 function FeaturedMovie({ movie }) {
-  const { title, vote_average, overview, vote_count, duration, release_date } =
-    movie;
+  const {
+    title,
+    vote_average,
+    overview,
+    vote_count,
+    duration,
+    release_date,
+    name,
+  } = movie;
   return (
     <Box
       flex={{ xs: "1", lg: "0 0 500px" }}
@@ -79,7 +86,7 @@ function FeaturedMovie({ movie }) {
       alignItems="flex-start"
     >
       <Typography variant="h1" fontSize={34} fontWeight={400}>
-        {title}
+        {title || name}
       </Typography>
       <Stack
         direction="row"
