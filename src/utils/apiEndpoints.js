@@ -55,6 +55,16 @@ const apiEndpoint = {
       exploreUrl: "/tv/category/airing_today",
     },
   },
+  cast: {
+    title: "cast",
+    url: `${BASE_URL}tv/on_the_air?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+    exploreUrl: null,
+  },
+  like: {
+    title: "more like this",
+    url: `${BASE_URL}tv/on_the_air?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+    exploreUrl: null,
+  },
 };
 
 export default apiEndpoint;

@@ -41,3 +41,10 @@ export const StyledIconButton = styled(IconButton)(() => ({
     color: "white",
   },
 }));
+
+export const StyledIconButtonSocial = styled(IconButton)(({ theme }) => ({
+  transition: "0.3s",
+  "&:hover": {
+    color: theme.palette.primary.main,
+  },
+}));

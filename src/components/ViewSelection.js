@@ -9,7 +9,7 @@ import useMovieFeatured from "../hooks/useMovieFeatured";
 export default function ViewSelection({ children }) {
   const { type, id } = useParams();
 
-  const { featured } = useMovieFeatured();
+  const { movie } = useMovieDetail(type, id);
 
   return (
     <Box
@@ -19,7 +19,7 @@ export default function ViewSelection({ children }) {
         width: "100%",
       }}
     >
-      <Header movie={featured} />
+      <Header movie={movie} />
       <Box component="main" pl={7} mt={7}>
         {children}
       </Box>
