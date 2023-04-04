@@ -16,26 +16,32 @@ export default function Footer() {
       <Typography component="p" variant="body2" sx={{ color: "gray" }}>
         Designed and built by me, data provided by TMDb.
       </Typography>
-      <Stack
-        direction="row"
-        spacing={1}
-        mt={4}
-        mb={{ xs: 10, lg: 4 }}
-        color="gray"
-      >
-        <StyledIconButton color="inherit">
-          <TwitterIcon />
-        </StyledIconButton>
-        <StyledIconButton color="inherit">
-          <GitHubIcon />
-        </StyledIconButton>
-        <StyledIconButton color="inherit">
-          <LinkedInIcon />
-        </StyledIconButton>
-        <StyledIconButton color="inherit">
-          <EmailOutlinedIcon />
-        </StyledIconButton>
-      </Stack>
+      <Social />
     </Box>
+  );
+}
+
+function Social() {
+  return (
+    <Stack
+      direction="row"
+      spacing={1}
+      mt={4}
+      mb={{ xs: 10, lg: 4 }}
+      color="gray"
+    >
+      <StyledIconButton color="inherit">
+        <TwitterIcon />
+      </StyledIconButton>
+      <StyledIconButton color="inherit">
+        <GitHubIcon />
+      </StyledIconButton>
+      <StyledIconButton color="inherit">
+        <LinkedInIcon />
+      </StyledIconButton>
+      <StyledIconButton color="inherit">
+        <EmailOutlinedIcon />
+      </StyledIconButton>
+    </Stack>
   );
 }
