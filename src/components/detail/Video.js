@@ -6,6 +6,7 @@ export default function Video() {
   return (
     <Grid
       container
+      mb={6}
       columnSpacing={2}
       rowSpacing={5}
       sx={{ backgroundColor: "transparent" }}
