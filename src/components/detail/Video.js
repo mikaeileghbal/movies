@@ -39,7 +39,7 @@ export default function Video() {
               transform: "translate(-50%,-50%)",
             }}
           >
-            <PlayCircleFilledWhiteOutlinedIcon sx={{ fontSize: 60 }} />
+            <PlayCircleFilledWhiteOutlinedIcon sx={{ fontSize: 50 }} />
           </IconButton>
         </Box>
 
