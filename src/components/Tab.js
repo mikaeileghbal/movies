@@ -8,7 +8,7 @@ export default function Tab({ children }) {
   const items = Children.toArray(children);
 
   return (
-    <Box mt={-4} pr={8} mb={7}>
+    <Box mt={-4} pr={0} mb={0} p={0}>
       <Stack
         direction="row"
         spacing={8}

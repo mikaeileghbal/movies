@@ -7,6 +7,7 @@ import Carousel from "../components/Carousel";
 import ViewSelectionItem from "../components/ViewSelectionItem";
 import apiEndpoint from "../utils/apiEndpoints";
 import Video from "../components/detail/Video";
+import Photo from "../components/detail/Photo";
 
 export default function Detail() {
   return (
@@ -14,13 +15,15 @@ export default function Detail() {
       <Tab>
         <Box name="overview">
           <Overview />
+          <ViewSelectionItem routePath={apiEndpoint.cast} />
         </Box>
         <Box name="videos">
           <Video />
         </Box>
-        <Box name="photos">photos</Box>
+        <Box name="photos">
+          <Photo />
+        </Box>
       </Tab>
-      <ViewSelectionItem routePath={apiEndpoint.cast} />
       <ViewSelectionItem routePath={apiEndpoint.like} />
     </ViewSelection>
   );
