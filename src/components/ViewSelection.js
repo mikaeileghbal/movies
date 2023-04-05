@@ -2,14 +2,10 @@ import React from "react";
 import { Box } from "@mui/system";
 import Footer from "./Footer";
 import Header from "./Header";
-import { useParams } from "react-router-dom";
-import useMovieDetail from "../hooks/useMovieDetail";
-import useMovieFeatured from "../hooks/useMovieFeatured";
+import { useMovieContext } from "../providers/MovieProvider";
 
 export default function ViewSelection({ children }) {
-  const { type, id } = useParams();
-
-  const { movie } = useMovieDetail(type, id);
+  const { movie } = useMovieContext();
 
   return (
     <Box

@@ -1,10 +1,10 @@
 import React from "react";
 import ViewSelection from "../components/ViewSelection";
 import ViewSelectionItem from "../components/ViewSelectionItem";
-import useMovieFeatured from "../hooks/useMovieFeatured";
 import apiEndpoint from "../utils/apiEndpoints";
+import WithFeaturedMovie from "../hoc/withFeaturedMovie";
 
-export default function Movie() {
+function Movie() {
   return (
     <ViewSelection>
       <ViewSelectionItem routePath={apiEndpoint.movie.popular} />
@@ -14,3 +14,5 @@ export default function Movie() {
     </ViewSelection>
   );
 }
+
+export default WithFeaturedMovie(Movie);
