@@ -74,6 +74,12 @@ function FeaturedMovie({ movie }) {
     release_date,
     name,
   } = movie;
+
+  const trimText = (text) => {
+    if (text.length < 196) return text;
+    return `${text.slice(0, 196)}...`;
+  };
+
   return (
     <Box
       flex={{ xs: "1", lg: "0 0 500px" }}
@@ -99,7 +105,7 @@ function FeaturedMovie({ movie }) {
         <StyledText2>{duration}</StyledText2>
       </Stack>
       <Typography variant="body2" sx={{ lineHeight: 1.7 }} mt={3}>
-        {overview}
+        {trimText(overview)}
       </Typography>
       <Button
         variant="contained"

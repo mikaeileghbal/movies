@@ -1,5 +1,6 @@
 import {
   Box,
+  CardMedia,
   Grid,
   Table,
   TableBody,
@@ -15,35 +16,46 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import { useMovieContext } from "../../providers/MovieProvider";
 
 export default function Overview() {
+  const { movie } = useMovieContext();
+
   return (
     <Grid container sx={{ backgroundColor: "transparent" }} mt={2}>
       <Grid item md={3} pr={5}>
-        <OverviewImage />
+        <OverviewImage image={movie.poster_path} />
       </Grid>
       <Grid item md={9}>
-        <OverviewInfo />
+        <OverviewInfo movie={movie} />
       </Grid>
     </Grid>
   );
 }
 
-function OverviewImage() {
+function OverviewImage({ image }) {
   return (
     <Box
       sx={{
+        position: "relative",
         height: "0",
         paddingTop: "150%",
         backgroundColor: "rgba(255,255,255,0.06)",
       }}
-    ></Box>
+    >
+      <CardMedia
+        component="img"
+        image={`https://image.tmdb.org/t/p/w300${image}`}
+        alt="poster"
+        sx={{ position: "absolute", left: 0, top: 0, objectFit: "cover" }}
+      />
+    </Box>
   );
 }
 
-function OverviewInfo() {
+function OverviewInfo({ movie }) {
   return (
-    <Box sx={{ backgroundColor: "transparent" }}>
+    <Box sx={{ backgroundColor: "transparent", maxWidth: "90%" }}>
       <Typography
         variant="h2"
         mb={2}
@@ -51,12 +63,7 @@ function OverviewInfo() {
       >
         Storyline
       </Typography>
-      <Typography variant="p">
-        With the price on his head ever increasing, John Wick uncovers a path to
-        defeating The High Table. But before he can earn his freedom, Wick must
-        face off against a new enemy with powerful alliances across the globe
-        and forces that turn old friends into foes.
-      </Typography>
+      <Typography variant="p">{movie.overview}</Typography>
       <TableContainer component={Box} sx={{ marginTop: 4 }}>
         <Table size="small" sx={{ maxWidth: "500px" }}>
           <TableBody>
@@ -66,13 +73,15 @@ function OverviewInfo() {
               >
                 Released
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>
+                {movie.release_date}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
                 Runtime
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>{movie.runtime}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
@@ -84,37 +93,47 @@ function OverviewInfo() {
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
                 Budget
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>{movie.budget}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
                 Revenue
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>{movie.revenue}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
                 Genre
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>
+                {movie.genres?.reduce((result, next) => {
+                  return (result += next.name + ", ");
+                }, "")}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
                 Status
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>{movie.status}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
                 Language
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>
+                {movie.original_language}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "8px 0" }}>
                 Production
               </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <TableCell sx={{ border: "none" }}>
+                {movie.production_companies?.reduce((result, next) => {
+                  return (result += next.name + ", ");
+                }, "")}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
