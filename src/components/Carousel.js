@@ -14,7 +14,7 @@ export default function Carousel({ items, heading, url, groupSize, render }) {
   const groupItems = (items, groupSize) => {
     let rows = items
       .map(function (item, index) {
-        if (index === items.length - 1) return <Explore />;
+        if (url && index === items.length - 1) return <Explore />;
         return render(item);
       })
       .reduce((r, element, index) => {
@@ -89,14 +89,16 @@ function CarouselHeader({ heading, url }) {
       >
         {heading}
       </Typography>
-      <Button
-        variant="text"
-        component="a"
-        href={url}
-        sx={{ fontSize: 14, fontWeight: "600", textTransform: "capitalize" }}
-      >
-        Explore All
-      </Button>
+      {url && (
+        <Button
+          variant="text"
+          component="a"
+          href={url}
+          sx={{ fontSize: 14, fontWeight: "600", textTransform: "capitalize" }}
+        >
+          Explore All
+        </Button>
+      )}
     </Stack>
   );
 }

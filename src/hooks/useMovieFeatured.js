@@ -11,8 +11,8 @@ export default function useMovieFeatured() {
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
-    const randomMovie = random(0, 18);
     const getMovies = async () => {
+      const randomMovie = random(0, 18);
       const res = await fetch(`${BASE_URL}?api_key=${API_KEY}`);
       const result = await res.json();
       console.log(randomMovie);

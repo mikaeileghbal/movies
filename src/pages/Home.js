@@ -1,9 +1,9 @@
 import ViewSelection from "../components/ViewSelection";
 import ViewSelectionItem from "../components/ViewSelectionItem";
 import apiEndpoint from "../utils/apiEndpoints";
-import useMovieFeatured from "../hooks/useMovieFeatured";
+import WithFeaturedMovie from "../hoc/withFeaturedMovie";
 
-export default function Home() {
+function Home() {
   return (
     <ViewSelection>
       <ViewSelectionItem routePath={apiEndpoint.movie.trending} />
@@ -11,3 +11,5 @@ export default function Home() {
     </ViewSelection>
   );
 }
+
+export default WithFeaturedMovie(Home);
