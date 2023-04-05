@@ -17,9 +17,12 @@ export default function Detail() {
 
   const { movie } = useMovieDetail(type, id);
 
-  const { setMovie, movie: detail } = useMovieContext();
+  const { setMovie } = useMovieContext();
 
-  console.log("detail: ", detail);
+  const routePath = apiEndpoint[type].like;
+  console.log(routePath);
+
+  routePath.url = routePath.url.replace("{_id}", id);
 
   useEffect(() => {
     setMovie(movie);
@@ -30,7 +33,7 @@ export default function Detail() {
       <Tab>
         <Box name="overview">
           <Overview />
-          <ViewSelectionItem routePath={apiEndpoint.cast} />
+          <ViewSelectionItem routePath={apiEndpoint[type].popular} />
         </Box>
         <Box name="videos">
           <Video />
@@ -39,7 +42,7 @@ export default function Detail() {
           <Photo />
         </Box>
       </Tab>
-      <ViewSelectionItem routePath={apiEndpoint.like} />
+      <ViewSelectionItem routePath={routePath} />
     </ViewSelection>
   );
 }

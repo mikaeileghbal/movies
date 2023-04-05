@@ -27,6 +27,16 @@ const apiEndpoint = {
       url: `${BASE_URL}movie/now_playing?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/movie/category/now_playing",
     },
+    cast: {
+      title: "cast",
+      url: `${BASE_URL}movie/{_id}/credits?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      exploreUrl: null,
+    },
+    like: {
+      title: "more like this",
+      url: `${BASE_URL}movie/{_id}/similar?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      exploreUrl: null,
+    },
   },
   tv: {
     trending: {
@@ -54,16 +64,16 @@ const apiEndpoint = {
       url: `${BASE_URL}tv/airing_today?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/tv/category/airing_today",
     },
-  },
-  cast: {
-    title: "cast",
-    url: `${BASE_URL}tv/on_the_air?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
-    exploreUrl: null,
-  },
-  like: {
-    title: "more like this",
-    url: `${BASE_URL}tv/on_the_air?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
-    exploreUrl: null,
+    cast: {
+      title: "cast",
+      url: `${BASE_URL}tv/{_id}/credits?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      exploreUrl: null,
+    },
+    like: {
+      title: "more like this",
+      url: `${BASE_URL}tv/{_id}/similar?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      exploreUrl: null,
+    },
   },
 };
 
