@@ -37,6 +37,9 @@ const apiEndpoint = {
       url: `${BASE_URL}movie/{_id}/similar?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: null,
     },
+    video: {
+      url: `${BASE_URL}movie/{_id}/videos?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+    },
   },
   tv: {
     trending: {
