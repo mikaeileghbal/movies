@@ -23,7 +23,7 @@ export default function Overview() {
 
   return (
     <Grid container sx={{ backgroundColor: "transparent" }} mt={2}>
-      <Grid item md={3} pr={5}>
+      <Grid item md={3} pr={4}>
         <OverviewImage image={movie.poster_path} />
       </Grid>
       <Grid item md={9}>
@@ -39,8 +39,9 @@ function OverviewImage({ image }) {
       sx={{
         position: "relative",
         height: "0",
-        paddingTop: "150%",
+        paddingTop: "140%",
         backgroundColor: "rgba(255,255,255,0.06)",
+        maxWidth: "92%",
       }}
     >
       <CardMedia
@@ -54,6 +55,13 @@ function OverviewImage({ image }) {
 }
 
 function OverviewInfo({ movie }) {
+  const getCommaSeperatedText = (stringArray = []) => {
+    return stringArray.reduce((result, next, index) => {
+      if (index === stringArray.length - 1) return (result += next.name);
+      return (result += next.name + ", ");
+    }, "");
+  };
+
   return (
     <Box sx={{ backgroundColor: "transparent", maxWidth: "90%" }}>
       <Typography
@@ -69,7 +77,7 @@ function OverviewInfo({ movie }) {
           <TableBody>
             <TableRow>
               <TableCell
-                sx={{ border: "none", width: "120px", padding: "8px 0" }}
+                sx={{ border: "none", width: "120px", padding: "6px 0" }}
               >
                 Released
               </TableCell>
@@ -78,47 +86,45 @@ function OverviewInfo({ movie }) {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Runtime
               </TableCell>
               <TableCell sx={{ border: "none" }}>{movie.runtime}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Director
               </TableCell>
               <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Budget
               </TableCell>
               <TableCell sx={{ border: "none" }}>{movie.budget}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Revenue
               </TableCell>
               <TableCell sx={{ border: "none" }}>{movie.revenue}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Genre
               </TableCell>
               <TableCell sx={{ border: "none" }}>
-                {movie.genres?.reduce((result, next) => {
-                  return (result += next.name + ", ");
-                }, "")}
+                {getCommaSeperatedText(movie.genres)}
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Status
               </TableCell>
               <TableCell sx={{ border: "none" }}>{movie.status}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Language
               </TableCell>
               <TableCell sx={{ border: "none" }}>
@@ -126,13 +132,11 @@ function OverviewInfo({ movie }) {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "8px 0" }}>
+              <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Production
               </TableCell>
               <TableCell sx={{ border: "none" }}>
-                {movie.production_companies?.reduce((result, next) => {
-                  return (result += next.name + ", ");
-                }, "")}
+                {getCommaSeperatedText(movie.production_companies)}
               </TableCell>
             </TableRow>
           </TableBody>
