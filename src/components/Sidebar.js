@@ -14,6 +14,10 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useColorMode } from "../App";
 import { useTheme } from "@emotion/react";
 import { CSSTransition } from "react-transition-group";
+import { SlHome } from "react-icons/sl";
+import { IoSearchOutline } from "react-icons/io5";
+import { MdOutlineMovie } from "react-icons/md";
+import { SlScreenDesktop } from "react-icons/sl";
 
 export default function Sidebar() {
   const [showSearch, setShowSearch] = useState(false);
@@ -56,28 +60,34 @@ export default function Sidebar() {
         >
           <Stack
             width="100%"
-            spacing={8}
+            spacing={7}
             direction={{ xs: "row", lg: "column" }}
             justifyContent="space-evenly"
             alignItems="center"
           >
             <IconButton color="inherit" onClick={() => goToUrl("/")}>
-              <CameraOutdoorOutlinedIcon
+              <SlHome
+                size={28}
                 color={pathname === "/" ? "primary" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/movie")}>
-              <MovieOutlinedIcon
+              <MdOutlineMovie
+                size={28}
                 color={pathname.startsWith("/movie") ? "primary" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/tv")}>
-              <LiveTvIcon
+              <SlScreenDesktop
+                size={28}
                 color={pathname.startsWith("/tv") ? "primary" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={toggleSearch}>
-              <SearchIcon color={showSearch === true ? "primary" : "white"} />
+              <IoSearchOutline
+                size={28}
+                color={showSearch === true ? "primary" : "white"}
+              />
             </IconButton>
             {/* <IconButton onClick={colorMode.toggleColorMode}>
               {theme.palette.mode === "dark" ? (
