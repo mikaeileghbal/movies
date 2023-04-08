@@ -10,6 +10,7 @@ import Photo from "../components/detail/Photo";
 import { useParams } from "react-router-dom";
 import useMovieDetail from "../hooks/useMovieDetail";
 import { useMovieContext } from "../providers/MovieProvider";
+import Cast from "../components/detail/Cast";
 
 export default function Detail() {
   const { type, id } = useParams();
@@ -22,6 +23,8 @@ export default function Detail() {
 
   routePath.url = routePath.url.replace("{_id}", id);
 
+  console.log("like : ", routePath);
+
   useEffect(() => {
     setMovie(movie);
   }, [movie, setMovie]);
@@ -31,7 +34,7 @@ export default function Detail() {
       <Tab>
         <Box name="overview">
           <Overview />
-          <ViewSelectionItem routePath={apiEndpoint[type].popular} />
+          <Cast />
         </Box>
         <Box name="videos">
           <Video />

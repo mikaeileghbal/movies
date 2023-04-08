@@ -13,10 +13,16 @@ import { Stack } from "@mui/system";
 import React from "react";
 import { StyledIconButtonSocial } from "../../styles/global";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import LinkIcon from "@mui/icons-material/Link";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { useMovieContext } from "../../providers/MovieProvider";
+import {
+  ChairOutlined,
+  Facebook,
+  FacebookOutlined,
+  FacebookSharp,
+  FacebookTwoTone,
+} from "@mui/icons-material";
 
 export default function Overview() {
   const { movie } = useMovieContext();
@@ -160,13 +166,10 @@ function Social() {
         <TwitterIcon />
       </StyledIconButtonSocial>
       <StyledIconButtonSocial color="inherit">
-        <GitHubIcon />
+        <Facebook />
       </StyledIconButtonSocial>
       <StyledIconButtonSocial color="inherit">
-        <LinkedInIcon />
-      </StyledIconButtonSocial>
-      <StyledIconButtonSocial color="inherit">
-        <EmailOutlinedIcon />
+        <LinkIcon />
       </StyledIconButtonSocial>
     </Stack>
   );
