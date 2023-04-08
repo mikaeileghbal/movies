@@ -57,7 +57,7 @@ export default function Video() {
 
   return (
     <>
-      <Box px={0} mb={4} sx={{ display: "flex", alignItems: "center" }}>
+      <Box px={0} mt={1} mb={4} sx={{ display: "flex", alignItems: "center" }}>
         <FormControl
           sx={{
             m: 0,
