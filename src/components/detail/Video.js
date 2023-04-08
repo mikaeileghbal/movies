@@ -16,7 +16,7 @@ import apiEndpoint from "../../utils/apiEndpoints";
 import useMovieVideos from "../../hooks/useMovieVideos";
 import Loading from "../Loading";
 import styled from "@emotion/styled";
-import { StyledSubText } from "../../styles/global";
+import { StyledCardTitle, StyledSubText } from "../../styles/global";
 
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: "12px",
@@ -86,7 +86,7 @@ export default function Video() {
             <StyledMenuItem value="teaser">Teaser</StyledMenuItem>
           </Select>
         </FormControl>
-        <StyledSubText>{videoCount} Videos</StyledSubText>
+        <StyledSubText ml={1}>{videoCount} Videos</StyledSubText>
       </Box>
       <Grid
         pr={6.5}
@@ -133,30 +133,8 @@ export default function Video() {
                   <PlayCircleFilledWhiteOutlinedIcon sx={{ fontSize: 50 }} />
                 </IconButton>
               </Box>
-
-              <Typography
-                variant="h2"
-                sx={{
-                  fontSize: "16px",
-                  fontWeight: "400",
-                  letterSpacing: "0.4px",
-                }}
-                mt={1.5}
-                mb={1}
-              >
-                {video.name}
-              </Typography>
-              <Typography
-                variant="p"
-                sx={{
-                  fontSize: "14px",
-                  fontWeight: "400",
-                  letterSpacing: "0.4px",
-                  color: "#80868b",
-                }}
-              >
-                {video.type}
-              </Typography>
+              <StyledCardTitle mt={1.5}>{video.name}</StyledCardTitle>
+              <StyledSubText>{video.type}</StyledSubText>
             </Link>
           </Grid>
         ))}

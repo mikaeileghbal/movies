@@ -27,7 +27,9 @@ export default function Photo() {
     <>
       <StyledTitleContainer>
         <StyledTitle>Backdrops</StyledTitle>
-        <StyledSubText>{backdrops.length} Images</StyledSubText>
+        <StyledSubText ml={1} mt={0.5}>
+          {backdrops.length} Images
+        </StyledSubText>
       </StyledTitleContainer>
       <Box pr={6.5}>
         <GridBackdrop>
@@ -40,7 +42,9 @@ export default function Photo() {
       </Box>
       <StyledTitleContainer>
         <StyledTitle>Posters</StyledTitle>
-        <StyledSubText>{posters.length} Images</StyledSubText>
+        <StyledSubText ml={1} mt={0.5}>
+          {posters.length} Images
+        </StyledSubText>
       </StyledTitleContainer>
       <Box>
         <GridPoster>

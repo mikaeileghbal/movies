@@ -22,7 +22,7 @@ export const StyledSubText = styled(Typography)(({ theme }) => ({
   color: "#80868b",
   fontSize: "14px",
   fontWeight: "500",
-  marginLeft: "8px",
+
   letterSpacing: "0.4px",
 }));
 
