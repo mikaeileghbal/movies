@@ -1,11 +1,38 @@
 import styled from "@emotion/styled";
-import { IconButton, Rating, Typography } from "@mui/material";
+import { Box, IconButton, Rating, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 
 export const StyledText2 = styled(Typography)(({ theme }) => ({
   variant: "body2",
   color: "gray",
   fontSize: 14,
+}));
+
+export const StyledTitle = styled(Typography)(() => ({
+  variant: "h2",
+  fontSize: "24px",
+  fontWeight: "400",
+  marginLeft: "8px",
+  textTransform: "capitalize",
+  letterSpacing: "0.4px",
+}));
+
+export const StyledSubText = styled(Typography)(({ theme }) => ({
+  variant: "span",
+  color: "#80868b",
+  fontSize: "14px",
+  fontWeight: "500",
+  marginLeft: "8px",
+  letterSpacing: "0.4px",
+}));
+
+export const StyledTitleContainer = styled(Box)(() => ({
+  paddingLeft: "0",
+  paddingRight: "0",
+  marginTop: "16px",
+  marginBottom: "24px",
+  display: "flex",
+  alignItems: "center",
 }));
 
 export const StyledRating = styled(Rating)(({ theme }) => ({

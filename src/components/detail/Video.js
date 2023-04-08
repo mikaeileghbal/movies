@@ -16,6 +16,7 @@ import apiEndpoint from "../../utils/apiEndpoints";
 import useMovieVideos from "../../hooks/useMovieVideos";
 import Loading from "../Loading";
 import styled from "@emotion/styled";
+import { StyledSubText } from "../../styles/global";
 
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: "12px",
@@ -85,13 +86,7 @@ export default function Video() {
             <StyledMenuItem value="teaser">Teaser</StyledMenuItem>
           </Select>
         </FormControl>
-        <Typography
-          variant="span"
-          sx={{ color: "#80868b", fontSize: "14px", fontWeight: "500" }}
-          ml={1}
-        >
-          {videoCount} Videos
-        </Typography>
+        <StyledSubText>{videoCount} Videos</StyledSubText>
       </Box>
       <Grid
         pr={6.5}
