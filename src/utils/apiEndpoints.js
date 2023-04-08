@@ -80,6 +80,9 @@ const apiEndpoint = {
       url: `${BASE_URL}tv/{_id}/similar?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: null,
     },
+    video: {
+      url: `${BASE_URL}tv/{_id}/videos?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+    },
     images: {
       url: `${BASE_URL}tv/{_id}/images?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
     },
