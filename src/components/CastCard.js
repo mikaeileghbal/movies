@@ -33,7 +33,7 @@ function CastCard({ item }) {
         >
           <CardMedia
             component="img"
-            image={`https://image.tmdb.org/t/p/w400${item.profile_path}`}
+            image={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
             alt={item.title}
             sx={{
               position: "absolute",

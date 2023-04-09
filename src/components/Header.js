@@ -34,7 +34,7 @@ export default function Header({ movie }) {
       <Grid
         item
         xs={12}
-        lg={4}
+        lg={3}
         sx={{
           backgroundColor: "transparent",
           zIndex: 1,
@@ -55,7 +55,7 @@ export default function Header({ movie }) {
       <Grid
         item
         xs={12}
-        lg={8}
+        lg={9}
         sx={{
           backgroundColor: "transparent",
           zIndex: 0,
@@ -89,7 +89,7 @@ function FeaturedMovie({ movie }) {
     <Box
       flex={{ xs: "1", lg: "0 0 500px" }}
       width={{ xs: "80%", lg: "70%" }}
-      minWidth={{ xs: "50%", md: "80%", lg: "110%" }}
+      minWidth={{ xs: "80%", md: "100%", lg: "140%" }}
       height="100%"
       pt={{ xs: 1, md: 1, lg: 2 }}
       display="flex"
@@ -139,7 +139,7 @@ function FeaturedImage({ image }) {
     >
       <StyledCardMedia
         component="img"
-        image={`/images/women-talking.jpg`}
+        image={image}
         alt="title"
         sx={{
           height: "100%",
