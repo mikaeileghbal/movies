@@ -1,26 +1,20 @@
 import React, { useState } from "react";
 import "../App.css";
-import CameraOutdoorOutlinedIcon from "@mui/icons-material/CameraOutdoorOutlined";
-import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
-import LiveTvIcon from "@mui/icons-material/LiveTv";
-import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
 import { IconButton, Toolbar } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { useColorMode } from "../App";
-import { useTheme } from "@emotion/react";
 import { CSSTransition } from "react-transition-group";
+import { SlHome } from "react-icons/sl";
+import { IoSearchOutline } from "react-icons/io5";
+import { MdOutlineMovie } from "react-icons/md";
+import { SlScreenDesktop } from "react-icons/sl";
 
 export default function Sidebar() {
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const colorMode = useColorMode();
-  const theme = useTheme();
 
   const goToUrl = (url) => {
     navigate(url);
@@ -56,28 +50,34 @@ export default function Sidebar() {
         >
           <Stack
             width="100%"
-            spacing={8}
+            spacing={7}
             direction={{ xs: "row", lg: "column" }}
             justifyContent="space-evenly"
             alignItems="center"
           >
             <IconButton color="inherit" onClick={() => goToUrl("/")}>
-              <CameraOutdoorOutlinedIcon
-                color={pathname === "/" ? "primary" : "white"}
+              <SlHome
+                size={26}
+                color={pathname === "/" ? "#42a5f5" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/movie")}>
-              <MovieOutlinedIcon
-                color={pathname.startsWith("/movie") ? "primary" : "white"}
+              <MdOutlineMovie
+                size={26}
+                color={pathname.startsWith("/movie") ? "#42a5f5" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/tv")}>
-              <LiveTvIcon
-                color={pathname.startsWith("/tv") ? "primary" : "white"}
+              <SlScreenDesktop
+                size={26}
+                color={pathname.startsWith("/tv") ? "#42a5f5" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={toggleSearch}>
-              <SearchIcon color={showSearch === true ? "primary" : "white"} />
+              <IoSearchOutline
+                size={26}
+                color={showSearch === true ? "#42a5f5" : "white"}
+              />
             </IconButton>
             {/* <IconButton onClick={colorMode.toggleColorMode}>
               {theme.palette.mode === "dark" ? (

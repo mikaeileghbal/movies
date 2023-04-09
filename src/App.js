@@ -1,12 +1,7 @@
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Movie from "./pages/Movie";
 import Tv from "./pages/Tv";
 import getTheme from "./styles/theme";
@@ -64,6 +59,7 @@ function App() {
               </Routes>
             </CSSTransition>
           </TransitionGroup>
+
           <Sidebar />
         </ThemeProvider>
       </MovieProvider>

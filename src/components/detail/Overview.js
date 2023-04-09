@@ -14,15 +14,14 @@ import React from "react";
 import { StyledIconButtonSocial } from "../../styles/global";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkIcon from "@mui/icons-material/Link";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { useMovieContext } from "../../providers/MovieProvider";
+import { Facebook } from "@mui/icons-material";
 import {
-  ChairOutlined,
-  Facebook,
-  FacebookOutlined,
-  FacebookSharp,
-  FacebookTwoTone,
-} from "@mui/icons-material";
+  formatCurrency,
+  formatDate,
+  formatRuntime,
+  getCommaSeperatedText,
+} from "../../utils/helper";
 
 export default function Overview() {
   const { movie } = useMovieContext();
@@ -61,13 +60,6 @@ function OverviewImage({ image }) {
 }
 
 function OverviewInfo({ movie }) {
-  const getCommaSeperatedText = (stringArray = []) => {
-    return stringArray.reduce((result, next, index) => {
-      if (index === stringArray.length - 1) return (result += next.name);
-      return (result += next.name + ", ");
-    }, "");
-  };
-
   return (
     <Box sx={{ backgroundColor: "transparent", maxWidth: "90%" }}>
       <Typography
@@ -88,14 +80,16 @@ function OverviewInfo({ movie }) {
                 Released
               </TableCell>
               <TableCell sx={{ border: "none" }}>
-                {movie.release_date}
+                {formatDate(movie.release_date)}
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Runtime
               </TableCell>
-              <TableCell sx={{ border: "none" }}>{movie.runtime}</TableCell>
+              <TableCell sx={{ border: "none" }}>
+                {formatRuntime(movie.runtime)}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "6px 0" }}>
@@ -107,13 +101,17 @@ function OverviewInfo({ movie }) {
               <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Budget
               </TableCell>
-              <TableCell sx={{ border: "none" }}>{movie.budget}</TableCell>
+              <TableCell sx={{ border: "none" }}>
+                {formatCurrency(movie.budget)}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "6px 0" }}>
                 Revenue
               </TableCell>
-              <TableCell sx={{ border: "none" }}>{movie.revenue}</TableCell>
+              <TableCell sx={{ border: "none" }}>
+                {formatCurrency(movie.revenue)}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell sx={{ border: "none", padding: "6px 0" }}>

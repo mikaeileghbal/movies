@@ -23,7 +23,9 @@ export default function Header({ movie }) {
       component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
       sx={{
-        paddingLeft: { xs: 5, lg: 7, position: "relative" },
+        paddingLeft: { xs: 5, lg: 7 },
+        paddingRight: { xs: 5, lg: 0 },
+        position: "relative",
         backgroundColor: "#000",
         overflow: "hidden",
         height: { xs: "auto", lg: "530px" },
@@ -32,9 +34,11 @@ export default function Header({ movie }) {
       <Grid
         item
         xs={12}
-        lg={6}
+        lg={4}
         sx={{
           backgroundColor: "transparent",
+          zIndex: 1,
+          overflow: "visible",
         }}
       >
         <CSSTransition
@@ -51,9 +55,10 @@ export default function Header({ movie }) {
       <Grid
         item
         xs={12}
-        lg={6}
+        lg={8}
         sx={{
           backgroundColor: "transparent",
+          zIndex: 0,
         }}
       >
         <FeaturedImage
@@ -83,9 +88,10 @@ function FeaturedMovie({ movie }) {
   return (
     <Box
       flex={{ xs: "1", lg: "0 0 500px" }}
-      width={{ xs: "80%" }}
+      width={{ xs: "80%", lg: "70%" }}
+      minWidth={{ xs: "50%", md: "80%", lg: "110%" }}
       height="100%"
-      pt={{ xs: 0, md: 0, lg: 2 }}
+      pt={{ xs: 1, md: 1, lg: 2 }}
       display="flex"
       flexDirection="column"
       justifyContent={{ xs: "flex-start", lg: "center" }}
@@ -123,16 +129,23 @@ function FeaturedImage({ image }) {
     <Box
       className="hero-image"
       sx={{
-        maxwidth: 600,
-        height: { xs: 220, md: 320, lg: 530, overflowY: "hidden" },
+        position: "relative",
+        maxwidth: "100%",
+        height: { xs: 220, md: 320, lg: 530 },
         padding: 3,
+        backgroundColor: "transparent",
+        overflow: "hidden",
       }}
     >
       <StyledCardMedia
         component="img"
-        image={image}
+        image={`/images/women-talking.jpg`}
         alt="title"
-        sx={{ height: "inherit" }}
+        sx={{
+          height: "100%",
+          width: "100%",
+          objectFit: "cover",
+        }}
       />
     </Box>
   );
