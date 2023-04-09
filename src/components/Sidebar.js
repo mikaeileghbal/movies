@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import "../App.css";
-import CameraOutdoorOutlinedIcon from "@mui/icons-material/CameraOutdoorOutlined";
-import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
-import LiveTvIcon from "@mui/icons-material/LiveTv";
-import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
 import { IconButton, Toolbar } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { useColorMode } from "../App";
-import { useTheme } from "@emotion/react";
 import { CSSTransition } from "react-transition-group";
 import { SlHome } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
@@ -23,8 +15,6 @@ export default function Sidebar() {
   const [showSearch, setShowSearch] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const colorMode = useColorMode();
-  const theme = useTheme();
 
   const goToUrl = (url) => {
     navigate(url);
@@ -67,26 +57,26 @@ export default function Sidebar() {
           >
             <IconButton color="inherit" onClick={() => goToUrl("/")}>
               <SlHome
-                size={28}
-                color={pathname === "/" ? "primary" : "white"}
+                size={26}
+                color={pathname === "/" ? "#42a5f5" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/movie")}>
               <MdOutlineMovie
-                size={28}
-                color={pathname.startsWith("/movie") ? "primary" : "white"}
+                size={26}
+                color={pathname.startsWith("/movie") ? "#42a5f5" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={() => goToUrl("/tv")}>
               <SlScreenDesktop
-                size={28}
-                color={pathname.startsWith("/tv") ? "primary" : "white"}
+                size={26}
+                color={pathname.startsWith("/tv") ? "#42a5f5" : "white"}
               />
             </IconButton>
             <IconButton color="inherit" onClick={toggleSearch}>
               <IoSearchOutline
-                size={28}
-                color={showSearch === true ? "primary" : "white"}
+                size={26}
+                color={showSearch === true ? "#42a5f5" : "white"}
               />
             </IconButton>
             {/* <IconButton onClick={colorMode.toggleColorMode}>
