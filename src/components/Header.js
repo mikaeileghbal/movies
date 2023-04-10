@@ -62,7 +62,7 @@ export default function Header({ movie }) {
         }}
       >
         <FeaturedImage
-          image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          image={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
         />
       </Grid>
     </Grid>

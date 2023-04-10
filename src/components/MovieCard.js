@@ -31,12 +31,14 @@ function MovieCard({ item }) {
       }}
       onClick={gotoUrl}
     >
-      <CardActionArea disableRipple>
+      <Box disableRipple sx={{ cursor: "pointer" }}>
         <Box
+          className="media"
           sx={{
             pt: "150%",
             position: "relative",
             backgroundColor: "#202124",
+
             height: 0,
             overflow: "hidden",
           }}
@@ -51,7 +53,6 @@ function MovieCard({ item }) {
               left: 0,
               width: "100%",
               height: "100%",
-              //transform: "scale(0.97)",
             }}
           />
         </Box>
@@ -85,7 +86,7 @@ function MovieCard({ item }) {
             <Box sx={{ ml: 0, color: "gray" }}>{item.vote_average}</Box>
           </Box>
         </CardContent>
-      </CardActionArea>
+      </Box>
     </Card>
   );
 }
