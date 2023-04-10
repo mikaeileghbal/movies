@@ -53,7 +53,14 @@ function OverviewImage({ image }) {
         component="img"
         image={`https://image.tmdb.org/t/p/w300${image}`}
         alt="poster"
-        sx={{ position: "absolute", left: 0, top: 0, objectFit: "cover" }}
+        sx={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          objectFit: "cover",
+          width: "100%",
+          height: "100%",
+        }}
       />
     </Box>
   );
