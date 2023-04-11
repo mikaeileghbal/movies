@@ -41,7 +41,7 @@ function MovieCard({ item }) {
           }}
         >
           <CardImage
-            src={`https://image.tmdb.org/t/p/w400${item.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2${item.poster_path}`}
           />
         </Box>
         <CardContent

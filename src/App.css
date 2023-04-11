@@ -128,5 +128,12 @@
   display: block;
   min-height: 0px;
   opacity: 0;
+  transform: scale(0.97);
+  transition: all 0.3s ease-in-out;
+}
+
+.lazy-load-done {
+  opacity: 1;
+  transform: scale(1);
   transition: all 0.3s ease-in-out;
 }

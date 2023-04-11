@@ -50,7 +50,9 @@ function OverviewImage({ image }) {
         maxWidth: "92%",
       }}
     >
-      <CardImage src={`https://image.tmdb.org/t/p/w300${image}`} />
+      <CardImage
+        src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2${image}`}
+      />
       {/* <CardMedia
         component="img"
         image={`https://image.tmdb.org/t/p/w300${image}`}

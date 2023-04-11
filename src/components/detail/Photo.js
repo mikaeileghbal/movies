@@ -65,12 +65,14 @@ function Backdrop({ image }) {
     <Box
       sx={{
         height: "0",
-        paddingBottom: "56.25%",
+        paddingBottom: "56.28%",
         backgroundColor: "rgba(255,255,255,0.07)",
         position: "relative",
       }}
     >
-      <CardImage src={`https://image.tmdb.org/t/p/w300${image}`} />
+      <CardImage
+        src={`https://image.tmdb.org/t/p/w533_and_h300_bestv2${image}`}
+      />
     </Box>
   );
 }
@@ -80,12 +82,14 @@ function Poster({ image }) {
     <Box
       sx={{
         height: "0",
-        paddingBottom: "150%",
+        paddingBottom: "150.27%",
         backgroundColor: "rgba(255,255,255,0.07)",
         position: "relative",
       }}
     >
-      <CardImage src={`https://image.tmdb.org/t/p/w400${image}`} />
+      <CardImage
+        src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2${image}`}
+      />
     </Box>
   );
 }

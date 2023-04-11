@@ -3,8 +3,12 @@ import { Box, TextField } from "@mui/material";
 import React from "react";
 
 export default function Search() {
+  const handleSearchClick = (e) => {
+    e.stopPropagation();
+  };
   return (
     <Box
+      onClick={handleSearchClick}
       sx={{
         bgcolor: "#333",
         position: "fixed",
