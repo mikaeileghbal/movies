@@ -123,3 +123,10 @@
   opacity: 0;
   transform: translate3d(0, -100%, 0);
 }
+
+.lazy-load {
+  display: block;
+  min-height: 0px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}

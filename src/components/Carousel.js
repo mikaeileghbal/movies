@@ -14,7 +14,7 @@ export default function Carousel({ items, heading, url, groupSize, render }) {
   const groupItems = (items, groupSize) => {
     let rows = items
       .map(function (item, index) {
-        if (url && index === items.length - 1) return <Explore />;
+        if (url && index === items.length - 1) return <Explore url={url} />;
         return render(item);
       })
       .reduce((r, element, index) => {
@@ -91,6 +91,7 @@ function CarouselHeader({ heading, url }) {
       </Typography>
       {url && (
         <Button
+          disableRipple
           variant="text"
           component="a"
           href={url}

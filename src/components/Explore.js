@@ -12,7 +12,7 @@ export default function Explore({ url }) {
         boxShadow: "none",
       }}
     >
-      <CardActionArea>
+      <CardActionArea disableRipple>
         <Box
           sx={{
             pt: "150%",
@@ -39,6 +39,7 @@ export default function Explore({ url }) {
             <Button
               variant="text"
               component="a"
+              disableRipple
               href={url}
               sx={{
                 fontSize: 16,

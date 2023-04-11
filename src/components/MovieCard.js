@@ -1,14 +1,11 @@
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-} from "@mui/material";
+import { Box, Card, CardContent } from "@mui/material";
 import React, { memo } from "react";
 import { StyledCardTitle, StyledRatingSmall } from "../styles/global";
 import StarIcon from "@mui/icons-material/Star";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import "../App.css";
+import { CardImage } from "./CardImage";
 
 export default memo(MovieCard);
 
@@ -31,28 +28,20 @@ function MovieCard({ item }) {
       }}
       onClick={gotoUrl}
     >
-      <CardActionArea disableRipple>
+      <Box disableRipple sx={{ cursor: "pointer" }}>
         <Box
+          className="media"
           sx={{
             pt: "150%",
             position: "relative",
             backgroundColor: "#202124",
+
             height: 0,
             overflow: "hidden",
           }}
         >
-          <CardMedia
-            component="img"
-            image={`https://image.tmdb.org/t/p/w400${item.poster_path}`}
-            alt={item.title}
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              //transform: "scale(0.97)",
-            }}
+          <CardImage
+            src={`https://image.tmdb.org/t/p/w400${item.poster_path}`}
           />
         </Box>
         <CardContent
@@ -85,7 +74,7 @@ function MovieCard({ item }) {
             <Box sx={{ ml: 0, color: "gray" }}>{item.vote_average}</Box>
           </Box>
         </CardContent>
-      </CardActionArea>
+      </Box>
     </Card>
   );
 }

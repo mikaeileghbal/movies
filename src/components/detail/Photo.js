@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import apiEndpoint from "../../utils/apiEndpoints";
 import useMovieImages from "../../hooks/useMovieImages";
 import Loading from "../Loading";
+import { CardImage } from "../CardImage";
 
 export default function Photo() {
   const { type, id } = useParams();
@@ -69,12 +70,7 @@ function Backdrop({ image }) {
         position: "relative",
       }}
     >
-      <CardMedia
-        component="img"
-        image={`https://image.tmdb.org/t/p/w300${image}`}
-        alt="backdrop"
-        sx={{ position: "absolute", left: 0, top: 0, objectFit: "cover" }}
-      />
+      <CardImage src={`https://image.tmdb.org/t/p/w300${image}`} />
     </Box>
   );
 }
@@ -88,7 +84,9 @@ function Poster({ image }) {
         backgroundColor: "rgba(255,255,255,0.07)",
         position: "relative",
       }}
-    ></Box>
+    >
+      <CardImage src={`https://image.tmdb.org/t/p/w400${image}`} />
+    </Box>
   );
 }
 
