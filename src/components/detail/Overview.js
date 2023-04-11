@@ -22,6 +22,7 @@ import {
   formatRuntime,
   getCommaSeperatedText,
 } from "../../utils/helper";
+import { CardImage } from "../CardImage";
 
 export default function Overview() {
   const { movie } = useMovieContext();
@@ -49,7 +50,8 @@ function OverviewImage({ image }) {
         maxWidth: "92%",
       }}
     >
-      <CardMedia
+      <CardImage src={`https://image.tmdb.org/t/p/w300${image}`} />
+      {/* <CardMedia
         component="img"
         image={`https://image.tmdb.org/t/p/w300${image}`}
         alt="poster"
@@ -61,7 +63,7 @@ function OverviewImage({ image }) {
           width: "100%",
           height: "100%",
         }}
-      />
+      /> */}
     </Box>
   );
 }

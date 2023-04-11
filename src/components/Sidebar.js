@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "../App.css";
 import AppBar from "@mui/material/AppBar";
 import { IconButton, Toolbar } from "@mui/material";
@@ -21,9 +21,21 @@ export default function Sidebar() {
     setShowSearch(false);
   };
 
-  const toggleSearch = () => {
+  const toggleSearch = (e) => {
+    e.stopPropagation();
     setShowSearch((old) => !old);
   };
+
+  const handleDocumnetnClick = useCallback((e) => {
+    console.log("clicked");
+    setShowSearch(false);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumnetnClick);
+
+    return () => document.removeEventListener("click", handleDocumnetnClick);
+  }, [handleDocumnetnClick]);
 
   return (
     <>

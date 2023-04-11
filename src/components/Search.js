@@ -12,6 +12,7 @@ export default function Search() {
         left: { xs: 0, lg: "100px" },
         right: 0,
         m: 0,
+        zIndex: 9,
       }}
     >
       <Box sx={{}} fontFamily={200} py={3} px={6}>
