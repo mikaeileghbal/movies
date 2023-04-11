@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import React, { memo } from "react";
 import { StyledCardTitle, StyledSubText } from "../styles/global";
+import { CardImage } from "./CardImage";
 
 export default memo(CastCard);
 
@@ -21,7 +22,7 @@ function CastCard({ item }) {
         boxShadow: "none",
       }}
     >
-      <CardActionArea disableRipple>
+      <Box disableRipple sx={{ cursor: "pointer" }}>
         <Box
           sx={{
             pt: "150%",
@@ -31,25 +32,15 @@ function CastCard({ item }) {
             overflow: "hidden",
           }}
         >
-          <CardMedia
-            component="img"
-            image={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
-            alt={item.title}
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              //transform: "scale(0.97)",
-            }}
+          <CardImage
+            src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
           />
         </Box>
         <CardContent sx={{ padding: "8px 0 0 " }}>
           <StyledCardTitle>{item.name}</StyledCardTitle>
           <StyledSubText mt={-0.5}>{item.character}</StyledSubText>
         </CardContent>
-      </CardActionArea>
+      </Box>
     </Card>
   );
 }

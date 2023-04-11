@@ -1,14 +1,11 @@
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-} from "@mui/material";
+import { Box, Card, CardContent } from "@mui/material";
 import React, { memo } from "react";
 import { StyledCardTitle, StyledRatingSmall } from "../styles/global";
 import StarIcon from "@mui/icons-material/Star";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import "../App.css";
+import { CardImage } from "./CardImage";
 
 export default memo(MovieCard);
 
@@ -43,17 +40,8 @@ function MovieCard({ item }) {
             overflow: "hidden",
           }}
         >
-          <CardMedia
-            component="img"
-            image={`https://image.tmdb.org/t/p/w400${item.poster_path}`}
-            alt={item.title}
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-            }}
+          <CardImage
+            src={`https://image.tmdb.org/t/p/w400${item.poster_path}`}
           />
         </Box>
         <CardContent
