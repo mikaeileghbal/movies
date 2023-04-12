@@ -48,7 +48,7 @@ export default function Header({ movie }) {
           appear={true}
           timeout={400}
           classNames="slideUp"
-          key={movie}
+          key={movie.id}
           unmountOnExit
         >
           <FeaturedMovie movie={movie} />

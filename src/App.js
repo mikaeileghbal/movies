@@ -40,7 +40,7 @@ function App() {
             key={location.pathname}
             timeout={{ enter: 700, exit: 300 }}
             classNames="fadeIn"
-            appear
+            appear={true}
             unmountOnExit
             mountOnEnter
           >
