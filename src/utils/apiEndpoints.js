@@ -1,10 +1,13 @@
 const BASE_URL = "https://api.themoviedb.org/3/";
 
 const apiEndpoint = {
+  imageBaseUrl: "https://image.tmdb.org/t/p/w370_and_h556_bestv2",
+  backdropBaseUrl: "https://image.tmdb.org/t/p/w533_and_h300_bestv2",
+  originalBaseUrl: "https://image.tmdb.org/t/p/original",
   movie: {
     trending: {
       title: "trending movies",
-      url: `${BASE_URL}trending/movie/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}trending/movie/week?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/movie/category/trending",
     },
     popular: {
@@ -47,7 +50,7 @@ const apiEndpoint = {
   tv: {
     trending: {
       title: "trending tv shows",
-      url: `${BASE_URL}trending/tv/day?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
+      url: `${BASE_URL}trending/tv/week?api_key=3e35d5ea16674bcc971aee7ed10f0919`,
       exploreUrl: "/tv/category/trending",
     },
     popular: {

@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import "../App.css";
 import { CardImage } from "./CardImage";
+import apiEndpoint from "../utils/apiEndpoints";
 
 export default memo(MovieCard);
 
@@ -40,9 +41,7 @@ function MovieCard({ item }) {
             overflow: "hidden",
           }}
         >
-          <CardImage
-            src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2${item.poster_path}`}
-          />
+          <CardImage src={`${apiEndpoint.imageBaseUrl}${item.poster_path}`} />
         </Box>
         <CardContent
           sx={{
@@ -71,7 +70,9 @@ function MovieCard({ item }) {
                 <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
               }
             />
-            <Box sx={{ ml: 0, color: "gray" }}>{item.vote_average}</Box>
+            <Box sx={{ ml: 1, color: "gray", fontSize: "14px" }}>
+              {item.vote_average}
+            </Box>
           </Box>
         </CardContent>
       </Box>

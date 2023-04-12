@@ -14,23 +14,13 @@ import Cast from "../components/detail/Cast";
 
 export default function Detail() {
   const { type, id } = useParams();
-
   const { movie } = useMovieDetail(type, id);
 
-  const { setMovie } = useMovieContext();
-
   const routePath = apiEndpoint[type].like;
-
   routePath.url = routePath.url.replace("{_id}", id);
 
-  console.log("like : ", routePath);
-
-  useEffect(() => {
-    setMovie(movie);
-  }, [movie, setMovie]);
-
   return (
-    <ViewSelection>
+    <ViewSelection movie={movie}>
       <Tab>
         <Box name="overview">
           <Overview />

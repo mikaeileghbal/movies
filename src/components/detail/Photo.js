@@ -70,9 +70,7 @@ function Backdrop({ image }) {
         position: "relative",
       }}
     >
-      <CardImage
-        src={`https://image.tmdb.org/t/p/w533_and_h300_bestv2${image}`}
-      />
+      <CardImage src={`${apiEndpoint.backdropBaseUrl}${image}`} />
     </Box>
   );
 }
@@ -87,9 +85,7 @@ function Poster({ image }) {
         position: "relative",
       }}
     >
-      <CardImage
-        src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2${image}`}
-      />
+      <CardImage src={`${apiEndpoint.imageBaseUrl}${image}`} />
     </Box>
   );
 }
