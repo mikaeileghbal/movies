@@ -9,7 +9,7 @@ import Video from "../components/detail/Video";
 import Photo from "../components/detail/Photo";
 import { useParams } from "react-router-dom";
 import useMovieDetail from "../hooks/useMovieDetail";
-import { useMovieContext } from "../providers/MovieProvider";
+
 import Cast from "../components/detail/Cast";
 
 export default function Detail() {
@@ -23,7 +23,7 @@ export default function Detail() {
     <ViewSelection movie={movie}>
       <Tab>
         <Box name="overview">
-          <Overview />
+          <Overview movie={movie} />
           <Cast />
         </Box>
         <Box name="videos">

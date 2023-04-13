@@ -34,9 +34,7 @@ const StyledTableCellHeader = styled(StyledTableCell)(() => ({
   width: "120px",
 }));
 
-export default function Overview() {
-  const { movie } = useMovieContext();
-
+export default function Overview({ movie }) {
   return (
     <Grid container sx={{ backgroundColor: "transparent" }} mt={2}>
       <Grid item md={3} pr={4}>
