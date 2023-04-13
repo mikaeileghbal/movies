@@ -9,12 +9,11 @@ export default function Loading() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
         minHeight: "100px",
         margin: "10px",
       }}
     >
-      <CircularProgress disableShrink />
       <CircularLoading />
     </Box>
   );

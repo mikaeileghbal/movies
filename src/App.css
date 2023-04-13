@@ -139,8 +139,8 @@
 }
 
 .progress {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   position: relative;
 }
 .progress span {
@@ -151,14 +151,14 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 3px solid #42a5f5;
+  border: 4px solid #50a8f0;
   transform: scale(0);
   background-color: transparent;
-  animation: load 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  animation: load 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
 .progress span:nth-child(2) {
-  animation-delay: 0.75s;
+  animation-delay: 1s;
 }
 
 @keyframes load {
@@ -166,9 +166,8 @@
     transform: scale(0);
     opacity: 1;
   }
-
   100% {
-    transform: scale(100%);
+    transform: scale(1);
     opacity: 0;
   }
 }

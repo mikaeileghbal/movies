@@ -46,7 +46,7 @@ function MovieCard({ item }) {
           sx={{
             display: { xs: "none", md: "block" },
             border: "none",
-            padding: "10px 0 16px",
+            padding: "10px 0 0",
           }}
         >
           <StyledCardTitle>
