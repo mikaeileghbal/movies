@@ -6,7 +6,7 @@ export function CardImage({ src }) {
 
   return (
     <LazyLoadImage
-      className={loaded ? "lazy-load-done" : "lazy-load"}
+      className={loaded ? "lazy-image lazy-load-done" : "lazy-image lazy-load"}
       src={src}
       alt={src}
       style={{

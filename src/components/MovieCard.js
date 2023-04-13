@@ -36,7 +36,6 @@ function MovieCard({ item }) {
             pt: "150%",
             position: "relative",
             backgroundColor: "#202124",
-
             height: 0,
             overflow: "hidden",
           }}

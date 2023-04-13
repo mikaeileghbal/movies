@@ -1,5 +1,7 @@
-import { Box, CircularProgress } from "@mui/material";
 import React from "react";
+import "../App.css";
+import { Box, CircularProgress } from "@mui/material";
+import CircularLoading from "./CircularLoading";
 
 export default function Loading() {
   return (
@@ -13,6 +15,7 @@ export default function Loading() {
       }}
     >
       <CircularProgress disableShrink />
+      <CircularLoading />
     </Box>
   );
 }
