@@ -13,7 +13,6 @@ export default function Home() {
         style={{
           display: "flex",
           justifyContent: "center",
-          backgroundColor: "white",
         }}
       >
         <CircularLoading />
