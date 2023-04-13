@@ -6,6 +6,8 @@ import { Stack } from "@mui/system";
 import React from "react";
 import { StyledRating, StyledText2 } from "../styles/global";
 import { CSSTransition } from "react-transition-group";
+import apiEndpoint from "../utils/apiEndpoints";
+import { formatRuntime } from "../utils/helper";
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",
@@ -46,7 +48,7 @@ export default function Header({ movie }) {
           appear={true}
           timeout={400}
           classNames="slideUp"
-          key={movie}
+          key={movie.id}
           unmountOnExit
         >
           <FeaturedMovie movie={movie} />
@@ -62,7 +64,7 @@ export default function Header({ movie }) {
         }}
       >
         <FeaturedImage
-          image={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+          image={`${apiEndpoint.originalBaseUrl}${movie.backdrop_path}`}
         />
       </Grid>
     </Grid>
@@ -75,11 +77,13 @@ function FeaturedMovie({ movie }) {
     vote_average,
     overview,
     vote_count,
-    duration,
+    runtime,
     release_date,
+    first_air_date,
     name,
   } = movie;
 
+  console.log("header:", movie);
   const trimText = (text) => {
     if (text.length < 196) return text;
     return `${text.slice(0, 196)}...`;
@@ -108,7 +112,8 @@ function FeaturedMovie({ movie }) {
         <StyledRating value={vote_average / 2} precision={0.1} readOnly />
         <StyledText2>{vote_count} Reviews</StyledText2>
         <StyledText2>{release_date?.slice(0, 4)}</StyledText2>
-        <StyledText2>{duration}</StyledText2>
+        <StyledText2>{first_air_date?.slice(0, 4)}</StyledText2>
+        <StyledText2>{runtime ? formatRuntime(runtime) : ""}</StyledText2>
       </Stack>
       <Typography variant="body2" sx={{ lineHeight: 1.7 }} mt={3}>
         {trimText(overview)}

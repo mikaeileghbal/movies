@@ -3,8 +3,12 @@ import { Box, TextField } from "@mui/material";
 import React from "react";
 
 export default function Search() {
+  const handleSearchClick = (e) => {
+    e.stopPropagation();
+  };
   return (
     <Box
+      onClick={handleSearchClick}
       sx={{
         bgcolor: "#333",
         position: "fixed",
@@ -25,9 +29,9 @@ export default function Search() {
           InputProps={{
             disableUnderline: true,
             style: {
-              fontWeight: 300,
+              fontWeight: 400,
               color: "white",
-              fontSize: 15,
+              fontSize: 16,
             },
           }}
         />

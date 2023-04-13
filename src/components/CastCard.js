@@ -33,7 +33,7 @@ function CastCard({ item }) {
           }}
         >
           <CardImage
-            src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
+            src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2${item.profile_path}`}
           />
         </Box>
         <CardContent sx={{ padding: "8px 0 0 " }}>

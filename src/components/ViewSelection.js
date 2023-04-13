@@ -4,8 +4,8 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { useMovieContext } from "../providers/MovieProvider";
 
-export default function ViewSelection({ children }) {
-  const { movie } = useMovieContext();
+export default function ViewSelection({ children, movie }) {
+  //const { movie } = useMovieContext();
 
   return (
     <Box

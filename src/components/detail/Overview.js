@@ -1,6 +1,5 @@
 import {
   Box,
-  CardMedia,
   Grid,
   Table,
   TableBody,
@@ -23,10 +22,19 @@ import {
   getCommaSeperatedText,
 } from "../../utils/helper";
 import { CardImage } from "../CardImage";
+import apiEndpoint from "../../utils/apiEndpoints";
+import styled from "@emotion/styled";
 
-export default function Overview() {
-  const { movie } = useMovieContext();
+const StyledTableCell = styled(TableCell)(() => ({
+  border: "none",
+  padding: "6px 0",
+}));
 
+const StyledTableCellHeader = styled(StyledTableCell)(() => ({
+  width: "120px",
+}));
+
+export default function Overview({ movie }) {
   return (
     <Grid container sx={{ backgroundColor: "transparent" }} mt={2}>
       <Grid item md={3} pr={4}>
@@ -50,20 +58,7 @@ function OverviewImage({ image }) {
         maxWidth: "92%",
       }}
     >
-      <CardImage src={`https://image.tmdb.org/t/p/w300${image}`} />
-      {/* <CardMedia
-        component="img"
-        image={`https://image.tmdb.org/t/p/w300${image}`}
-        alt="poster"
-        sx={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          objectFit: "cover",
-          width: "100%",
-          height: "100%",
-        }}
-      /> */}
+      <CardImage src={`${apiEndpoint.imageBaseUrl}${image}`} />
     </Box>
   );
 }
@@ -83,74 +78,46 @@ function OverviewInfo({ movie }) {
         <Table size="small" sx={{ maxWidth: "500px" }}>
           <TableBody>
             <TableRow>
-              <TableCell
-                sx={{ border: "none", width: "120px", padding: "6px 0" }}
-              >
-                Released
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>
+              <StyledTableCellHeader>Released</StyledTableCellHeader>
+              <StyledTableCell>
                 {formatDate(movie.release_date)}
-              </TableCell>
+              </StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Runtime
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>
-                {formatRuntime(movie.runtime)}
-              </TableCell>
+              <StyledTableCellHeader>Runtime</StyledTableCellHeader>
+              <StyledTableCell>{formatRuntime(movie.runtime)}</StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Director
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>22 March 2023</TableCell>
+              <StyledTableCellHeader>Director</StyledTableCellHeader>
+              <StyledTableCell>22 March 2023</StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Budget
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>
-                {formatCurrency(movie.budget)}
-              </TableCell>
+              <StyledTableCellHeader>Budget</StyledTableCellHeader>
+              <StyledTableCell>{formatCurrency(movie.budget)}</StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Revenue
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>
-                {formatCurrency(movie.revenue)}
-              </TableCell>
+              <StyledTableCellHeader>Revenue</StyledTableCellHeader>
+              <StyledTableCell>{formatCurrency(movie.revenue)}</StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Genre
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>
+              <StyledTableCellHeader>Genre</StyledTableCellHeader>
+              <StyledTableCell>
                 {getCommaSeperatedText(movie.genres)}
-              </TableCell>
+              </StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Status
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>{movie.status}</TableCell>
+              <StyledTableCellHeader>Status</StyledTableCellHeader>
+              <StyledTableCell>{movie.status}</StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Language
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>
-                {movie.original_language}
-              </TableCell>
+              <StyledTableCellHeader>Language</StyledTableCellHeader>
+              <StyledTableCell>{movie.original_language}</StyledTableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ border: "none", padding: "6px 0" }}>
-                Production
-              </TableCell>
-              <TableCell sx={{ border: "none" }}>
+              <StyledTableCellHeader>Production</StyledTableCellHeader>
+              <StyledTableCell>
                 {getCommaSeperatedText(movie.production_companies)}
-              </TableCell>
+              </StyledTableCell>
             </TableRow>
           </TableBody>
         </Table>

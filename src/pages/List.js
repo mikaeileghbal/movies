@@ -45,14 +45,14 @@ export default function List() {
         variant="h2"
         fontSize={24}
         fontWeight={400}
-        my={3}
+        mb={3}
         sx={{ textTransform: "capitalize", px: { xs: 1, lg: 7 } }}
       >
         {title}
       </Typography>
       <Grid
         container
-        spacing={1}
+        columnSpacing={1}
         mb={6}
         sx={{
           backgroundColor: "transparent",
