@@ -3,9 +3,26 @@ import { Box } from "@mui/system";
 import Footer from "./Footer";
 import Header from "./Header";
 import { useMovieContext } from "../providers/MovieProvider";
+import SearchResult from "./SearchResult";
+import { CSSTransition } from "react-transition-group";
 
 export default function ViewSelection({ children, movie }) {
   //const { movie } = useMovieContext();
+  const { searchTerm } = useMovieContext();
+
+  if (searchTerm)
+    return (
+      <CSSTransition
+        in={searchTerm}
+        appear={true}
+        timeout={{ enter: 500, exit: 200 }}
+        classNames="slideUp"
+        key={searchTerm}
+        unmountOnExit
+      >
+        <SearchResult />
+      </CSSTransition>
+    );
 
   return (
     <Box
@@ -17,8 +34,9 @@ export default function ViewSelection({ children, movie }) {
     >
       <Header movie={movie} />
       <Box component="main" pl={7} mt={7}>
-        {children}
+        {children}{" "}
       </Box>
+
       <Footer />
     </Box>
   );

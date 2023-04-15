@@ -5,6 +5,7 @@ const apiEndpoint = {
   imageBaseUrl: `https://image.tmdb.org/t/p/w370_and_h556_bestv2`,
   backdropBaseUrl: `https://image.tmdb.org/t/p/w533_and_h300_bestv2`,
   originalBaseUrl: `https://image.tmdb.org/t/p/original`,
+  searchUrl: `https://image.tmdb.org/t/p/original`,
   movie: {
     trending: {
       title: `trending movies`,

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Button, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useMovieContext } from "../providers/MovieProvider";
 
 export default function Search() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm, setSearchTerm, setShowSearch } = useMovieContext();
 
   const handleSearchClick = (e) => {
     e.stopPropagation();
@@ -11,6 +12,11 @@ export default function Search() {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleClose = () => {
+    setSearchTerm("");
+    setShowSearch(false);
   };
 
   return (
@@ -46,6 +52,7 @@ export default function Search() {
         />
         {searchTerm && (
           <Button
+            onClick={handleClose}
             disableRipple
             variant="text"
             color="secondary"
