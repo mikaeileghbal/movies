@@ -27,12 +27,12 @@
 
 .slideUp-appear {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px);
 }
 .slideUp-appear-active {
   opacity: 1;
   transform: translateY(0);
-  transition: all 400ms ease-out;
+  transition: all 500ms ease-out;
 }
 .slideUp-appear-done {
   opacity: 1;
@@ -41,27 +41,27 @@
 
 .slideUp-enter {
   opacity: 1;
-  transform: translateY(20px);
+  transform: translateY(30px);
 }
 .slideUp-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: all 400ms ease-out;
+  transition: all 500ms ease-out;
 }
 .slideUp-enter-done {
   opacity: 1;
 }
 
-/* .slideUp-exit {
+.slideUp-exit {
   opacity: 1;
 }
 .slideUp-exit-active {
   opacity: 0;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 }
 .slideUp-exit-done {
   opacity: 0;
-} */
+}
 
 .fadeIn-appear {
   opacity: 0;
