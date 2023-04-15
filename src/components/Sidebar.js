@@ -10,9 +10,12 @@ import { SlHome } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineMovie } from "react-icons/md";
 import { SlScreenDesktop } from "react-icons/sl";
+import { useMovieContext } from "../providers/MovieProvider";
 
 export default function Sidebar() {
-  const [showSearch, setShowSearch] = useState(false);
+  const { showSearch, setShowSearch, setSearchTerm, searchTerm } =
+    useMovieContext();
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -23,13 +26,19 @@ export default function Sidebar() {
 
   const toggleSearch = (e) => {
     e.stopPropagation();
-    setShowSearch((old) => !old);
+    if (!searchTerm) {
+      setSearchTerm("");
+      setShowSearch((old) => !old);
+    }
   };
 
-  const handleDocumnetnClick = useCallback((e) => {
-    console.log("clicked");
-    setShowSearch(false);
-  }, []);
+  const handleDocumnetnClick = useCallback(
+    (e) => {
+      console.log("clicked");
+      if (!searchTerm) setShowSearch(false);
+    },
+    [setShowSearch, searchTerm]
+  );
 
   useEffect(() => {
     document.addEventListener("click", handleDocumnetnClick);

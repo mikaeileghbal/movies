@@ -1,11 +1,24 @@
-import { Box, TextField } from "@mui/material";
-
 import React from "react";
+import { Box, Button, TextField } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { useMovieContext } from "../providers/MovieProvider";
 
 export default function Search() {
+  const { searchTerm, setSearchTerm, setShowSearch } = useMovieContext();
+
   const handleSearchClick = (e) => {
     e.stopPropagation();
   };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleClose = () => {
+    setSearchTerm("");
+    setShowSearch(false);
+  };
+
   return (
     <Box
       onClick={handleSearchClick}
@@ -19,8 +32,10 @@ export default function Search() {
         zIndex: 9,
       }}
     >
-      <Box sx={{}} fontFamily={200} py={3} px={6}>
+      <Box sx={{ position: "realtive" }} fontFamily={200} py={3} px={6}>
         <TextField
+          value={searchTerm}
+          onChange={handleSearch}
           id="search"
           py={0}
           fullWidth
@@ -35,6 +50,25 @@ export default function Search() {
             },
           }}
         />
+        {searchTerm && (
+          <Button
+            onClick={handleClose}
+            disableRipple
+            variant="text"
+            color="secondary"
+            sx={{
+              position: "absolute",
+              right: "0",
+              top: "0",
+              height: "100%",
+              px: 6,
+
+              "&:hover": { backgroundColor: "transparent" },
+            }}
+          >
+            <CloseIcon sx={{ fontWeight: "200" }} />
+          </Button>
+        )}
       </Box>
     </Box>
   );

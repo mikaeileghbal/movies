@@ -31,37 +31,39 @@ function App() {
   );
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+    <MovieProvider>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
 
-        <TransitionGroup component="div">
-          <CSSTransition
-            key={location.pathname}
-            timeout={{ enter: 700, exit: 300 }}
-            classNames="fadeIn"
-            appear={true}
-            unmountOnExit
-            mountOnEnter
-          >
-            <Routes location={location}>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/movie" element={<Movie />} />
-              <Route exact path="/tv" element={<Tv />} />
-              <Route
-                exact
-                path="/movie/category/:category"
-                element={<List />}
-              />
-              <Route exact path="/tv/category/:category" element={<List />} />
-              <Route exact path="/:type/:id" element={<Detail />} />
-            </Routes>
-          </CSSTransition>
-        </TransitionGroup>
+          <TransitionGroup component="div">
+            <CSSTransition
+              key={location.pathname}
+              timeout={{ enter: 700, exit: 300 }}
+              classNames="fadeIn"
+              appear={true}
+              unmountOnExit
+              mountOnEnter
+            >
+              <Routes location={location}>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/movie" element={<Movie />} />
+                <Route exact path="/tv" element={<Tv />} />
+                <Route
+                  exact
+                  path="/movie/category/:category"
+                  element={<List />}
+                />
+                <Route exact path="/tv/category/:category" element={<List />} />
+                <Route exact path="/:type/:id" element={<Detail />} />
+              </Routes>
+            </CSSTransition>
+          </TransitionGroup>
 
-        <Sidebar />
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+          <Sidebar />
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </MovieProvider>
   );
 }
 

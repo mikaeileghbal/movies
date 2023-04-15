@@ -5,9 +5,10 @@ const MovieContext = createContext({});
 export const useMovieContext = () => useContext(MovieContext);
 
 export default function MovieProvider({ children }) {
-  const [movie, setMovie] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
-  const contextValue = { movie, setMovie };
+  const contextValue = { searchTerm, setSearchTerm, showSearch, setShowSearch };
 
   return (
     <MovieContext.Provider value={contextValue}>

@@ -13,8 +13,12 @@ import { Grid, Typography } from "@mui/material";
 import Loading from "../components/Loading";
 import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
+import { useMovieContext } from "../providers/MovieProvider";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import SearchResult from "../components/SearchResult";
 
 export default function List() {
+  const { searchTerm } = useMovieContext();
   const [page, setPage] = useState(1);
   const { category } = useParams();
   const location = useLocation();
@@ -40,34 +44,58 @@ export default function List() {
   console.log(items);
 
   return (
-    <ViewList>
-      <Typography
-        variant="h2"
-        fontSize={24}
-        fontWeight={400}
-        mb={3}
-        sx={{ textTransform: "capitalize", px: { xs: 1, lg: 7 } }}
-      >
-        {title}
-      </Typography>
-      <Grid
-        container
-        columnSpacing={1}
-        mb={6}
-        sx={{
-          backgroundColor: "transparent",
-          px: { xs: 1, lg: 7 },
-          minHeight: "100vh",
-        }}
-      >
-        {items?.map((item) => (
-          <Grid item xs={12 / 5} key={item.id}>
-            <MovieCard item={item} />
-          </Grid>
-        ))}
-      </Grid>
-      <div ref={bottomBoundryRef}></div>
-      {loading && <Loading />}
-    </ViewList>
+    <TransitionGroup>
+      {searchTerm ? (
+        <CSSTransition
+          in={searchTerm}
+          appear={true}
+          timeout={{ enter: 500, exit: 300 }}
+          classNames="slideUp2"
+          key={searchTerm}
+          unmountOnExit
+        >
+          <SearchResult />
+        </CSSTransition>
+      ) : (
+        <CSSTransition
+          in={searchTerm}
+          appear={true}
+          timeout={{ enter: 500, exit: 300 }}
+          classNames="slideUp"
+          key={searchTerm}
+          unmountOnExit
+        >
+          <ViewList>
+            <Typography
+              variant="h2"
+              fontSize={24}
+              fontWeight={400}
+              mb={3}
+              sx={{ textTransform: "capitalize", px: { xs: 1, lg: 7 } }}
+            >
+              {title}
+            </Typography>
+            <Grid
+              container
+              columnSpacing={1}
+              mb={6}
+              sx={{
+                backgroundColor: "transparent",
+                px: { xs: 1, lg: 7 },
+                minHeight: "100vh",
+              }}
+            >
+              {items?.map((item) => (
+                <Grid item xs={12 / 5} key={item.id}>
+                  <MovieCard item={item} />
+                </Grid>
+              ))}
+            </Grid>
+            <div ref={bottomBoundryRef}></div>
+            {loading && <Loading />}
+          </ViewList>
+        </CSSTransition>
+      )}
+    </TransitionGroup>
   );
 }
