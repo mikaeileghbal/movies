@@ -16,7 +16,7 @@ export default function ViewSelection({ children, movie }) {
         <CSSTransition
           in={searchTerm}
           appear={true}
-          timeout={{ enter: 500, exit: 500 }}
+          timeout={{ enter: 500, exit: 300 }}
           classNames="slideUp2"
           key={searchTerm}
           unmountOnExit
@@ -27,7 +27,7 @@ export default function ViewSelection({ children, movie }) {
         <CSSTransition
           in={searchTerm}
           appear={true}
-          timeout={{ enter: 500, exit: 500 }}
+          timeout={{ enter: 500, exit: 300 }}
           classNames="slideUp"
           key={searchTerm}
           unmountOnExit
@@ -41,9 +41,8 @@ export default function ViewSelection({ children, movie }) {
           >
             <Header movie={movie} />
             <Box component="main" pl={7} mt={7}>
-              {children}{" "}
+              {children}
             </Box>
-
             <Footer />
           </Box>
         </CSSTransition>

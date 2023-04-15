@@ -35,9 +35,9 @@ export default function Sidebar() {
   const handleDocumnetnClick = useCallback(
     (e) => {
       console.log("clicked");
-      setShowSearch(false);
+      if (!searchTerm) setShowSearch(false);
     },
-    [setShowSearch]
+    [setShowSearch, searchTerm]
   );
 
   useEffect(() => {
