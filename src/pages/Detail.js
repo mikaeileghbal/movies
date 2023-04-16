@@ -20,7 +20,7 @@ export default function Detail() {
   routePath.url = routePath.url.replace("{_id}", id);
 
   return (
-    <ViewSelection movie={movie}>
+    <>
       <Tab>
         <Box name="overview">
           <Overview movie={movie} />
@@ -34,6 +34,6 @@ export default function Detail() {
         </Box>
       </Tab>
       <ViewSelectionItem routePath={routePath} />
-    </ViewSelection>
+    </>
   );
 }

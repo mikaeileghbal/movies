@@ -9,7 +9,7 @@ import { useLocation, useParams } from "react-router-dom";
 import ViewList from "../components/ViewList";
 import apiEndpoint from "../utils/apiEndpoints";
 import MovieCard from "../components/MovieCard";
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import Loading from "../components/Loading";
 import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
@@ -65,13 +65,13 @@ export default function List() {
           key={searchTerm}
           unmountOnExit
         >
-          <ViewList>
+          <Box>
             <Typography
               variant="h2"
               fontSize={24}
               fontWeight={400}
               mb={3}
-              sx={{ textTransform: "capitalize", px: { xs: 1, lg: 7 } }}
+              sx={{ textTransform: "capitalize", px: { xs: 0, lg: 0 } }}
             >
               {title}
             </Typography>
@@ -81,7 +81,7 @@ export default function List() {
               mb={6}
               sx={{
                 backgroundColor: "transparent",
-                px: { xs: 1, lg: 7 },
+                px: { xs: 0, lg: 0 },
                 minHeight: "100vh",
               }}
             >
@@ -93,7 +93,7 @@ export default function List() {
             </Grid>
             <div ref={bottomBoundryRef}></div>
             {loading && <Loading />}
-          </ViewList>
+          </Box>
         </CSSTransition>
       )}
     </TransitionGroup>
