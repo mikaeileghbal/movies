@@ -37,37 +37,23 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <TransitionGroup component="div">
-            <CSSTransition
-              key={location.pathname}
-              timeout={{ enter: 700, exit: 300 }}
-              classNames="fadeIn"
-              appear={true}
-              unmountOnExit
-              mountOnEnter
-            >
-              <Routes location={location}>
-                <Route element={<Layout />}>
-                  <Route exact path="/" element={<Home />} />
-                  <Route exact path="/movie" element={<Movie />} />
-                  <Route exact path="/tv" element={<Tv />} />
-                  <Route exact path="/:type/:id" element={<Detail />} />
-                </Route>
-                <Route element={<LayoutList />}>
-                  <Route
-                    exact
-                    path="/movie/category/:category"
-                    element={<List />}
-                  />
-                  <Route
-                    exact
-                    path="/tv/category/:category"
-                    element={<List />}
-                  />
-                </Route>
-              </Routes>
-            </CSSTransition>
-          </TransitionGroup>
+
+          <Routes location={location}>
+            <Route element={<Layout />}>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/movie" element={<Movie />} />
+              <Route exact path="/tv" element={<Tv />} />
+              <Route exact path="/:type/:id" element={<Detail />} />
+            </Route>
+            <Route element={<LayoutList />}>
+              <Route
+                exact
+                path="/movie/category/:category"
+                element={<List />}
+              />
+              <Route exact path="/tv/category/:category" element={<List />} />
+            </Route>
+          </Routes>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </MovieProvider>
