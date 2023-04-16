@@ -32,7 +32,7 @@
 .slideUp-appear-active {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: all 500ms ease-out;
+  transition: all 0.5s ease-out;
 }
 .slideUp-appear-done {
   opacity: 1;
@@ -46,7 +46,7 @@
 .slideUp-enter-active {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: all 500ms ease-out;
+  transition: all 0.5s ease-out;
 }
 .slideUp-enter-done {
   opacity: 1;
@@ -69,7 +69,7 @@
 }
 .fadeIn-appear-active {
   opacity: 1;
-  transition: opacity 300ms ease-in 400ms;
+  transition: opacity 0.3s ease-in 0.4s;
 }
 
 .fadeIn-enter {
@@ -77,7 +77,7 @@
 }
 .fadeIn-enter-active {
   opacity: 1;
-  transition: opacity 300ms ease-in 400ms;
+  transition: opacity 0.3s ease-in 0.4s;
 }
 
 .fadeIn-enter-done {
@@ -91,7 +91,7 @@
 
 .fadeIn-exit-active {
   opacity: 0;
-  transition: opacity 300ms ease-in;
+  transition: opacity 0.3s ease-in;
 }
 
 .fadeIn-exit-done {
@@ -146,7 +146,7 @@
 .slideUp2-enter-active {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s;
 }
 .slideUp2-enter-done {
   opacity: 1;

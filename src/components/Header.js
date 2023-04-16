@@ -9,6 +9,7 @@ import { CSSTransition } from "react-transition-group";
 import apiEndpoint from "../utils/apiEndpoints";
 import { formatRuntime } from "../utils/helper";
 import { Translate } from "@mui/icons-material";
+import useMovieDetail from "../hooks/useMovieDetail";
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",
@@ -19,7 +20,8 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   objectFit: "cover",
 }));
 
-export default function Header({ movie }) {
+export default function Header() {
+  const { movie } = useMovieDetail("movie", 76000);
   return (
     <Grid
       container

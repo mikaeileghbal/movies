@@ -16,10 +16,9 @@ export default function ViewSelection({ children, movie }) {
         <CSSTransition
           in={searchTerm}
           appear={true}
-          timeout={{ enter: 500, exit: 300 }}
+          timeout={{ enter: 800, exit: 300 }}
           classNames="slideUp2"
           key={searchTerm}
-          unmountOnExit
         >
           <SearchResult />
         </CSSTransition>
