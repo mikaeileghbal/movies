@@ -14,6 +14,7 @@ import Detail from "./pages/Detail";
 import MovieProvider from "./providers/MovieProvider";
 import Layout from "./components/Layout";
 import LayoutList from "./components/LayoutList";
+import SearchResult from "./components/SearchResult";
 
 const ColorModeContext = createContext({});
 export const useColorMode = () => useContext(ColorModeContext);
@@ -33,30 +34,25 @@ function App() {
   );
 
   return (
-    <MovieProvider>
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-          <Routes location={location}>
-            <Route element={<Layout />}>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/movie" element={<Movie />} />
-              <Route exact path="/tv" element={<Tv />} />
-              <Route exact path="/:type/:id" element={<Detail />} />
-            </Route>
-            <Route element={<LayoutList />}>
-              <Route
-                exact
-                path="/movie/category/:category"
-                element={<List />}
-              />
-              <Route exact path="/tv/category/:category" element={<List />} />
-            </Route>
-          </Routes>
-        </ThemeProvider>
-      </ColorModeContext.Provider>
-    </MovieProvider>
+        <Routes location={location}>
+          <Route element={<Layout />}>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/movie" element={<Movie />} />
+            <Route exact path="/tv" element={<Tv />} />
+            <Route exact path="/:type/:id" element={<Detail />} />
+          </Route>
+          <Route element={<LayoutList />}>
+            <Route exact path="/movie/category/:category" element={<List />} />
+            <Route exact path="/tv/category/:category" element={<List />} />
+            <Route exact path="/search" element={<SearchResult />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 

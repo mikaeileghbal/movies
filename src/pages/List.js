@@ -19,7 +19,7 @@ import SearchResult from "../components/SearchResult";
 
 export default function List() {
   const { searchTerm } = useMovieContext();
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const { category } = useParams();
   const location = useLocation();
 
@@ -61,7 +61,7 @@ export default function List() {
         sx={{
           backgroundColor: "transparent",
           px: { xs: 0, lg: 0 },
-          //minHeight: "100vh",
+          minHeight: "100vh",
         }}
       >
         {items?.map((item) => (

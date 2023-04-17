@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../App.css";
 import AppBar from "@mui/material/AppBar";
 import { IconButton, Toolbar } from "@mui/material";
@@ -10,11 +10,9 @@ import { SlHome } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineMovie } from "react-icons/md";
 import { SlScreenDesktop } from "react-icons/sl";
-import { useMovieContext } from "../providers/MovieProvider";
 
 export default function Sidebar() {
-  const { showSearch, setShowSearch, setSearchTerm, searchTerm } =
-    useMovieContext();
+  const [showSearch, setShowSearch] = useState(false);
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -26,25 +24,12 @@ export default function Sidebar() {
 
   const toggleSearch = (e) => {
     e.stopPropagation();
-    if (!searchTerm) {
-      setSearchTerm("");
-      setShowSearch((old) => !old);
-    }
+    setShowSearch((old) => !old);
   };
 
-  const handleDocumnetnClick = useCallback(
-    (e) => {
-      console.log("clicked");
-      if (!searchTerm) setShowSearch(false);
-    },
-    [setShowSearch, searchTerm]
-  );
-
-  useEffect(() => {
-    document.addEventListener("click", handleDocumnetnClick);
-
-    return () => document.removeEventListener("click", handleDocumnetnClick);
-  }, [handleDocumnetnClick]);
+  const handleClose = (e) => {
+    setShowSearch(false);
+  };
 
   return (
     <>
@@ -117,7 +102,7 @@ export default function Sidebar() {
         unmountOnExit
         mountOnEnter
       >
-        <Search />
+        <Search closeSearch={handleClose} />
       </CSSTransition>
     </>
   );

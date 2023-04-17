@@ -13,12 +13,15 @@ import Loading from "./Loading";
 import apiEndpoint from "../utils/apiEndpoints";
 import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
+import { useSearchParams } from "react-router-dom";
 
 export default function SearchResult() {
-  const { searchTerm } = useMovieContext();
   const [page, setPage] = useState(1);
 
-  //const { url } = apiEndpoint.searchUrl;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchTerm = searchParams.get("q");
+
   const { url } = apiEndpoint.movie.trending;
 
   const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);

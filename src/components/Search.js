@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useMovieContext } from "../providers/MovieProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function Search() {
-  const { searchTerm, setSearchTerm, setShowSearch } = useMovieContext();
+export default function Search({ closeSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showResult, setShowResult] = useState(false);
+
+  const navigate = useNavigate();
+
+  const memoSearchTerm = useMemo(() => searchTerm, [searchTerm]);
 
   const handleSearchClick = (e) => {
     e.stopPropagation();
@@ -16,8 +22,32 @@ export default function Search() {
 
   const handleClose = () => {
     setSearchTerm("");
-    setShowSearch(false);
+    setShowResult(false);
+    closeSearch(false);
   };
+
+  const handleDocumnetnClick = useCallback(
+    (e) => {
+      if (!searchTerm) closeSearch(false);
+    },
+    [closeSearch, searchTerm]
+  );
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumnetnClick);
+
+    return () => document.removeEventListener("click", handleDocumnetnClick);
+  }, [handleDocumnetnClick]);
+
+  // useEffect(() => {
+  //   if (memoSearchTerm.length > 0) {
+  //     setShowResult(true);
+  //   } else setShowResult(false);
+  // }, [memoSearchTerm]);
+
+  // useEffect(() => {
+  //   showResult ? navigate(`/search?q=${memoSearchTerm}`) : navigate(-1);
+  // }, [showResult, memoSearchTerm, navigate]);
 
   return (
     <Box
