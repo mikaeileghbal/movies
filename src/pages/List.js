@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import ViewList from "../components/ViewList";
+
 import apiEndpoint from "../utils/apiEndpoints";
 import MovieCard from "../components/MovieCard";
 import { Box, Grid, Typography } from "@mui/material";
@@ -19,7 +19,7 @@ import SearchResult from "../components/SearchResult";
 
 export default function List() {
   const { searchTerm } = useMovieContext();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const { category } = useParams();
   const location = useLocation();
 
@@ -61,7 +61,7 @@ export default function List() {
         sx={{
           backgroundColor: "transparent",
           px: { xs: 0, lg: 0 },
-          minHeight: "100vh",
+          //minHeight: "100vh",
         }}
       >
         {items?.map((item) => (
