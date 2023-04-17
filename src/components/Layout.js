@@ -6,11 +6,13 @@ import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../App.css";
+import { ScrollToTop } from "../hooks/ScrollTop";
 
 export default function Layout() {
   const location = useLocation();
   return (
     <>
+      <ScrollToTop />
       <Sidebar />
       <TransitionGroup component="div">
         <CSSTransition

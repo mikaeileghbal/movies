@@ -11,7 +11,6 @@ import { ScrollToTop } from "./hooks/ScrollTop";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <ScrollToTop />
     <App />
   </Router>
 );

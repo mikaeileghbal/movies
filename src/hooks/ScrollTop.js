@@ -11,6 +11,6 @@ export function ScrollToTop() {
         left: 0,
         behavior: "instant",
       });
-    }, 200);
+    }, 0);
   }, [pathname]);
 }

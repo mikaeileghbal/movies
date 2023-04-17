@@ -122,6 +122,7 @@ function CarouselBody({ movies, onNext, onPrev, currentIndex, groupCount }) {
         onClick={onPrev}
         className={`${currentIndex === 0 ? "hidden" : ""}`}
         disabled={currentIndex === 0}
+        sx={{ backgroundColor: "red" }}
       >
         <ArrowBackIosIcon fontSize="inherit" />
       </IconButton>
@@ -147,6 +148,7 @@ function CarouselBody({ movies, onNext, onPrev, currentIndex, groupCount }) {
         onClick={onNext}
         className={`${currentIndex === movies.length - 1 ? "hidden" : ""}`}
         disabled={currentIndex === movies.length - 1}
+        sx={{ backgroundColor: "red" }}
       >
         <ArrowForwardIosIcon fontSize="inherit" />
       </IconButton>
