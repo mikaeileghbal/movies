@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, IconButton, Rating, Typography } from "@mui/material";
+import { Box, IconButton, Rating, Typography, Button } from "@mui/material";
 import { Stack } from "@mui/system";
 
 export const StyledText2 = styled(Typography)(({ theme }) => ({
@@ -74,4 +74,28 @@ export const StyledIconButtonSocial = styled(IconButton)(({ theme }) => ({
   "&:hover": {
     color: theme.palette.primary.main,
   },
+}));
+
+export const StyledButtonNav = styled(Button)(() => ({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  bottom: "86px",
+  zIndex: 2,
+  minWidth: "50px",
+  padding: 0,
+  margin: 0,
+  fontSize: "30px",
+  borderRadius: 0,
+  background: "rgba(0, 0, 0, 0.02)",
+  color: "white",
+  outline: 0,
+  transition: "opacity .25s ease, background-color .25s ease",
+  "&:hover": { backgroundColor: "black" },
+  justifyContent: "flex-end",
+}));
+
+export const StyledButtonNavRight = styled(StyledButtonNav)(() => ({
+  left: "auto",
+  right: 0,
 }));

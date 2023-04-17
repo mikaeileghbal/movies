@@ -45,7 +45,7 @@ export default function SearchResult() {
         fontWeight={400}
         mt={12}
         mb={3}
-        sx={{ textTransform: "capitalize", px: { xs: 1, lg: 7 } }}
+        sx={{ textTransform: "capitalize", px: { xs: 0, lg: 0 } }}
       >
         Results For: {searchTerm}
       </Typography>
@@ -55,7 +55,7 @@ export default function SearchResult() {
         mb={6}
         sx={{
           backgroundColor: "transparent",
-          px: { xs: 1, lg: 7 },
+          px: { xs: 0, lg: 0 },
           minHeight: "100vh",
         }}
       >

@@ -10,6 +10,7 @@ import apiEndpoint from "../utils/apiEndpoints";
 import { formatRuntime } from "../utils/helper";
 import { Translate } from "@mui/icons-material";
 import useMovieDetail from "../hooks/useMovieDetail";
+import useMovieFeatured from "../hooks/useMovieFeatured";
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",
@@ -21,7 +22,8 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
 }));
 
 export default function Header() {
-  const { movie } = useMovieDetail("movie", 76000);
+  const { movie } = useMovieDetail("movie", 1250);
+  console.log("header renders", movie);
   return (
     <Grid
       container

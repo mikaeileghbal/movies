@@ -5,6 +5,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "../styles/carousel.scss";
 import Explore from "./Explore";
+import { StyledButtonNav, StyledButtonNavRight } from "../styles/global";
 
 export default function Carousel({ items, heading, url, groupSize, render }) {
   //console.log("in carousel :", items);
@@ -110,21 +111,22 @@ function CarouselBody({ movies, onNext, onPrev, currentIndex, groupCount }) {
       direction="row"
       alignItems="baseline"
       sx={{
-        ml: 1,
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "stretch",
+        ml: 0,
+        // display: "flex",
+        // flexDirection: "row",
+        // alignItems: "flex-start",
+        position: "relative",
+        zIndex: 0,
       }}
     >
-      <IconButton
+      <StyledButtonNav
         disableRipple
-        size="large"
         onClick={onPrev}
-        className={`${currentIndex === 0 ? "hidden" : ""}`}
         disabled={currentIndex === 0}
+        className={`${currentIndex === 0 ? "hidden" : ""}`}
       >
-        <ArrowBackIosIcon fontSize="inherit" />
-      </IconButton>
+        <ArrowBackIosIcon sx={{ m: 0, p: 0, mr: 1 }} />
+      </StyledButtonNav>
 
       <div className="carousel-container">
         <div
@@ -141,15 +143,14 @@ function CarouselBody({ movies, onNext, onPrev, currentIndex, groupCount }) {
         </div>
       </div>
 
-      <IconButton
+      <StyledButtonNavRight
         disableRipple
-        size="large"
         onClick={onNext}
         className={`${currentIndex === movies.length - 1 ? "hidden" : ""}`}
         disabled={currentIndex === movies.length - 1}
       >
-        <ArrowForwardIosIcon fontSize="inherit" />
-      </IconButton>
+        <ArrowForwardIosIcon sx={{ m: 0, p: 0, mr: 1 }} />
+      </StyledButtonNavRight>
     </Stack>
   );
 }
