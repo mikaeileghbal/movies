@@ -27,10 +27,11 @@ export default function Header() {
   return (
     <Grid
       container
+      mb={7}
       component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
       sx={{
-        paddingLeft: { xs: 5, lg: 7 },
+        paddingLeft: { xs: 0, lg: 13 },
         paddingRight: { xs: 5, lg: 0 },
         position: "relative",
         backgroundColor: "#000",

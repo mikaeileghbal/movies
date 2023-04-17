@@ -44,8 +44,6 @@ function App() {
             <Route exact path="/movie" element={<Movie />} />
             <Route exact path="/tv" element={<Tv />} />
             <Route exact path="/:type/:id" element={<Detail />} />
-          </Route>
-          <Route element={<LayoutList />}>
             <Route exact path="/movie/category/:category" element={<List />} />
             <Route exact path="/tv/category/:category" element={<List />} />
             <Route exact path="/search" element={<SearchResult />} />

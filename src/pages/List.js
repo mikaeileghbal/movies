@@ -44,7 +44,11 @@ export default function List() {
   console.log(items);
 
   return (
-    <Box>
+    <Box
+      component="section"
+      sx={{ paddingLeft: { xs: 0, lg: "100px" } }}
+      mt={7}
+    >
       <Typography
         variant="h2"
         fontSize={24}
@@ -60,7 +64,7 @@ export default function List() {
         mb={6}
         sx={{
           backgroundColor: "transparent",
-          px: { xs: 0, lg: 0 },
+          pr: { xs: 0, lg: 8 },
           minHeight: "100vh",
         }}
       >

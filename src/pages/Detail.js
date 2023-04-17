@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import useMovieDetail from "../hooks/useMovieDetail";
 
 import Cast from "../components/detail/Cast";
+import Header from "../components/Header";
 
 export default function Detail() {
   const { type, id } = useParams();
@@ -21,19 +22,22 @@ export default function Detail() {
 
   return (
     <>
-      <Tab>
-        <Box name="overview">
-          <Overview movie={movie} />
-          <Cast />
-        </Box>
-        <Box name="videos">
-          <Video />
-        </Box>
-        <Box name="photos">
-          <Photo />
-        </Box>
-      </Tab>
-      <ViewSelectionItem routePath={routePath} />
+      <Header />
+      <Box component="section" sx={{ paddingLeft: { xs: 0, lg: "100px" } }}>
+        <Tab>
+          <Box name="overview">
+            <Overview movie={movie} />
+            <Cast />
+          </Box>
+          <Box name="videos">
+            <Video />
+          </Box>
+          <Box name="photos">
+            <Photo />
+          </Box>
+        </Tab>
+        <ViewSelectionItem routePath={routePath} />
+      </Box>
     </>
   );
 }

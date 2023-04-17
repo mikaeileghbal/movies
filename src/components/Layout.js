@@ -25,13 +25,12 @@ export default function Layout() {
         >
           <Box
             sx={{
-              paddingLeft: { xs: 0, lg: "100px" },
+              // paddingLeft: { xs: 0, lg: "100px" },
               position: "absolute",
               width: "100%",
             }}
           >
-            <Header />
-            <Box component="main" pl={7} mt={7}>
+            <Box component="main" pl={7} mt={0}>
               <Outlet />
             </Box>
             <Footer />

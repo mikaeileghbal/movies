@@ -5,9 +5,8 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useMovieContext } from "../providers/MovieProvider";
-import ViewList from "./ViewList";
-import { Grid, Typography } from "@mui/material";
+
+import { Box, Grid, Typography } from "@mui/material";
 import MovieCard from "./MovieCard";
 import Loading from "./Loading";
 import apiEndpoint from "../utils/apiEndpoints";
@@ -18,7 +17,7 @@ import { useSearchParams } from "react-router-dom";
 export default function SearchResult() {
   const [page, setPage] = useState(1);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const searchTerm = searchParams.get("q");
 
@@ -41,14 +40,17 @@ export default function SearchResult() {
   }, [bottomBoundryRef, scrollObserver]);
 
   return (
-    <ViewList>
+    <Box
+      component="section"
+      sx={{ paddingLeft: { xs: 0, lg: "100px" }, paddingRight: 8 }}
+    >
       <Typography
         variant="h2"
         fontSize={24}
         fontWeight={400}
-        mt={12}
+        mt={17}
         mb={3}
-        sx={{ textTransform: "capitalize", px: { xs: 0, lg: 0 } }}
+        sx={{ px: { xs: 0, lg: 0 } }}
       >
         Results For: {searchTerm}
       </Typography>
@@ -70,6 +72,6 @@ export default function SearchResult() {
       </Grid>
       <div ref={bottomBoundryRef}></div>
       {loading && <Loading />}
-    </ViewList>
+    </Box>
   );
 }

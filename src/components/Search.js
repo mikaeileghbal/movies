@@ -10,7 +10,7 @@ export default function Search({ closeSearch }) {
 
   const navigate = useNavigate();
 
-  const memoSearchTerm = useMemo(() => searchTerm, [searchTerm]);
+  console.log({ searchTerm, showResult });
 
   const handleSearchClick = (e) => {
     e.stopPropagation();
@@ -39,15 +39,16 @@ export default function Search({ closeSearch }) {
     return () => document.removeEventListener("click", handleDocumnetnClick);
   }, [handleDocumnetnClick]);
 
-  // useEffect(() => {
-  //   if (memoSearchTerm.length > 0) {
-  //     setShowResult(true);
-  //   } else setShowResult(false);
-  // }, [memoSearchTerm]);
+  useEffect(() => {
+    if (searchTerm.length > 0) {
+      setShowResult(true);
+      navigate(`/search?q=${searchTerm}`);
+    } else setShowResult(false);
+  }, [searchTerm, navigate]);
 
-  // useEffect(() => {
-  //   showResult ? navigate(`/search?q=${memoSearchTerm}`) : navigate(-1);
-  // }, [showResult, memoSearchTerm, navigate]);
+  useEffect(() => {
+    //if (showResult) navigate(`/search?q=${searchTerm}`);
+  }, [showResult]);
 
   return (
     <Box
@@ -62,7 +63,7 @@ export default function Search({ closeSearch }) {
         zIndex: 9,
       }}
     >
-      <Box sx={{ position: "realtive" }} fontFamily={200} py={3} px={6}>
+      <Box sx={{ position: "realtive" }} fontFamily={200} py={3} px={7}>
         <TextField
           value={searchTerm}
           onChange={handleSearch}
@@ -73,8 +74,9 @@ export default function Search({ closeSearch }) {
           variant="standard"
           InputProps={{
             disableUnderline: true,
+
             style: {
-              fontWeight: 400,
+              fontWeight: 200,
               color: "white",
               fontSize: 16,
             },
