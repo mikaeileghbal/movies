@@ -11,7 +11,7 @@ export default function Tv() {
   const { movie } = useMovieDetail("tv", 7500);
   return (
     <>
-      <Header />
+      <Header movie={movie} />
       <Box component="section" sx={{ paddingLeft: { xs: 0, lg: "100px" } }}>
         <ViewSelectionItem routePath={apiEndpoint.tv.popular} />
         <ViewSelectionItem routePath={apiEndpoint.tv.top_rated} />

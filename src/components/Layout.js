@@ -11,32 +11,17 @@ import { ScrollToTop } from "../hooks/ScrollTop";
 export default function Layout() {
   const location = useLocation();
   return (
-    <>
-      <ScrollToTop />
-      <Sidebar />
-      <TransitionGroup component="div">
-        <CSSTransition
-          key={location.pathname}
-          timeout={{ enter: 700, exit: 300 }}
-          classNames="fadeIn"
-          appear={true}
-          unmountOnExit
-          mountOnEnter
-        >
-          <Box
-            sx={{
-              // paddingLeft: { xs: 0, lg: "100px" },
-              position: "absolute",
-              width: "100%",
-            }}
-          >
-            <Box component="main" pl={7} mt={0}>
-              <Outlet />
-            </Box>
-            <Footer />
-          </Box>
-        </CSSTransition>
-      </TransitionGroup>
-    </>
+    <Box
+      sx={{
+        // paddingLeft: { xs: 0, lg: "100px" },
+        position: "absolute",
+        width: "100%",
+      }}
+    >
+      <Box component="main" pl={7} mt={0}>
+        <Outlet />
+      </Box>
+      <Footer />
+    </Box>
   );
 }

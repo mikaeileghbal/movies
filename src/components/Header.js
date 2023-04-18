@@ -21,9 +21,7 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   objectFit: "cover",
 }));
 
-export default function Header() {
-  const { movie } = useMovieDetail("movie", 1250);
-  console.log("header renders", movie);
+export default function Header({ movie }) {
   return (
     <Grid
       container
@@ -52,10 +50,11 @@ export default function Header() {
         <CSSTransition
           in={movie.id}
           appear={true}
-          timeout={{ enter: 500, exit: 200 }}
+          timeout={{ enter: 1000, exit: 200 }}
           classNames="slideUp"
           key={movie.id}
           unmountOnExit
+          mountOnEnter
         >
           <FeaturedMovie movie={movie} />
         </CSSTransition>

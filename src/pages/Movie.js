@@ -7,9 +7,10 @@ import Header from "../components/Header";
 import { Box } from "@mui/material";
 
 export default function Movie() {
+  const { movie } = useMovieDetail("movie", 18500);
   return (
     <>
-      <Header />
+      <Header movie={movie} />
       <Box component="section" sx={{ paddingLeft: { xs: 0, lg: "100px" } }}>
         <ViewSelectionItem routePath={apiEndpoint.movie.popular} />
         <ViewSelectionItem routePath={apiEndpoint.movie.top_rated} />

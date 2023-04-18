@@ -22,7 +22,7 @@ export default function Detail() {
 
   return (
     <>
-      <Header />
+      <Header movie={movie} />
       <Box component="section" sx={{ paddingLeft: { xs: 0, lg: "100px" } }}>
         <Tab>
           <Box name="overview">
