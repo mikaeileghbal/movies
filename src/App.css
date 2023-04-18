@@ -69,7 +69,7 @@
 }
 .fadeIn-appear-active {
   opacity: 1;
-  transition: opacity 0.5s ease-in 0.5s;
+  transition: opacity 0.3s ease-in 0.3s;
 }
 .fadeIn-appear-done {
   opacity: 1;
@@ -81,7 +81,7 @@
 }
 .fadeIn-enter-active {
   opacity: 1;
-  transition: opacity 0.5s ease-in 0.5s;
+  transition: opacity 0.3s ease-in 0.3s;
 }
 .fadeIn-enter-done {
   opacity: 1;
@@ -93,7 +93,7 @@
 }
 .fadeIn-exit-active {
   opacity: 0;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.3s ease-in;
 }
 .fadeIn-exit-done {
   opacity: 0;
