@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useMovieContext } from "../providers/MovieProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Search({ closeSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,7 +42,10 @@ export default function Search({ closeSearch }) {
     if (searchTerm.length > 0) {
       setShowResult(true);
       navigate(`/search?q=${searchTerm}`);
-    } else setShowResult(false);
+    } else {
+      setShowResult(false);
+      navigate("/");
+    }
   }, [searchTerm, navigate]);
 
   useEffect(() => {

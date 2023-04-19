@@ -12,7 +12,7 @@ import Loading from "./Loading";
 import apiEndpoint from "../utils/apiEndpoints";
 import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function SearchResult() {
   const [page, setPage] = useState(1);
@@ -32,6 +32,8 @@ export default function SearchResult() {
 
   const { items, loading } = useMovieCollection(urlWithPage);
 
+  console.log("Search result: ", items);
+
   let bottomBoundryRef = useRef(null);
 
   const handlePage = useCallback(() => setPage((page) => page + 1), [setPage]);
@@ -44,6 +46,19 @@ export default function SearchResult() {
     }
   }, [bottomBoundryRef, scrollObserver]);
 
+  if (!items)
+    return (
+      <div style={{ maxWidth: "400px" }}>
+        <div>Data not available</div>
+        <p>
+          Looks like we are unable to fetch the data right now, please come back
+          and try again soon.
+        </p>
+        <p>
+          Back to our <Link to="/">home page</Link>
+        </p>
+      </div>
+    );
   return (
     <Box
       component="section"

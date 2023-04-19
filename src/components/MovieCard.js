@@ -60,18 +60,22 @@ function MovieCard({ item }) {
               alignItems: "center",
             }}
           >
-            <StyledRatingSmall
-              size="small"
-              value={item.vote_average / 2}
-              readOnly
-              precision={0.1}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
-            />
-            <Box sx={{ ml: 1, color: "gray", fontSize: "14px" }}>
-              {item.vote_average}
-            </Box>
+            {item.vote_average >= 0 && (
+              <>
+                <StyledRatingSmall
+                  size="small"
+                  value={item.vote_average / 2}
+                  readOnly
+                  precision={0.1}
+                  emptyIcon={
+                    <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                  }
+                />
+                <Box sx={{ ml: 1, color: "gray", fontSize: "14px" }}>
+                  {item.vote_average}
+                </Box>
+              </>
+            )}
           </Box>
         </CardContent>
       </Box>
