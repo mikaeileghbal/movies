@@ -21,9 +21,14 @@ export default function SearchResult() {
 
   const searchTerm = searchParams.get("q");
 
-  const { url } = apiEndpoint.movie.trending;
+  const url = apiEndpoint.searchUrl;
 
-  const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);
+  const urlWithPage = useMemo(
+    () => `${url}&query=${searchTerm}&page=${page}`,
+    [url, page, searchTerm]
+  );
+
+  console.log("searchUrl: ", urlWithPage);
 
   const { items, loading } = useMovieCollection(urlWithPage);
 
