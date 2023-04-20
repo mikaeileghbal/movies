@@ -44,7 +44,7 @@ export default function Search({ closeSearch }) {
       navigate(`/search?q=${searchTerm}`);
     } else {
       setShowResult(false);
-      navigate("/");
+      //navigate("/");
     }
   }, [searchTerm, navigate]);
 
