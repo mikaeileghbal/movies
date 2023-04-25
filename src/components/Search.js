@@ -2,34 +2,36 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
+import { closeSearch, setSearchTerm } from "../features/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function Search({ closeSearch }) {
-  const [searchTerm, setSearchTerm] = useState("");
+export default function Search() {
+  const dispatch = useDispatch();
+  const { searchTerm } = useSelector((state) => state.search);
+  //const [searchTerm, setSearchTerm] = useState("");
   const [showResult, setShowResult] = useState(false);
 
   const navigate = useNavigate();
-
-  console.log({ searchTerm, showResult });
 
   const handleSearchClick = (e) => {
     e.stopPropagation();
   };
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    dispatch(setSearchTerm(e.target.value));
   };
 
   const handleClose = () => {
-    setSearchTerm("");
+    dispatch(setSearchTerm(""));
     setShowResult(false);
-    closeSearch(false);
+    dispatch(closeSearch());
   };
 
   const handleDocumnetnClick = useCallback(
     (e) => {
       if (!searchTerm) closeSearch(false);
     },
-    [closeSearch, searchTerm]
+    [searchTerm]
   );
 
   useEffect(() => {
