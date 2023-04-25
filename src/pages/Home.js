@@ -10,8 +10,14 @@ export default function Home() {
     <>
       <Header movie={movie} />
       <Box component="section" sx={{ paddingLeft: { xs: 0, lg: "100px" } }}>
-        <ViewSelectionItem routePath={apiEndpoint.movie.trending} />
-        <ViewSelectionItem routePath={apiEndpoint.tv.trending} />
+        <ViewSelectionItem
+          routePath={apiEndpoint.movie.trending}
+          listName="trending"
+        />
+        <ViewSelectionItem
+          routePath={apiEndpoint.tv.trending}
+          listName="trending"
+        />
       </Box>
     </>
   );

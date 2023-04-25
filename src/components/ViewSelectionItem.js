@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import Carousel from "./Carousel";
 import renderMovie from "../utils/renderMovie";
 
-export default function ViewSelectionItem({ routePath }) {
+export default function ViewSelectionItem({ routePath, listName }) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
