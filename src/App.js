@@ -14,6 +14,10 @@ import Detail from "./pages/Detail";
 import MovieProvider from "./providers/MovieProvider";
 import Layout from "./components/Layout";
 import LayoutList from "./components/LayoutList";
+import SearchResult from "./components/SearchResult";
+import { ScrollToTop } from "./hooks/ScrollTop";
+import store from "./store";
+import { Provider } from "react-redux";
 
 const ColorModeContext = createContext({});
 export const useColorMode = () => useContext(ColorModeContext);
@@ -33,30 +37,48 @@ function App() {
   );
 
   return (
-    <MovieProvider>
+    <Provider store={store}>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <ScrollToTop />
+          <Sidebar />
 
-          <Routes location={location}>
-            <Route element={<Layout />}>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/movie" element={<Movie />} />
-              <Route exact path="/tv" element={<Tv />} />
-              <Route exact path="/:type/:id" element={<Detail />} />
-            </Route>
-            <Route element={<LayoutList />}>
-              <Route
-                exact
-                path="/movie/category/:category"
-                element={<List />}
-              />
-              <Route exact path="/tv/category/:category" element={<List />} />
-            </Route>
-          </Routes>
+          <TransitionGroup component="div">
+            <CSSTransition
+              key={location.pathname}
+              timeout={{ enter: 600, exit: 300 }}
+              classNames="fadeIn"
+              appear={true}
+              unmountOnExit
+              mountOnEnter
+            >
+              <div>
+                <Routes location={location}>
+                  <Route element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route exact path="/movie" element={<Movie />} />
+                    <Route exact path="/tv" element={<Tv />} />
+                    <Route exact path="/:type/:id" element={<Detail />} />
+                    <Route
+                      exact
+                      path="/movie/category/:category"
+                      element={<List />}
+                    />
+                    <Route
+                      exact
+                      path="/tv/category/:category"
+                      element={<List />}
+                    />
+                    <Route exact path="/search" element={<SearchResult />} />
+                  </Route>
+                </Routes>
+              </div>
+            </CSSTransition>
+          </TransitionGroup>
         </ThemeProvider>
       </ColorModeContext.Provider>
-    </MovieProvider>
+    </Provider>
   );
 }
 

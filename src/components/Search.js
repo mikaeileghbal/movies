@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useMovieContext } from "../providers/MovieProvider";
+import { useNavigate } from "react-router-dom";
 
-export default function Search() {
-  const { searchTerm, setSearchTerm, setShowSearch } = useMovieContext();
+export default function Search({ closeSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showResult, setShowResult] = useState(false);
+
+  const navigate = useNavigate();
+
+  console.log({ searchTerm, showResult });
 
   const handleSearchClick = (e) => {
     e.stopPropagation();
@@ -16,8 +21,36 @@ export default function Search() {
 
   const handleClose = () => {
     setSearchTerm("");
-    setShowSearch(false);
+    setShowResult(false);
+    closeSearch(false);
   };
+
+  const handleDocumnetnClick = useCallback(
+    (e) => {
+      if (!searchTerm) closeSearch(false);
+    },
+    [closeSearch, searchTerm]
+  );
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumnetnClick);
+
+    return () => document.removeEventListener("click", handleDocumnetnClick);
+  }, [handleDocumnetnClick]);
+
+  useEffect(() => {
+    if (searchTerm.length > 0) {
+      setShowResult(true);
+      navigate(`/search?q=${searchTerm}`);
+    } else {
+      setShowResult(false);
+      //navigate("/");
+    }
+  }, [searchTerm, navigate]);
+
+  useEffect(() => {
+    //if (showResult) navigate(`/search?q=${searchTerm}`);
+  }, [showResult]);
 
   return (
     <Box
@@ -32,7 +65,7 @@ export default function Search() {
         zIndex: 9,
       }}
     >
-      <Box sx={{ position: "realtive" }} fontFamily={200} py={3} px={6}>
+      <Box sx={{ position: "realtive" }} fontFamily={200} py={3} px={7}>
         <TextField
           value={searchTerm}
           onChange={handleSearch}
@@ -43,8 +76,9 @@ export default function Search() {
           variant="standard"
           InputProps={{
             disableUnderline: true,
+
             style: {
-              fontWeight: 400,
+              fontWeight: 200,
               color: "white",
               fontSize: 16,
             },

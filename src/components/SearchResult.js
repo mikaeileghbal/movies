@@ -5,25 +5,34 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useMovieContext } from "../providers/MovieProvider";
-import ViewList from "./ViewList";
-import { Grid, Typography } from "@mui/material";
+
+import { Box, Grid, Typography } from "@mui/material";
 import MovieCard from "./MovieCard";
 import Loading from "./Loading";
 import apiEndpoint from "../utils/apiEndpoints";
 import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function SearchResult() {
-  const { searchTerm } = useMovieContext();
   const [page, setPage] = useState(1);
 
-  //const { url } = apiEndpoint.searchUrl;
-  const { url } = apiEndpoint.movie.trending;
+  const [searchParams] = useSearchParams();
 
-  const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);
+  const searchTerm = searchParams.get("q");
+
+  const url = apiEndpoint.searchUrl;
+
+  const urlWithPage = useMemo(
+    () => `${url}&query=${searchTerm}&page=${page}`,
+    [url, page, searchTerm]
+  );
+
+  console.log("searchUrl: ", urlWithPage);
 
   const { items, loading } = useMovieCollection(urlWithPage);
+
+  console.log("Search result: ", items);
 
   let bottomBoundryRef = useRef(null);
 
@@ -37,15 +46,31 @@ export default function SearchResult() {
     }
   }, [bottomBoundryRef, scrollObserver]);
 
+  if (!items)
+    return (
+      <div style={{ maxWidth: "400px" }}>
+        <div>Data not available</div>
+        <p>
+          Looks like we are unable to fetch the data right now, please come back
+          and try again soon.
+        </p>
+        <p>
+          Back to our <Link to="/">home page</Link>
+        </p>
+      </div>
+    );
   return (
-    <ViewList>
+    <Box
+      component="section"
+      sx={{ paddingLeft: { xs: 0, lg: "100px" }, paddingRight: 8 }}
+    >
       <Typography
         variant="h2"
         fontSize={24}
         fontWeight={400}
-        mt={12}
+        mt={17}
         mb={3}
-        sx={{ textTransform: "capitalize", px: { xs: 0, lg: 0 } }}
+        sx={{ px: { xs: 0, lg: 0 } }}
       >
         Results For: {searchTerm}
       </Typography>
@@ -67,6 +92,6 @@ export default function SearchResult() {
       </Grid>
       <div ref={bottomBoundryRef}></div>
       {loading && <Loading />}
-    </ViewList>
+    </Box>
   );
 }

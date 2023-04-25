@@ -19,7 +19,7 @@ import SearchResult from "../components/SearchResult";
 
 export default function List() {
   const { searchTerm } = useMovieContext();
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const { category } = useParams();
   const location = useLocation();
 
@@ -44,7 +44,11 @@ export default function List() {
   console.log(items);
 
   return (
-    <Box>
+    <Box
+      component="section"
+      sx={{ paddingLeft: { xs: 0, lg: "100px" } }}
+      mt={7}
+    >
       <Typography
         variant="h2"
         fontSize={24}
@@ -60,8 +64,8 @@ export default function List() {
         mb={6}
         sx={{
           backgroundColor: "transparent",
-          px: { xs: 0, lg: 0 },
-          //minHeight: "100vh",
+          pr: { xs: 0, lg: 8 },
+          minHeight: "100vh",
         }}
       >
         {items?.map((item) => (

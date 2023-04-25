@@ -21,16 +21,15 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   objectFit: "cover",
 }));
 
-export default function Header() {
-  const { movie } = useMovieDetail("movie", 1250);
-  console.log("header renders", movie);
+export default function Header({ movie }) {
   return (
     <Grid
       container
+      mb={7}
       component="section"
       flexDirection={{ xs: "column-reverse", lg: "row" }}
       sx={{
-        paddingLeft: { xs: 5, lg: 7 },
+        paddingLeft: { xs: 0, lg: 13 },
         paddingRight: { xs: 5, lg: 0 },
         position: "relative",
         backgroundColor: "#000",
@@ -51,10 +50,11 @@ export default function Header() {
         <CSSTransition
           in={movie.id}
           appear={true}
-          timeout={{ enter: 500, exit: 200 }}
+          timeout={{ enter: 1000, exit: 200 }}
           classNames="slideUp"
           key={movie.id}
           unmountOnExit
+          mountOnEnter
         >
           <FeaturedMovie movie={movie} />
         </CSSTransition>
@@ -126,7 +126,13 @@ function FeaturedMovie({ movie }) {
       <Button
         variant="contained"
         startIcon={<PlayArrowIcon />}
-        sx={{ marginTop: "25px", py: "10px", px: "20px", color: "white" }}
+        sx={{
+          marginTop: "25px",
+          py: "10px",
+          px: "24px",
+          color: "white",
+          textTransform: "capitalize",
+        }}
       >
         Watch Trailer
       </Button>
