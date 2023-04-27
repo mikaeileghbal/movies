@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  showSearchMenu: false,
+  showSearch: false,
   searchTerm: "",
 };
 
@@ -10,16 +10,16 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     toggleSearch: (state) => {
-      state.showSearchMenu = !state.showSearchMenu;
+      state.showSearch = !state.showSearch;
     },
     openSearch: (state) => {
-      state.showSearchMenu = true;
+      state.showSearch = true;
     },
     closeSearch: (state) => {
-      state.showSearchMenu = false;
+      state.showSearch = false;
     },
     setSearchTerm: (state, action) => {
-      state.searchTerm = action.searchTerm;
+      state.searchTerm = action.payload;
     },
     resetSearchTerm: (state) => {
       state.searchTerm = "";

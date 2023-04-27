@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import Carousel from "./Carousel";
 import renderMovie from "../utils/renderMovie";
 
-export default function ViewSelectionItem({ routePath }) {
+export default function ViewSelectionItem({ routePath, listName, items }) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -12,26 +12,28 @@ export default function ViewSelectionItem({ routePath }) {
 
   const memoMovieUrl = useMemo(() => url, [url]);
 
-  useEffect(() => {
-    const getMovies = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(memoMovieUrl);
-        const result = await res.json();
-        setLoading(false);
-        setMovies(result.results);
-      } catch (err) {
-        setLoading(false);
-      }
-    };
-    getMovies();
-  }, [memoMovieUrl]);
+  // useEffect(() => {
+  //   const getMovies = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const res = await fetch(memoMovieUrl);
+  //       const result = await res.json();
+  //       setLoading(false);
+  //       setMovies(result.results);
+  //     } catch (err) {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getMovies();
+  // }, [memoMovieUrl]);
 
   if (loading) return <Loading />;
 
+  if (!items) return null;
+
   return (
     <Carousel
-      items={movies}
+      items={items}
       heading={title}
       url={exploreUrl}
       render={renderMovie}

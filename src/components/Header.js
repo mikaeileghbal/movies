@@ -88,7 +88,6 @@ function FeaturedMovie({ movie }) {
     name,
   } = movie;
 
-  console.log("header:", movie);
   const trimText = (text) => {
     if (text.length < 196) return text;
     return `${text.slice(0, 196)}...`;

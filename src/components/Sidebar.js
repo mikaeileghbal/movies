@@ -10,25 +10,32 @@ import { SlHome } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlineMovie } from "react-icons/md";
 import { SlScreenDesktop } from "react-icons/sl";
+import { useDispatch, useSelector } from "react-redux";
+import { closeSearch, toggleSearch } from "../features/searchSlice";
 
 export default function Sidebar() {
-  const [showSearch, setShowSearch] = useState(false);
+  //const [showSearch, setShowSearch] = useState(false);
+  const { showSearch } = useSelector((state) => state.search);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const goToUrl = (url) => {
     navigate(url);
-    setShowSearch(false);
+    //setShowSearch(false);
+    dispatch(closeSearch());
   };
 
-  const toggleSearch = (e) => {
+  const handleToggleSearch = (e) => {
     e.stopPropagation();
-    setShowSearch((old) => !old);
+    //setShowSearch((old) => !old);
+    dispatch(toggleSearch());
   };
 
   const handleClose = (e) => {
-    setShowSearch(false);
+    //setShowSearch(false);
+    dispatch(closeSearch());
   };
 
   return (
@@ -79,7 +86,7 @@ export default function Sidebar() {
                 color={pathname.startsWith("/tv") ? "#42a5f5" : "white"}
               />
             </IconButton>
-            <IconButton color="inherit" onClick={toggleSearch}>
+            <IconButton color="inherit" onClick={handleToggleSearch}>
               <IoSearchOutline
                 size={26}
                 color={showSearch === true ? "#42a5f5" : "white"}
@@ -102,7 +109,7 @@ export default function Sidebar() {
         unmountOnExit
         mountOnEnter
       >
-        <Search closeSearch={handleClose} />
+        <Search />
       </CSSTransition>
     </>
   );
