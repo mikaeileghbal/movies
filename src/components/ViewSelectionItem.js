@@ -12,8 +12,6 @@ export default function ViewSelectionItem({ routePath, listName, items }) {
 
   const memoMovieUrl = useMemo(() => url, [url]);
 
-  console.log("items in view: ", items);
-
   // useEffect(() => {
   //   const getMovies = async () => {
   //     setLoading(true);

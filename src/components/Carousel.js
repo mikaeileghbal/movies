@@ -12,7 +12,6 @@ export default function Carousel({ items, heading, url, groupSize, render }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const groupCount = Math.ceil(items.length / groupSize);
 
-  console.log("items in carousel", items);
   const groupItems = (items, groupSize) => {
     let rows = items
       .map(function (item, index) {

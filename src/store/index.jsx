@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counterSlice";
 import searchReducer from "../features/searchSlice";
 import movieReducer from "../features/movieSlice";
+import tvReducer from "../features/tvSlice";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
-import * as sagas from "./sagas";
-import { rootSaga } from "./sagas";
+//import * as sagas from "./sagas";
+
+import { rootSagaMovie, rootSagaTv } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,6 +17,7 @@ export default configureStore({
     counter: counterReducer,
     search: searchReducer,
     movie: movieReducer,
+    tv: tvReducer,
   },
   middleware: [logger, sagaMiddleware],
 });
@@ -23,4 +26,5 @@ export default configureStore({
 //  sagaMiddleware.run(sagas[saga]);
 //}
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSagaMovie);
+sagaMiddleware.run(rootSagaTv);

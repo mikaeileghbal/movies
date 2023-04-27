@@ -4,27 +4,28 @@ const initialState = {
   trending: [],
   popular: [],
   top_rated: [],
-  upcoming: [],
-  now_playing: [],
+  on_the_air: [],
+  airing_today: [],
   cast: [],
   like: [],
   videos: [],
   images: [],
 };
 
-export const movieSlice = createSlice({
-  name: "movie",
+export const tvSlice = createSlice({
+  name: "tv",
   initialState,
   reducers: {
-    requestMovies: (state, action) => {
+    requestTvs: (state, action) => {
       return state;
     },
-    setMovies: (state, action) => {
+    setTvs: (state, action) => {
+      console.log("action in setTv : ", action);
       state[action.payload.listName] = action.payload.data;
     },
   },
 });
 
-export const { requestMovies, setMovies } = movieSlice.actions;
+export const { requestTvs, setTvs } = tvSlice.actions;
 
-export default movieSlice.reducer;
+export default tvSlice.reducer;
