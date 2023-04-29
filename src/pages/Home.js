@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestMovies } from "../features/movieSlice";
 import { requestTvs } from "../features/tvSlice";
 import { useMemo } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
   const { movie } = useMovieDetail("movie", 21500);
@@ -21,12 +22,14 @@ export default function Home() {
   const dispatchTrending = () => {
     return (dispatch) => {
       dispatch(requestMovies({ listName: "trending", mediaType: "movie" }));
-      dispatch(requestMovies({ listName: "trending", mediaType: "tv" }));
+      dispatch(requestTvs({ listName: "trending", mediaType: "tv" }));
     };
   };
 
-  const callDispatchTrending = dispatchTrending();
-  callDispatchTrending(dispatch);
+  useEffect(() => {
+    const callDispatchTrending = dispatchTrending();
+    callDispatchTrending(dispatch);
+  }, [dispatch]);
 
   return (
     <>
