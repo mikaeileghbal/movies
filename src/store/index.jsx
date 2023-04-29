@@ -8,7 +8,7 @@ import createSagaMiddleware from "redux-saga";
 
 //import * as sagas from "./sagas";
 
-import { rootSagaMovie, rootSagaTv } from "./sagas";
+import { rootSagaMovie, rootSagaTv, trendingMovieTvSaga } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -28,3 +28,4 @@ export default configureStore({
 
 sagaMiddleware.run(rootSagaMovie);
 sagaMiddleware.run(rootSagaTv);
+sagaMiddleware.run(trendingMovieTvSaga);
