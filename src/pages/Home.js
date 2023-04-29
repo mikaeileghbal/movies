@@ -6,16 +6,27 @@ import useMovieDetail from "../hooks/useMovieDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { requestMovies } from "../features/movieSlice";
 import { requestTvs } from "../features/tvSlice";
+import { useMemo } from "react";
 
 export default function Home() {
   const { movie } = useMovieDetail("movie", 21500);
   const movies = useSelector((state) => state.movie);
   const tvs = useSelector((state) => state.tv);
 
+  const memoMovies = useMemo(() => movies, [movies]);
+  const memoTvs = useMemo(() => tvs, [tvs]);
+
   const dispatch = useDispatch();
 
-  dispatch(requestMovies({ listName: "trending", mediaType: "movie" }));
-  dispatch(requestTvs({ listName: "trending", mediaType: "tv" }));
+  const dispatchTrending = () => {
+    return (dispatch) => {
+      dispatch(requestMovies({ listName: "trending", mediaType: "movie" }));
+      dispatch(requestMovies({ listName: "trending", mediaType: "tv" }));
+    };
+  };
+
+  const callDispatchTrending = dispatchTrending();
+  callDispatchTrending(dispatch);
 
   return (
     <>
@@ -24,17 +35,15 @@ export default function Home() {
         <ViewSelectionItem
           routePath={apiEndpoint.movie.trending}
           listName="trending"
-          items={movies.trending}
+          items={memoMovies.trending}
         />
 
         <ViewSelectionItem
           routePath={apiEndpoint.tv.trending}
           listName="trending"
-          items={tvs.trending}
+          items={memoTvs.trending}
         />
       </Box>
     </>
   );
 }
-
-//export default WithFeaturedMovie(Home);

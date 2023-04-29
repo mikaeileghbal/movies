@@ -1,4 +1,4 @@
-import { take, put, call } from "redux-saga/effects";
+import { take, put, call, takeEvery, all } from "redux-saga/effects";
 import { requestMovies, setMovies } from "../features/movieSlice";
 import { requestTvs, setTvs } from "../features/tvSlice";
 import Axios from "axios";
@@ -14,6 +14,7 @@ let callAPI = async ({ url, method, data }) => {
 };
 
 export function* fetchDataSaga(listName, mediaType) {
+  console.log("url in saga : ", apiEndpoint[mediaType][listName].url);
   try {
     let result = yield call(() =>
       callAPI({ url: apiEndpoint[mediaType][listName].url })
@@ -40,4 +41,11 @@ export function* rootSagaMovie() {
 export function* rootSagaTv() {
   const { payload } = yield take(requestTvs);
   yield call(() => fetchDataSaga(payload.listName, payload.mediaType));
+}
+
+export function* trendingMovieTvSaga() {
+  yield all([
+    call(() => fetchDataSaga("trending", "movie")),
+    call(() => fetchDataSaga("trending", "tv")),
+  ]);
 }

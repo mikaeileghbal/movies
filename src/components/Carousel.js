@@ -23,7 +23,11 @@ export default function Carousel({ items, heading, url, groupSize, render }) {
         r[r.length - 1].push(element);
         return r;
       }, [])
-      .map((row) => <div className="carousel-group">{row}</div>);
+      .map((row, index) => (
+        <div className="carousel-group" key={index}>
+          {row}
+        </div>
+      ));
 
     return rows;
   };
