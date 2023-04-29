@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ViewSelectionItem from "../components/ViewSelectionItem";
 import apiEndpoint from "../utils/apiEndpoints";
 import useMovieDetail from "../hooks/useMovieDetail";
@@ -13,12 +13,21 @@ export default function Movie() {
   );
   const dispatch = useDispatch();
 
-  dispatch(requestMovies({ listName: "popular", mediaType: "movie" }));
-  dispatch(requestMovies({ listName: "top_rated", mediaType: "movie" }));
-  dispatch(requestMovies({ listName: "upcoming", mediaType: "movie" }));
-  dispatch(requestMovies({ listName: "now_playing", mediaType: "movie" }));
-
   const { movie } = useMovieDetail("movie", 18500);
+
+  const dispatchTrending = () => {
+    return (dispatch) => {
+      dispatch(requestMovies({ listName: "popular", mediaType: "movie" }));
+      dispatch(requestMovies({ listName: "top_rated", mediaType: "movie" }));
+      dispatch(requestMovies({ listName: "upcoming", mediaType: "movie" }));
+      dispatch(requestMovies({ listName: "now_playing", mediaType: "movie" }));
+    };
+  };
+
+  useEffect(() => {
+    const callDispatchTrending = dispatchTrending();
+    callDispatchTrending(dispatch);
+  }, [dispatch]);
 
   return (
     <>
