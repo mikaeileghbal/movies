@@ -2,13 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counterSlice";
 import searchReducer from "../features/searchSlice";
 import movieReducer from "../features/movieSlice";
+import featuredReducer from "../features/featuredSlice";
 import tvReducer from "../features/tvSlice";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
 //import * as sagas from "./sagas";
 
-import { rootSagaMovie, rootSagaTv, trendingMovieTvSaga } from "./sagas";
+import { rootSagaMovie, rootSagaTv, featuredSaga } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +19,7 @@ export default configureStore({
     search: searchReducer,
     movie: movieReducer,
     tv: tvReducer,
+    featured: featuredReducer,
   },
   middleware: [logger, sagaMiddleware],
 });
@@ -28,4 +30,4 @@ export default configureStore({
 
 sagaMiddleware.run(rootSagaMovie);
 sagaMiddleware.run(rootSagaTv);
-sagaMiddleware.run(trendingMovieTvSaga);
+sagaMiddleware.run(featuredSaga);

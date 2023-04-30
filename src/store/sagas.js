@@ -1,9 +1,9 @@
-import { take, put, call, takeEvery, all } from "redux-saga/effects";
+import { put, call, takeEvery, take } from "redux-saga/effects";
 import { requestMovies, setMovies } from "../features/movieSlice";
 import { requestTvs, setTvs } from "../features/tvSlice";
 import Axios from "axios";
 import apiEndpoint from "../utils/apiEndpoints";
-import { sagaActions } from "./sagaActions";
+import { requestFeatured, setFeatured } from "../features/featuredSlice";
 
 let callAPI = async ({ url, method, data }) => {
   return await Axios({
@@ -13,39 +13,39 @@ let callAPI = async ({ url, method, data }) => {
   });
 };
 
-export function* fetchDataSaga(listName, mediaType) {
-  console.log("url in saga : ", apiEndpoint[mediaType][listName].url);
+export function* fetchDataSaga(action) {
+  const { listName, mediaType } = action.payload;
+
   try {
     let result = yield call(() =>
       callAPI({ url: apiEndpoint[mediaType][listName].url })
     );
 
-    switch (mediaType) {
-      case "movie":
-        console.log("movie saga");
-        return yield put(setMovies({ listName, data: result.data.results }));
-      case "tv":
-        console.log("tv saga");
-        return yield put(setTvs({ listName, data: result.data.results }));
-      default:
-        return;
+    if (mediaType === "movie")
+      yield put(setMovies({ listName, data: result.data.results }));
+    else {
+      yield put(setTvs({ listName, data: result.data.results }));
     }
   } catch (e) {}
 }
 
 export function* rootSagaMovie() {
-  const { payload } = yield take(requestMovies);
-  yield call(() => fetchDataSaga(payload.listName, payload.mediaType));
+  yield takeEvery(requestMovies, fetchDataSaga);
 }
 
 export function* rootSagaTv() {
-  const { payload } = yield take(requestTvs);
-  yield call(() => fetchDataSaga(payload.listName, payload.mediaType));
+  yield takeEvery(requestTvs, fetchDataSaga);
 }
 
-export function* trendingMovieTvSaga() {
-  yield all([
-    call(() => fetchDataSaga("trending", "movie")),
-    call(() => fetchDataSaga("trending", "tv")),
-  ]);
+export function* featuredSaga() {
+  while (true) {
+    const { payload } = yield take(requestFeatured);
+    console.log("Featured payload", payload);
+
+    let result = yield call(() => callAPI({ url: payload.url }));
+
+    console.log("featured result:", result);
+
+    yield put(setFeatured({ data: result.data }));
+  }
 }
