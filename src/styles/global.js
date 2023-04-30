@@ -87,7 +87,7 @@ export const StyledButtonNav = styled(Button)(() => ({
   margin: 0,
   fontSize: "30px",
   borderRadius: 0,
-  background: "rgba(0, 0, 0, 0.02)",
+  background: "rgba(0, 0, 0, 0.5)",
   color: "white",
   outline: 0,
   transition: "opacity .25s ease, background-color .25s ease",
