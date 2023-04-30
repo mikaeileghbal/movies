@@ -29,9 +29,9 @@ export default function Search() {
 
   const handleDocumnetnClick = useCallback(
     (e) => {
-      if (!searchTerm) closeSearch(false);
+      if (!searchTerm) dispatch(closeSearch());
     },
-    [searchTerm]
+    [searchTerm, dispatch]
   );
 
   useEffect(() => {
