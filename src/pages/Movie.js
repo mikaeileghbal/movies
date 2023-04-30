@@ -1,22 +1,26 @@
 import React, { useEffect } from "react";
 import ViewSelectionItem from "../components/ViewSelectionItem";
-import apiEndpoint from "../utils/apiEndpoints";
+import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
 import useMovieDetail from "../hooks/useMovieDetail";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { requestMovies } from "../features/movieSlice";
+import { requestFeatured } from "../features/featuredSlice";
 
 export default function Movie() {
+  //const { movie } = useMovieDetail("movie", 18500);
+  const { item } = useSelector((state) => state.featured);
   const { popular, top_rated, upcoming, now_playing } = useSelector(
     (state) => state.movie
   );
   const dispatch = useDispatch();
 
-  const { movie } = useMovieDetail("movie", 18500);
-
   const dispatchTrending = () => {
     return (dispatch) => {
+      dispatch(
+        requestFeatured({ url: `${BASE_URL}movie/${18500}?api_key=${API_KEY}` })
+      );
       dispatch(requestMovies({ listName: "popular", mediaType: "movie" }));
       dispatch(requestMovies({ listName: "top_rated", mediaType: "movie" }));
       dispatch(requestMovies({ listName: "upcoming", mediaType: "movie" }));
@@ -31,7 +35,7 @@ export default function Movie() {
 
   return (
     <>
-      <Header movie={movie} />
+      <Header movie={item} />
       <Box component="section" sx={{ paddingLeft: { xs: 0, lg: "100px" } }}>
         <ViewSelectionItem
           routePath={apiEndpoint.movie.popular}
