@@ -19,12 +19,12 @@ export const movieSlice = createSlice({
     requestMovies: (state, action) => {
       return state;
     },
-    setMovies: (state, action) => {
+    recieveMovies: (state, action) => {
       state[action.payload.listName] = action.payload.data;
     },
   },
 });
 
-export const { requestMovies, setMovies } = movieSlice.actions;
+export const { requestMovies, recieveMovies } = movieSlice.actions;
 
 export default movieSlice.reducer;

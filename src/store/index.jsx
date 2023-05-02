@@ -9,7 +9,7 @@ import createSagaMiddleware from "redux-saga";
 
 //import * as sagas from "./sagas";
 
-import { rootSagaMovie, rootSagaTv, featuredSaga } from "./sagas";
+import { watchMovie, watchTv, watchFeatured } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -22,12 +22,14 @@ export default configureStore({
     featured: featuredReducer,
   },
   middleware: [logger, sagaMiddleware],
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(logger, sagaMiddleware),
 });
 
 //for (let saga in sagas) {
 //  sagaMiddleware.run(sagas[saga]);
 //}
 
-sagaMiddleware.run(rootSagaMovie);
-sagaMiddleware.run(rootSagaTv);
-sagaMiddleware.run(featuredSaga);
+sagaMiddleware.run(watchMovie);
+sagaMiddleware.run(watchTv);
+sagaMiddleware.run(watchFeatured);
