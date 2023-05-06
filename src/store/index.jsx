@@ -7,6 +7,7 @@ import tvReducer from "../features/tvSlice";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import collectionReducer from "../features/collectionSlice";
+import loadingReducer from "../features/loadingSlice";
 
 //import * as sagas from "./sagas";
 
@@ -22,6 +23,7 @@ export default configureStore({
     tv: tvReducer,
     featured: featuredReducer,
     collection: collectionReducer,
+    loading: loadingReducer,
   },
   middleware: [logger, sagaMiddleware],
   // middleware: (getDefaultMiddleware) =>

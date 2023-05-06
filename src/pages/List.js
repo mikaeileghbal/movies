@@ -21,6 +21,7 @@ import { requestCollection } from "../features/collectionSlice";
 
 export default function List() {
   const { items } = useSelector((state) => state.collection);
+  const { isLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
   const { searchTerm } = useMovieContext();
@@ -82,7 +83,7 @@ export default function List() {
         ))}
       </Grid>
       <div ref={bottomBoundryRef}></div>
-      {/* {loading && <Loading />} */}
+      {isLoading && <Loading />}
     </Box>
 
     // <TransitionGroup>
