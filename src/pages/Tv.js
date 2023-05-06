@@ -24,10 +24,34 @@ export default function Tv() {
       dispatch(
         requestFeatured({ url: `${BASE_URL}tv/${7500}?api_key=${API_KEY}` })
       );
-      dispatch(requestTvs({ listName: "popular", mediaType: "tv" }));
-      dispatch(requestTvs({ listName: "top_rated", mediaType: "tv" }));
-      dispatch(requestTvs({ listName: "on_the_air", mediaType: "tv" }));
-      dispatch(requestTvs({ listName: "airing_today", mediaType: "tv" }));
+      dispatch(
+        requestTvs({
+          listName: "popular",
+          mediaType: "tv",
+          url: apiEndpoint.tv.popular.url,
+        })
+      );
+      dispatch(
+        requestTvs({
+          listName: "top_rated",
+          mediaType: "tv",
+          url: apiEndpoint.tv.top_rated.url,
+        })
+      );
+      dispatch(
+        requestTvs({
+          listName: "on_the_air",
+          mediaType: "tv",
+          url: apiEndpoint.tv.on_the_air.url,
+        })
+      );
+      dispatch(
+        requestTvs({
+          listName: "airing_today",
+          mediaType: "tv",
+          url: apiEndpoint.tv.airing_today.url,
+        })
+      );
     };
   };
 

@@ -26,8 +26,20 @@ export default function Home() {
       dispatch(
         requestFeatured({ url: `${BASE_URL}movie/${21500}?api_key=${API_KEY}` })
       );
-      dispatch(requestMovies({ listName: "trending", mediaType: "movie" }));
-      dispatch(requestTvs({ listName: "trending", mediaType: "tv" }));
+      dispatch(
+        requestMovies({
+          listName: "trending",
+          mediaType: "movie",
+          url: apiEndpoint.movie.trending.url,
+        })
+      );
+      dispatch(
+        requestTvs({
+          listName: "trending",
+          mediaType: "tv",
+          url: apiEndpoint.tv.trending.url,
+        })
+      );
     };
   };
 

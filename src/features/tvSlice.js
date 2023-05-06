@@ -19,13 +19,13 @@ export const tvSlice = createSlice({
     requestTvs: (state, action) => {
       return state;
     },
-    setTvs: (state, action) => {
+    recieveTvs: (state, action) => {
       console.log("action in setTv : ", action);
       state[action.payload.listName] = action.payload.data;
     },
   },
 });
 
-export const { requestTvs, setTvs } = tvSlice.actions;
+export const { requestTvs, recieveTvs } = tvSlice.actions;
 
 export default tvSlice.reducer;

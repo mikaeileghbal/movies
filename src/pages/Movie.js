@@ -21,10 +21,34 @@ export default function Movie() {
       dispatch(
         requestFeatured({ url: `${BASE_URL}movie/${18500}?api_key=${API_KEY}` })
       );
-      dispatch(requestMovies({ listName: "popular", mediaType: "movie" }));
-      dispatch(requestMovies({ listName: "top_rated", mediaType: "movie" }));
-      dispatch(requestMovies({ listName: "upcoming", mediaType: "movie" }));
-      dispatch(requestMovies({ listName: "now_playing", mediaType: "movie" }));
+      dispatch(
+        requestMovies({
+          listName: "popular",
+          mediaType: "movie",
+          url: apiEndpoint.movie.popular.url,
+        })
+      );
+      dispatch(
+        requestMovies({
+          listName: "top_rated",
+          mediaType: "movie",
+          url: apiEndpoint.movie.top_rated.url,
+        })
+      );
+      dispatch(
+        requestMovies({
+          listName: "upcoming",
+          mediaType: "movie",
+          url: apiEndpoint.movie.upcoming.url,
+        })
+      );
+      dispatch(
+        requestMovies({
+          listName: "now_playing",
+          mediaType: "movie",
+          url: apiEndpoint.movie.now_playing.url,
+        })
+      );
     };
   };
 
