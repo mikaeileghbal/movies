@@ -1,9 +1,9 @@
+import Axios from "axios";
 import { put, call, takeEvery, take } from "redux-saga/effects";
 import { recieveMovies, requestMovies } from "../features/movieSlice";
 import { recieveTvs, requestTvs } from "../features/tvSlice";
-import Axios, { all } from "axios";
-import apiEndpoint from "../utils/apiEndpoints";
 import { requestFeatured, setFeatured } from "../features/featuredSlice";
+import { processLoading } from "../features/loadingSlice";
 import {
   recieveCollection,
   requestCollection,
@@ -60,8 +60,10 @@ export function* watchCollection() {
     const { payload } = yield take(requestCollection);
     console.log("Collection payload", payload);
 
+    yield put(processLoading({ isLoading: true }));
     let result = yield call(callAPI, { url: payload.url });
     console.log("Collection result", result.data.results);
     yield put(recieveCollection({ data: result.data.results }));
+    yield put(processLoading({ isLoading: false }));
   }
 }
