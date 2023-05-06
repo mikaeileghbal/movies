@@ -21,6 +21,7 @@ export function* fetchDataSaga(action) {
   const { listName, mediaType, url } = action.payload;
 
   try {
+    yield put(processLoading({ isLoading: true }));
     let result = yield call(callAPI, {
       url,
     });
@@ -30,7 +31,10 @@ export function* fetchDataSaga(action) {
     else {
       yield put(recieveTvs({ listName, data: result.data.results }));
     }
-  } catch (e) {}
+    yield put(processLoading({ isLoading: false }));
+  } catch (e) {
+    yield put(processLoading({ isLoading: false }));
+  }
 }
 
 export function* watchMovie() {

@@ -13,6 +13,7 @@ import { requestFeatured } from "../features/featuredSlice";
 export default function Home() {
   //const { movie } = useMovieDetail("movie", 21500);
   const { item } = useSelector((state) => state.featured);
+
   const movies = useSelector((state) => state.movie);
   const tvs = useSelector((state) => state.tv);
 
