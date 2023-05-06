@@ -6,10 +6,11 @@ import featuredReducer from "../features/featuredSlice";
 import tvReducer from "../features/tvSlice";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
+import collectionReducer from "../features/collectionSlice";
 
 //import * as sagas from "./sagas";
 
-import { watchMovie, watchTv, watchFeatured } from "./sagas";
+import { watchMovie, watchTv, watchFeatured, watchCollection } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,6 +21,7 @@ export default configureStore({
     movie: movieReducer,
     tv: tvReducer,
     featured: featuredReducer,
+    collection: collectionReducer,
   },
   middleware: [logger, sagaMiddleware],
   // middleware: (getDefaultMiddleware) =>
@@ -33,3 +35,4 @@ export default configureStore({
 sagaMiddleware.run(watchMovie);
 sagaMiddleware.run(watchTv);
 sagaMiddleware.run(watchFeatured);
+sagaMiddleware.run(watchCollection);

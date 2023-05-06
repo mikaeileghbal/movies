@@ -4,6 +4,10 @@ import { recieveTvs, requestTvs } from "../features/tvSlice";
 import Axios, { all } from "axios";
 import apiEndpoint from "../utils/apiEndpoints";
 import { requestFeatured, setFeatured } from "../features/featuredSlice";
+import {
+  recieveCollection,
+  requestCollection,
+} from "../features/collectionSlice";
 
 let callAPI = async ({ url, method, data }) => {
   return await Axios({
@@ -45,8 +49,19 @@ export function* watchFeatured() {
 
     let result = yield call(callAPI, { url: payload.url });
 
-    console.log("featured result:", result);
+    console.log("Featured result:", result);
 
     yield put(setFeatured({ data: result.data }));
+  }
+}
+
+export function* watchCollection() {
+  while (true) {
+    const { payload } = yield take(requestCollection);
+    console.log("Collection payload", payload);
+
+    let result = yield call(callAPI, { url: payload.url });
+    console.log("Collection result", result.data.results);
+    yield put(recieveCollection({ data: result.data.results }));
   }
 }

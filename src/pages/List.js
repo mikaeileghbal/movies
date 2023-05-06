@@ -16,8 +16,13 @@ import useScrollObserver from "../hooks/useScrollObserver";
 import { useMovieContext } from "../providers/MovieProvider";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SearchResult from "../components/SearchResult";
+import { useDispatch, useSelector } from "react-redux";
+import { requestCollection } from "../features/collectionSlice";
 
 export default function List() {
+  const { items } = useSelector((state) => state.collection);
+  const dispatch = useDispatch();
+
   const { searchTerm } = useMovieContext();
   const [page, setPage] = useState(1);
   const { category } = useParams();
@@ -27,7 +32,7 @@ export default function List() {
   const { url, title } = apiEndpoint[type][category];
   const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);
 
-  const { items, loading } = useMovieCollection(urlWithPage);
+  //const { items, loading } = useMovieCollection(urlWithPage);
 
   let bottomBoundryRef = useRef(null);
 
@@ -41,7 +46,9 @@ export default function List() {
     }
   }, [bottomBoundryRef, scrollObserver]);
 
-  console.log(items);
+  useEffect(() => {
+    dispatch(requestCollection({ url: urlWithPage }));
+  }, [urlWithPage]);
 
   return (
     <Box
@@ -75,7 +82,7 @@ export default function List() {
         ))}
       </Grid>
       <div ref={bottomBoundryRef}></div>
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
     </Box>
 
     // <TransitionGroup>
