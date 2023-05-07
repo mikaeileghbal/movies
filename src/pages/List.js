@@ -49,7 +49,7 @@ export default function List() {
 
   useEffect(() => {
     dispatch(requestCollection({ url: urlWithPage }));
-  }, [urlWithPage]);
+  }, [urlWithPage, dispatch]);
 
   return (
     <Box
