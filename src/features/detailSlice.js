@@ -9,7 +9,8 @@ export const detailSlice = createSlice({
   name: "detail",
   initialState,
   reducers: {
-    requestVideos: (state) => {
+    requestVideos: (state, action) => {
+      console.log("action in request videos", action);
       return state;
     },
     recieveVideos: (state, action) => {

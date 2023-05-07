@@ -9,7 +9,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import { Link, useParams } from "react-router-dom";
 import apiEndpoint from "../../utils/apiEndpoints";
@@ -29,13 +29,18 @@ export default function Video() {
   const [filteredVideos, setFilteredVideos] = useState([]);
   const [videoCount, setVideoCount] = useState(0);
   const { videos } = useSelector((state) => state.detail);
+  const { isLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch(0);
 
   const { type, id } = useParams();
+  console.log("type, id", { type, id });
 
-  const routePath = apiEndpoint[type].video;
+  console.log("apiEndpoint", apiEndpoint[type].video);
+  const routePath = { ...apiEndpoint[type].video };
+  console.log("endpoint", routePath.url);
 
   routePath.url = routePath.url.replace("{_id}", id);
+  console.log("url in videos", routePath.url);
 
   //const { isLoading, videos } = useMovieVideos(routePath.url);
 
@@ -46,7 +51,8 @@ export default function Video() {
 
   useEffect(() => {
     dispatch(requestVideos({ url: routePath.url }));
-  }, [routePath.url, dispatch, type, id]);
+    console.log("Dispatched ");
+  }, [routePath.url, dispatch]);
 
   useEffect(() => {
     if (filter !== "all") {
@@ -61,7 +67,7 @@ export default function Video() {
     setVideoCount(filteredVideos.length);
   }, [filter, videos, filteredVideos.length]);
 
-  //if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <>
