@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   videos: [],
-  images: [],
+  photos: [],
 };
 
 export const detailSlice = createSlice({
@@ -16,8 +16,15 @@ export const detailSlice = createSlice({
     recieveVideos: (state, action) => {
       state.videos = action.payload.data;
     },
+    requestPhotos: (state, action) => {
+      return state;
+    },
+    recievePhotos: (state, action) => {
+      state.photos = action.payload.data;
+    },
   },
 });
-export const { requestVideos, recieveVideos } = detailSlice.actions;
+export const { requestVideos, recieveVideos, requestPhotos, recievePhotos } =
+  detailSlice.actions;
 
 export default detailSlice.reducer;

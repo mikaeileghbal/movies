@@ -33,14 +33,10 @@ export default function Video() {
   const dispatch = useDispatch(0);
 
   const { type, id } = useParams();
-  console.log("type, id", { type, id });
 
-  console.log("apiEndpoint", apiEndpoint[type].video);
   const routePath = { ...apiEndpoint[type].video };
-  console.log("endpoint", routePath.url);
 
   routePath.url = routePath.url.replace("{_id}", id);
-  console.log("url in videos", routePath.url);
 
   //const { isLoading, videos } = useMovieVideos(routePath.url);
 
@@ -51,7 +47,6 @@ export default function Video() {
 
   useEffect(() => {
     dispatch(requestVideos({ url: routePath.url }));
-    console.log("Dispatched ");
   }, [routePath.url, dispatch]);
 
   useEffect(() => {

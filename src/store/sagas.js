@@ -8,7 +8,12 @@ import {
   recieveCollection,
   requestCollection,
 } from "../features/collectionSlice";
-import { recieveVideos, requestVideos } from "../features/detailSlice";
+import {
+  recievePhotos,
+  recieveVideos,
+  requestPhotos,
+  requestVideos,
+} from "../features/detailSlice";
 
 let callAPI = async ({ url, method, data }) => {
   return await Axios({
@@ -82,6 +87,19 @@ export function* watchDetail() {
     let result = yield call(callAPI, { url: payload.url });
     console.log("Detail result", result.data.results);
     yield put(recieveVideos({ data: result.data.results }));
+    yield put(processLoading({ isLoading: false }));
+  }
+}
+
+export function* watchDetailPhotos() {
+  while (true) {
+    const { payload } = yield take(requestPhotos);
+    console.log("Photos payload", payload);
+
+    yield put(processLoading({ isLoading: true }));
+    let result = yield call(callAPI, { url: payload.url });
+    console.log("Photos result", result.data);
+    yield put(recievePhotos({ data: result.data }));
     yield put(processLoading({ isLoading: false }));
   }
 }

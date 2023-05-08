@@ -18,6 +18,7 @@ import {
   watchFeatured,
   watchCollection,
   watchDetail,
+  watchDetailPhotos,
 } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -47,3 +48,4 @@ sagaMiddleware.run(watchTv);
 sagaMiddleware.run(watchFeatured);
 sagaMiddleware.run(watchCollection);
 sagaMiddleware.run(watchDetail);
+sagaMiddleware.run(watchDetailPhotos);

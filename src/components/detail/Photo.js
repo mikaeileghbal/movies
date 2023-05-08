@@ -1,5 +1,5 @@
 import { Box, CardMedia, Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyledSubText,
   StyledTitle,
@@ -10,17 +10,30 @@ import apiEndpoint from "../../utils/apiEndpoints";
 import useMovieImages from "../../hooks/useMovieImages";
 import Loading from "../Loading";
 import { CardImage } from "../CardImage";
+import { useDispatch, useSelector } from "react-redux";
+import { requestPhotos } from "../../features/detailSlice";
 
 export default function Photo() {
+  const { photos } = useSelector((state) => state.detail);
+  const { isLoading } = useSelector((state) => state.loading);
+  const dispatch = useDispatch();
+
   const { type, id } = useParams();
-  const routePath = apiEndpoint[type].images;
+
+  const routePath = { ...apiEndpoint[type].images };
 
   routePath.url = routePath.url.replace("{_id}", id);
-  console.log(routePath);
 
-  const { isLoading, images } = useMovieImages(routePath.url);
+  console.log("photos url", routePath.url);
 
-  const { backdrops, posters } = images;
+  //const { isLoading, images } = useMovieImages(routePath.url);
+
+  const { backdrops, posters } = photos;
+
+  useEffect(() => {
+    console.log("Dispatch photos");
+    dispatch(requestPhotos({ url: routePath.url }));
+  }, [routePath.url, dispatch]);
 
   if (isLoading) return <Loading />;
 
@@ -29,7 +42,7 @@ export default function Photo() {
       <StyledTitleContainer>
         <StyledTitle>Backdrops</StyledTitle>
         <StyledSubText ml={1} mt={0.5}>
-          {backdrops.length} Images
+          {backdrops?.length} Images
         </StyledSubText>
       </StyledTitleContainer>
       <Box pr={6.5}>
@@ -44,7 +57,7 @@ export default function Photo() {
       <StyledTitleContainer>
         <StyledTitle>Posters</StyledTitle>
         <StyledSubText ml={1} mt={0.5}>
-          {posters.length} Images
+          {posters?.length} Images
         </StyledSubText>
       </StyledTitleContainer>
       <Box>
