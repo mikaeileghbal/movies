@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   videos: [],
   photos: [],
+  cast: [],
   like: [],
 };
 
@@ -28,6 +29,12 @@ export const detailSlice = createSlice({
     recieveLike: (state, action) => {
       state.like = action.payload.data;
     },
+    requestCast: (state) => {
+      return state;
+    },
+    recieveCast: (state, action) => {
+      state.cast = action.payload.data;
+    },
   },
 });
 export const {
@@ -37,6 +44,8 @@ export const {
   recievePhotos,
   requestLike,
   recieveLike,
+  requestCast,
+  recieveCast,
 } = detailSlice.actions;
 
 export default detailSlice.reducer;

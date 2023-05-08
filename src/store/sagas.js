@@ -9,9 +9,11 @@ import {
   requestCollection,
 } from "../features/collectionSlice";
 import {
+  recieveCast,
   recieveLike,
   recievePhotos,
   recieveVideos,
+  requestCast,
   requestLike,
   requestPhotos,
   requestVideos,
@@ -112,6 +114,19 @@ export function* watchDetailLike() {
     let result = yield call(callAPI, { url: payload.url });
     console.log("Like result", result);
     yield put(recieveLike({ data: result.data.results }));
+    yield put(processLoading({ isLoading: false }));
+  }
+}
+
+export function* watchDetailCast() {
+  while (true) {
+    const { payload } = yield take(requestCast);
+    console.log("Cast payload", payload);
+
+    yield put(processLoading({ isLoading: true }));
+    let result = yield call(callAPI, { url: payload.url });
+    console.log("Cast result", result);
+    yield put(recieveCast({ data: result.data.cast }));
     yield put(processLoading({ isLoading: false }));
   }
 }
