@@ -14,21 +14,25 @@ import Cast from "../components/detail/Cast";
 import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { requestFeatured } from "../features/featuredSlice";
+import { requestLike } from "../features/detailSlice";
 
 export default function Detail() {
   const { type, id } = useParams();
   //const { movie } = useMovieDetail(type, id);
   const { item } = useSelector((state) => state.featured);
+  const { like } = useSelector((state) => state.detail);
   const dispatch = useDispatch();
 
   const routePath = apiEndpoint[type].like;
   routePath.url = routePath.url.replace("{_id}", id);
+  console.log("like ", routePath);
 
   useEffect(() => {
     dispatch(
       requestFeatured({ url: `${BASE_URL}${type}/${id}?api_key=${API_KEY}` })
     );
-  }, [dispatch, type, id]);
+    dispatch(requestLike({ url: routePath.url }));
+  }, [dispatch, type, id, routePath.url]);
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function Detail() {
             <Photo />
           </Box>
         </Tab>
-        <ViewSelectionItem routePath={routePath} />
+        <ViewSelectionItem routePath={routePath} items={like} />
       </Box>
     </>
   );

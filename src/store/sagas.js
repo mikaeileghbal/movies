@@ -9,8 +9,10 @@ import {
   requestCollection,
 } from "../features/collectionSlice";
 import {
+  recieveLike,
   recievePhotos,
   recieveVideos,
+  requestLike,
   requestPhotos,
   requestVideos,
 } from "../features/detailSlice";
@@ -56,11 +58,8 @@ export function* watchFeatured() {
   while (true) {
     const { payload } = yield take(requestFeatured);
     console.log("Featured payload", payload);
-
     let result = yield call(callAPI, { url: payload.url });
-
     console.log("Featured result:", result);
-
     yield put(setFeatured({ data: result.data }));
   }
 }
@@ -100,6 +99,19 @@ export function* watchDetailPhotos() {
     let result = yield call(callAPI, { url: payload.url });
     console.log("Photos result", result.data);
     yield put(recievePhotos({ data: result.data }));
+    yield put(processLoading({ isLoading: false }));
+  }
+}
+
+export function* watchDetailLike() {
+  while (true) {
+    const { payload } = yield take(requestLike);
+    console.log("Like payload", payload);
+
+    yield put(processLoading({ isLoading: true }));
+    let result = yield call(callAPI, { url: payload.url });
+    console.log("Like result", result);
+    yield put(recieveLike({ data: result.data.results }));
     yield put(processLoading({ isLoading: false }));
   }
 }

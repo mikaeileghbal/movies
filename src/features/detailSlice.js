@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   videos: [],
   photos: [],
+  like: [],
 };
 
 export const detailSlice = createSlice({
@@ -10,7 +11,6 @@ export const detailSlice = createSlice({
   initialState,
   reducers: {
     requestVideos: (state, action) => {
-      console.log("action in request videos", action);
       return state;
     },
     recieveVideos: (state, action) => {
@@ -22,9 +22,21 @@ export const detailSlice = createSlice({
     recievePhotos: (state, action) => {
       state.photos = action.payload.data;
     },
+    requestLike: (state, action) => {
+      return state;
+    },
+    recieveLike: (state, action) => {
+      state.like = action.payload.data;
+    },
   },
 });
-export const { requestVideos, recieveVideos, requestPhotos, recievePhotos } =
-  detailSlice.actions;
+export const {
+  requestVideos,
+  recieveVideos,
+  requestPhotos,
+  recievePhotos,
+  requestLike,
+  recieveLike,
+} = detailSlice.actions;
 
 export default detailSlice.reducer;
