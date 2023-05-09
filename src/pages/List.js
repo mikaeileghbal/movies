@@ -1,5 +1,4 @@
 import React, {
-  memo,
   useCallback,
   useEffect,
   useMemo,
@@ -12,11 +11,7 @@ import apiEndpoint from "../utils/apiEndpoints";
 import MovieCard from "../components/MovieCard";
 import { Box, Grid, Typography } from "@mui/material";
 import Loading from "../components/Loading";
-import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
-import { useMovieContext } from "../providers/MovieProvider";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import SearchResult from "../components/SearchResult";
 import { useDispatch, useSelector } from "react-redux";
 import { requestCollection } from "../features/collectionSlice";
 
