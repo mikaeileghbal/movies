@@ -4,17 +4,14 @@ import { requestFeatured } from "../features/featuredSlice";
 import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
 import { requestMovies } from "../features/movieSlice";
 import { requestTvs } from "../features/tvSlice";
+import { random } from "../utils/helper";
 
 const mediaType = {
   1: "movie",
   2: "tv",
 };
 
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-export default function useMovieFeatured() {
+export default function useMovieHome() {
   const { item } = useSelector((state) => state.featured);
   const movies = useSelector((state) => state.movie);
   const tvs = useSelector((state) => state.tv);
