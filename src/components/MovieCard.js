@@ -29,7 +29,7 @@ function MovieCard({ item }) {
       }}
       onClick={gotoUrl}
     >
-      <Box disableRipple sx={{ cursor: "pointer" }}>
+      <Box sx={{ cursor: "pointer" }}>
         <Box
           className="media"
           sx={{

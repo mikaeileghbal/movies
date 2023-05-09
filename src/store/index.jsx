@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counterSlice";
 import searchReducer from "../features/searchSlice";
 import movieReducer from "../features/movieSlice";
 import featuredReducer from "../features/featuredSlice";
@@ -27,7 +26,6 @@ const sagaMiddleware = createSagaMiddleware();
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
     search: searchReducer,
     movie: movieReducer,
     tv: tvReducer,

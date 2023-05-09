@@ -1,4 +1,5 @@
 import React, {
+  memo,
   useCallback,
   useEffect,
   useMemo,
@@ -20,11 +21,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestCollection } from "../features/collectionSlice";
 
 export default function List() {
+  return (
+    <>
+      <ListView />
+      <ListStatus />
+    </>
+  );
+}
+
+function ListView() {
   const { items } = useSelector((state) => state.collection);
-  const { isLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
-  const { searchTerm } = useMovieContext();
+  console.log("Render happend here ....................................");
+  //const { searchTerm } = useMovieContext();
   const [page, setPage] = useState(1);
   const { category } = useParams();
   const location = useLocation();
@@ -83,7 +93,6 @@ export default function List() {
         ))}
       </Grid>
       <div ref={bottomBoundryRef}></div>
-      {isLoading && <Loading />}
     </Box>
 
     // <TransitionGroup>
@@ -140,4 +149,11 @@ export default function List() {
     //   )}
     // </TransitionGroup>
   );
+}
+
+function ListStatus() {
+  const { isLoading } = useSelector((state) => state.loading);
+  console.log("Loading render happened here ////////////////////");
+  if (!isLoading) return null;
+  return <Loading />;
 }

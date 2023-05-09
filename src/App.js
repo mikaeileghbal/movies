@@ -5,7 +5,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Movie from "./pages/Movie";
 import Tv from "./pages/Tv";
 import getTheme from "./styles/theme";
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -17,6 +17,7 @@ import LayoutList from "./components/LayoutList";
 import SearchResult from "./components/SearchResult";
 import { ScrollToTop } from "./hooks/ScrollTop";
 import { useSelector } from "react-redux";
+import Loading from "./components/Loading";
 
 const ColorModeContext = createContext({});
 export const useColorMode = () => useContext(ColorModeContext);
