@@ -11,7 +11,7 @@ const mediaType = {
   2: "tv",
 };
 
-export default function useMovieHome() {
+export default function useHome() {
   const { item } = useSelector((state) => state.featured);
   const movies = useSelector((state) => state.movie);
   const tvs = useSelector((state) => state.tv);

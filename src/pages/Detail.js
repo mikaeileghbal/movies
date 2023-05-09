@@ -2,14 +2,11 @@ import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import Overview from "../components/detail/Overview";
 import Tab from "../components/Tab";
-import ViewSelection from "../components/ViewSelection";
 import ViewSelectionItem from "../components/ViewSelectionItem";
 import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
 import Video from "../components/detail/Video";
 import Photo from "../components/detail/Photo";
 import { useParams } from "react-router-dom";
-import useMovieDetail from "../hooks/useMovieDetail";
-
 import Cast from "../components/detail/Cast";
 import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";

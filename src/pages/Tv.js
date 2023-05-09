@@ -1,64 +1,12 @@
-import React, { useEffect } from "react";
-import ViewSelection from "../components/ViewSelection";
+import React from "react";
 import ViewSelectionItem from "../components/ViewSelectionItem";
-import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
-
-import useMovieDetail from "../hooks/useMovieDetail";
+import apiEndpoint from "../utils/apiEndpoints";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { requestTvs } from "../features/tvSlice";
-import { requestFeatured } from "../features/featuredSlice";
+import useTv from "../hooks/useTv";
 
 export default function Tv() {
-  //const { movie } = useMovieDetail("tv", 7500);
-  const { item } = useSelector((state) => state.featured);
-
-  const { popular, top_rated, on_the_air, airing_today } = useSelector(
-    (state) => state.tv
-  );
-  const dispatch = useDispatch();
-
-  const dispatchTrending = () => {
-    return (dispatch) => {
-      dispatch(
-        requestFeatured({ url: `${BASE_URL}tv/${7500}?api_key=${API_KEY}` })
-      );
-      dispatch(
-        requestTvs({
-          listName: "popular",
-          mediaType: "tv",
-          url: apiEndpoint.tv.popular.url,
-        })
-      );
-      dispatch(
-        requestTvs({
-          listName: "top_rated",
-          mediaType: "tv",
-          url: apiEndpoint.tv.top_rated.url,
-        })
-      );
-      dispatch(
-        requestTvs({
-          listName: "on_the_air",
-          mediaType: "tv",
-          url: apiEndpoint.tv.on_the_air.url,
-        })
-      );
-      dispatch(
-        requestTvs({
-          listName: "airing_today",
-          mediaType: "tv",
-          url: apiEndpoint.tv.airing_today.url,
-        })
-      );
-    };
-  };
-
-  useEffect(() => {
-    const callDispatchTrending = dispatchTrending();
-    callDispatchTrending(dispatch);
-  }, [dispatch]);
+  const { item, popular, top_rated, on_the_air, airing_today } = useTv();
 
   return (
     <>

@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
 import { useDispatch, useSelector } from "react-redux";
 import { requestFeatured } from "../features/featuredSlice";
 import { requestMovies } from "../features/movieSlice";
+import { random } from "../utils/helper";
 
-export default function useMovieDetail(type, id) {
+export default function useMovie() {
+  const randomId = useMemo(() => random(1, 100000), []);
   const { item } = useSelector((state) => state.featured);
   const { popular, top_rated, upcoming, now_playing } = useSelector(
     (state) => state.movie
@@ -14,7 +16,7 @@ export default function useMovieDetail(type, id) {
   useEffect(() => {
     dispatch(
       requestFeatured({
-        url: `${BASE_URL}${type}/${id}?api_key=${API_KEY}`,
+        url: `${BASE_URL}${"movie"}/${randomId}?api_key=${API_KEY}`,
       })
     );
     dispatch(
@@ -45,7 +47,7 @@ export default function useMovieDetail(type, id) {
         url: apiEndpoint.movie.now_playing.url,
       })
     );
-  }, []);
+  }, [dispatch, randomId]);
 
   return { item, popular, top_rated, upcoming, now_playing };
 }

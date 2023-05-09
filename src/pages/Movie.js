@@ -1,17 +1,12 @@
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 import ViewSelectionItem from "../components/ViewSelectionItem";
-import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
-import useMovieDetail from "../hooks/useMovieDetail";
+import apiEndpoint from "../utils/apiEndpoints";
+import useMovie from "../hooks/useMovie";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
-import { random } from "../utils/helper";
 
 export default function Movie() {
-  const randomId = useMemo(() => random(1, 100000), []);
-  const { item, popular, top_rated, upcoming, now_playing } = useMovieDetail(
-    "movie",
-    randomId
-  );
+  const { item, popular, top_rated, upcoming, now_playing } = useMovie();
 
   return (
     <>

@@ -2,10 +2,10 @@ import { Box } from "@mui/material";
 import Header from "../components/Header";
 import ViewSelectionItem from "../components/ViewSelectionItem";
 import apiEndpoint from "../utils/apiEndpoints";
-import useMovieHome from "../hooks/useMovieHome";
+import useHome from "../hooks/useHome";
 
 export default function Home() {
-  const { item, movies, tvs } = useMovieHome();
+  const { item, movies, tvs } = useHome();
 
   return (
     <>
