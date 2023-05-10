@@ -9,7 +9,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import { Link, useParams } from "react-router-dom";
 import apiEndpoint from "../../utils/apiEndpoints";
@@ -17,6 +17,8 @@ import useMovieVideos from "../../hooks/useMovieVideos";
 import Loading from "../Loading";
 import styled from "@emotion/styled";
 import { StyledCardTitle, StyledSubText } from "../../styles/global";
+import { useDispatch, useSelector } from "react-redux";
+import { requestVideos } from "../../features/detailSlice";
 
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: "12px",
@@ -26,19 +28,26 @@ export default function Video() {
   const [filter, setFilter] = useState("all");
   const [filteredVideos, setFilteredVideos] = useState([]);
   const [videoCount, setVideoCount] = useState(0);
+  const { videos } = useSelector((state) => state.detail);
+  const { isLoading } = useSelector((state) => state.loading);
+  const dispatch = useDispatch(0);
 
   const { type, id } = useParams();
 
-  const routePath = apiEndpoint[type].video;
+  const routePath = { ...apiEndpoint[type].video };
 
   routePath.url = routePath.url.replace("{_id}", id);
 
-  const { isLoading, videos } = useMovieVideos(routePath.url);
+  //const { isLoading, videos } = useMovieVideos(routePath.url);
 
   const handleChange = (e) => {
     console.log(e.target.value);
     setFilter(e.target.value);
   };
+
+  useEffect(() => {
+    dispatch(requestVideos({ url: routePath.url }));
+  }, [routePath.url, dispatch]);
 
   useEffect(() => {
     if (filter !== "all") {

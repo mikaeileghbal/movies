@@ -5,12 +5,13 @@ import Carousel from "./Carousel";
 import renderMovie from "../utils/renderMovie";
 
 export default function ViewSelectionItem({ routePath, listName, items }) {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  //const [movies, setMovies] = useState([]);
+  //const [loading, setLoading] = useState(false);
 
   const { url, title, exploreUrl } = routePath;
+  //console.log("like url in view", url);
 
-  const memoMovieUrl = useMemo(() => url, [url]);
+  //const memoMovieUrl = useMemo(() => url, [url]);
 
   // useEffect(() => {
   //   const getMovies = async () => {
@@ -27,7 +28,7 @@ export default function ViewSelectionItem({ routePath, listName, items }) {
   //   getMovies();
   // }, [memoMovieUrl]);
 
-  if (loading) return <Loading />;
+  //if (loading) return <Loading />;
 
   if (!items) return null;
 

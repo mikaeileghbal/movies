@@ -8,9 +8,6 @@ import { StyledRating, StyledText2 } from "../styles/global";
 import { CSSTransition } from "react-transition-group";
 import apiEndpoint from "../utils/apiEndpoints";
 import { formatRuntime } from "../utils/helper";
-import { Translate } from "@mui/icons-material";
-import useMovieDetail from "../hooks/useMovieDetail";
-import useMovieFeatured from "../hooks/useMovieFeatured";
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   position: "absolute",

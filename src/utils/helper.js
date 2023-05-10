@@ -28,3 +28,7 @@ export const formatRuntime = (duration) => {
   const minute = Math.floor(duration % 60);
   return `${hour}h ${minute}min`;
 };
+
+export function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
