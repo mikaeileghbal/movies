@@ -2,7 +2,11 @@ import Axios from "axios";
 import { put, call, takeEvery, take, fork, all } from "redux-saga/effects";
 import { recieveMovies, requestMovies } from "../features/movieSlice";
 import { recieveTvs, requestTvs } from "../features/tvSlice";
-import { requestFeatured, setFeatured } from "../features/featuredSlice";
+import {
+  recieveFeatured,
+  requestFeatured,
+  setFeatured,
+} from "../features/featuredSlice";
 import { processLoading } from "../features/loadingSlice";
 import {
   recieveCollection,
@@ -18,6 +22,7 @@ import {
   requestPhotos,
   requestVideos,
 } from "../features/detailSlice";
+import { Actions } from "./sagaActions";
 
 let callAPI = async ({ url, method, data }) => {
   return await Axios({
@@ -62,7 +67,7 @@ export function* watchFeatured() {
     console.log("Featured payload", payload);
     let result = yield call(callAPI, { url: payload.url });
     console.log("Featured result:", result);
-    yield put(setFeatured({ data: result.data }));
+    yield put(recieveFeatured({ data: result.data }));
   }
 }
 
@@ -131,8 +136,45 @@ export function* watchDetailCast() {
   }
 }
 
+export function* loadHome() {
+  while (true) {
+    let { payload } = yield take(Actions.REQUEST_LOAD_HOME);
+
+    console.log(payload);
+    yield put(processLoading({ isLoading: true }));
+
+    const featured = yield fork(callAPI, { url: payload.featuredUrl });
+    console.log("features result:", featured);
+
+    const trendingMovies = yield fork(callAPI, {
+      url: payload.trendingMoviesUrl,
+    });
+
+    const trendingTvs = yield fork(callAPI, {
+      url: payload.trendingTvsUrl,
+    });
+
+    yield put(recieveFeatured({ data: featured.data }));
+    yield put(
+      recieveMovies({
+        listName: "trending",
+        data: trendingMovies.data.results,
+      })
+    );
+    yield put(
+      recieveTvs({
+        listName: "trending",
+        data: trendingTvs.data.results,
+      })
+    );
+
+    yield put(processLoading({ isLoading: false }));
+  }
+}
+
 export default function* root() {
   yield all([
+    fork(loadHome),
     fork(watchMovie),
     fork(watchTv),
     fork(watchFeatured),
