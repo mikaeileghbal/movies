@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { put, call, takeEvery, take } from "redux-saga/effects";
+import { put, call, takeEvery, take, fork, all } from "redux-saga/effects";
 import { recieveMovies, requestMovies } from "../features/movieSlice";
 import { recieveTvs, requestTvs } from "../features/tvSlice";
 import { requestFeatured, setFeatured } from "../features/featuredSlice";
@@ -129,4 +129,17 @@ export function* watchDetailCast() {
     yield put(recieveCast({ data: result.data.cast }));
     yield put(processLoading({ isLoading: false }));
   }
+}
+
+export default function* root() {
+  yield all([
+    fork(watchMovie),
+    fork(watchTv),
+    fork(watchFeatured),
+    fork(watchCollection),
+    fork(watchDetail),
+    fork(watchDetailPhotos),
+    fork(watchDetailLike),
+    fork(watchDetailCast),
+  ]);
 }

@@ -11,16 +11,17 @@ import detailReducer from "../features/detailSlice";
 
 //import * as sagas from "./sagas";
 
-import {
-  watchMovie,
-  watchTv,
-  watchFeatured,
-  watchCollection,
-  watchDetail,
-  watchDetailPhotos,
-  watchDetailLike,
-  watchDetailCast,
-} from "./sagas";
+// import {
+//   watchMovie,
+//   watchTv,
+//   watchFeatured,
+//   watchCollection,
+//   watchDetail,
+//   watchDetailPhotos,
+//   watchDetailLike,
+//   watchDetailCast,
+// } from "./sagas";
+import root from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -43,11 +44,13 @@ export default configureStore({
 //  sagaMiddleware.run(sagas[saga]);
 //}
 
-sagaMiddleware.run(watchMovie);
-sagaMiddleware.run(watchTv);
-sagaMiddleware.run(watchFeatured);
-sagaMiddleware.run(watchCollection);
-sagaMiddleware.run(watchDetail);
-sagaMiddleware.run(watchDetailPhotos);
-sagaMiddleware.run(watchDetailLike);
-sagaMiddleware.run(watchDetailCast);
+// sagaMiddleware.run(watchMovie);
+// sagaMiddleware.run(watchTv);
+// sagaMiddleware.run(watchFeatured);
+// sagaMiddleware.run(watchCollection);
+// sagaMiddleware.run(watchDetail);
+// sagaMiddleware.run(watchDetailPhotos);
+// sagaMiddleware.run(watchDetailLike);
+// sagaMiddleware.run(watchDetailCast);
+
+sagaMiddleware.run(root);
