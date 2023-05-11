@@ -25,6 +25,7 @@ import {
 import { Actions } from "./sagaActions";
 
 let callAPI = async ({ url, method, data }) => {
+  console.log("api fetch called", url);
   return await Axios({
     url,
     method,
@@ -136,37 +137,52 @@ export function* watchDetailCast() {
   }
 }
 
-export function* loadHome() {
+// Refactore Saga
+
+export function* loadFeatured({ url }) {
+  console.log("loadFeatured called", url);
+  const result = yield call(callAPI, { url });
+  console.log("result featured", result);
+  yield put(recieveFeatured({ data: result.data }));
+}
+
+export function* loadMovies(collection) {
+  const result = yield call(callAPI, { url: collection.url });
+  yield put(
+    recieveMovies({
+      listName: collection.name,
+      data: result.data.results,
+    })
+  );
+}
+
+export function* loadTvs(collection) {
+  const result = yield call(callAPI, { url: collection.url });
+  yield put(
+    recieveTvs({
+      listName: collection.name,
+      data: result.data.results,
+    })
+  );
+}
+
+export function* watchLoadHome() {
   while (true) {
     let { payload } = yield take(Actions.REQUEST_LOAD_HOME);
+    const { featuredUrl, trendingMoviesUrl, trendingTvsUrl } = payload;
 
-    console.log(payload);
+    console.log("payload in loadHome", payload);
     yield put(processLoading({ isLoading: true }));
 
-    const featured = yield fork(callAPI, { url: payload.featuredUrl });
-    console.log("features result:", featured);
-
-    const trendingMovies = yield fork(callAPI, {
-      url: payload.trendingMoviesUrl,
+    yield call(loadFeatured, { url: featuredUrl });
+    yield call(loadMovies, {
+      url: trendingMoviesUrl,
+      name: "trending",
     });
-
-    const trendingTvs = yield fork(callAPI, {
-      url: payload.trendingTvsUrl,
+    yield call(loadTvs, {
+      url: trendingTvsUrl,
+      name: "trending",
     });
-
-    yield put(recieveFeatured({ data: featured.data }));
-    yield put(
-      recieveMovies({
-        listName: "trending",
-        data: trendingMovies.data.results,
-      })
-    );
-    yield put(
-      recieveTvs({
-        listName: "trending",
-        data: trendingTvs.data.results,
-      })
-    );
 
     yield put(processLoading({ isLoading: false }));
   }
@@ -174,7 +190,7 @@ export function* loadHome() {
 
 export default function* root() {
   yield all([
-    fork(loadHome),
+    fork(watchLoadHome),
     fork(watchMovie),
     fork(watchTv),
     fork(watchFeatured),

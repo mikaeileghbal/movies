@@ -29,7 +29,7 @@ export default function useHome() {
           80000
         )}?api_key=${API_KEY}`,
         trendingMoviesUrl: apiEndpoint.movie.trending.url,
-        trendignTvsUrl: apiEndpoint.tv.trending.url,
+        trendingTvsUrl: apiEndpoint.tv.trending.url,
       },
     });
     // dispatch(

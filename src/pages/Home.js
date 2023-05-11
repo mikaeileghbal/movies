@@ -3,9 +3,14 @@ import Header from "../components/Header";
 import ViewSelectionItem from "../components/ViewSelectionItem";
 import apiEndpoint from "../utils/apiEndpoints";
 import useHome from "../hooks/useHome";
+import { useSelector } from "react-redux";
+import Loading from "../components/Loading";
 
 export default function Home() {
   const { item, movies, tvs } = useHome();
+  const { isLoading } = useSelector((state) => state.loading);
+
+  // if (isLoading) return <Loading />;
 
   return (
     <>
