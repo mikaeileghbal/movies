@@ -13,7 +13,7 @@ import useDetail from "../hooks/useDetail";
 
 export default function Detail() {
   const { type } = useParams();
-  const { item, cast, like } = useDetail();
+  const { item, cast, like, photos, videos } = useDetail();
   const routePath = apiEndpoint[type].like;
 
   return (
@@ -26,10 +26,10 @@ export default function Detail() {
             <Cast items={cast} />
           </Box>
           <Box name="videos">
-            <Video />
+            <Video items={videos} />
           </Box>
           <Box name="photos">
-            <Photo />
+            <Photo items={photos} />
           </Box>
         </Tab>
         <ViewSelectionItem routePath={routePath} items={like} />

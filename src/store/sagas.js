@@ -184,6 +184,18 @@ export function* loadLike({ url }) {
   );
 }
 
+export function* loadPhotos({ url }) {
+  let result = yield call(callAPI, { url });
+  console.log("Photos result", result.data);
+  yield put(recievePhotos({ data: result.data }));
+}
+
+export function* loadVideos({ url }) {
+  let result = yield call(callAPI, { url });
+  console.log("videos result", result.data.results);
+  yield put(recieveVideos({ data: result.data.results }));
+}
+
 export function* watchLoadHome() {
   while (true) {
     let { payload } = yield take(Actions.REQUEST_LOAD_HOME);
@@ -266,10 +278,10 @@ export function* watchLoadTv() {
   }
 }
 
-export function* watchLoadDetal() {
+export function* watchLoadDetail() {
   while (true) {
     let { payload } = yield take(Actions.REQUEST_LOAD_DETAIL);
-    const { featuredUrl, cast, like } = payload;
+    const { featuredUrl, cast, like, photos, videos } = payload;
 
     console.log("payload in loadDetal", payload);
     yield put(processLoading({ isLoading: true }));
@@ -281,6 +293,12 @@ export function* watchLoadDetal() {
     yield call(loadLike, {
       url: like,
     });
+    yield call(loadPhotos, {
+      url: photos,
+    });
+    yield call(loadVideos, {
+      url: videos,
+    });
 
     yield put(processLoading({ isLoading: false }));
   }
@@ -291,7 +309,7 @@ export default function* root() {
     fork(watchLoadHome),
     fork(watchLoadMovie),
     fork(watchLoadTv),
-    fork(watchLoadDetal),
+    fork(watchLoadDetail),
     fork(watchCollection),
     fork(watchDetail),
     fork(watchDetailPhotos),
