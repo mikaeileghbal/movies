@@ -188,10 +188,40 @@ export function* watchLoadHome() {
   }
 }
 
+export function* watchLoadMovie() {
+  while (true) {
+    let { payload } = yield take(Actions.REQUEST_LOAD_MOVIE);
+    const { featuredUrl, popular, topRated, upcoming, nowPlaying } = payload;
+
+    console.log("payload in loadMovie", payload);
+    yield put(processLoading({ isLoading: true }));
+
+    yield call(loadFeatured, { url: featuredUrl });
+    yield call(loadMovies, {
+      url: popular,
+      name: "popular",
+    });
+    yield call(loadMovies, {
+      url: topRated,
+      name: "top_rated",
+    });
+    yield call(loadMovies, {
+      url: upcoming,
+      name: "upcoming",
+    });
+    yield call(loadMovies, {
+      url: nowPlaying,
+      name: "now_playing",
+    });
+
+    yield put(processLoading({ isLoading: false }));
+  }
+}
+
 export default function* root() {
   yield all([
     fork(watchLoadHome),
-    fork(watchMovie),
+    fork(watchLoadMovie),
     fork(watchTv),
     fork(watchFeatured),
     fork(watchCollection),
