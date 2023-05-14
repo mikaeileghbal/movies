@@ -166,6 +166,24 @@ export function* loadTvs(collection) {
   );
 }
 
+export function* loadCast({ url }) {
+  const result = yield call(callAPI, { url });
+  yield put(
+    recieveCast({
+      data: result.data.cast,
+    })
+  );
+}
+
+export function* loadLike({ url }) {
+  const result = yield call(callAPI, { url });
+  yield put(
+    recieveLike({
+      data: result.data.results,
+    })
+  );
+}
+
 export function* watchLoadHome() {
   while (true) {
     let { payload } = yield take(Actions.REQUEST_LOAD_HOME);
@@ -248,12 +266,32 @@ export function* watchLoadTv() {
   }
 }
 
+export function* watchLoadDetal() {
+  while (true) {
+    let { payload } = yield take(Actions.REQUEST_LOAD_DETAIL);
+    const { featuredUrl, cast, like } = payload;
+
+    console.log("payload in loadDetal", payload);
+    yield put(processLoading({ isLoading: true }));
+
+    yield call(loadFeatured, { url: featuredUrl });
+    yield call(loadCast, {
+      url: cast,
+    });
+    yield call(loadLike, {
+      url: like,
+    });
+
+    yield put(processLoading({ isLoading: false }));
+  }
+}
+
 export default function* root() {
   yield all([
     fork(watchLoadHome),
     fork(watchLoadMovie),
     fork(watchLoadTv),
-    fork(watchFeatured),
+    fork(watchLoadDetal),
     fork(watchCollection),
     fork(watchDetail),
     fork(watchDetailPhotos),
