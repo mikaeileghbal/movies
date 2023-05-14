@@ -16,7 +16,7 @@ export default function useTv() {
 
   useEffect(() => {
     dispatch({
-      type: Actions.REQUEST_LOAD_MOVIE,
+      type: Actions.REQUEST_LOAD_TV,
       payload: {
         featuredUrl: `${BASE_URL}tv/${random(1, 100000)}?api_key=${API_KEY}`,
         popular: apiEndpoint.tv.popular.url,

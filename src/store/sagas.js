@@ -218,11 +218,41 @@ export function* watchLoadMovie() {
   }
 }
 
+export function* watchLoadTv() {
+  while (true) {
+    let { payload } = yield take(Actions.REQUEST_LOAD_TV);
+    const { featuredUrl, popular, topRated, onTheAir, airingToday } = payload;
+
+    console.log("payload in loadMovie", payload);
+    yield put(processLoading({ isLoading: true }));
+
+    yield call(loadFeatured, { url: featuredUrl });
+    yield call(loadTvs, {
+      url: popular,
+      name: "popular",
+    });
+    yield call(loadTvs, {
+      url: topRated,
+      name: "top_rated",
+    });
+    yield call(loadTvs, {
+      url: onTheAir,
+      name: "on_the_air",
+    });
+    yield call(loadTvs, {
+      url: airingToday,
+      name: "airing_today",
+    });
+
+    yield put(processLoading({ isLoading: false }));
+  }
+}
+
 export default function* root() {
   yield all([
     fork(watchLoadHome),
     fork(watchLoadMovie),
-    fork(watchTv),
+    fork(watchLoadTv),
     fork(watchFeatured),
     fork(watchCollection),
     fork(watchDetail),
