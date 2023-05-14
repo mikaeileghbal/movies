@@ -13,27 +13,26 @@ import { CardImage } from "../CardImage";
 import { useDispatch, useSelector } from "react-redux";
 import { requestPhotos } from "../../features/detailSlice";
 
-export default function Photo() {
-  const { photos } = useSelector((state) => state.detail);
+export default function Photo({ items }) {
   const { isLoading } = useSelector((state) => state.loading);
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
-  const { type, id } = useParams();
+  //const { type, id } = useParams();
 
-  const routePath = { ...apiEndpoint[type].images };
+  //const routePath = { ...apiEndpoint[type].images };
 
-  routePath.url = routePath.url.replace("{_id}", id);
+  //routePath.url = routePath.url.replace("{_id}", id);
 
-  console.log("photos url", routePath.url);
+  //console.log("photos url", routePath.url);
 
   //const { isLoading, images } = useMovieImages(routePath.url);
 
-  const { backdrops, posters } = photos;
+  const { backdrops, posters } = items;
 
-  useEffect(() => {
-    console.log("Dispatch photos");
-    dispatch(requestPhotos({ url: routePath.url }));
-  }, [routePath.url, dispatch]);
+  // useEffect(() => {
+  //   console.log("Dispatch photos");
+  //   //dispatch(requestPhotos({ url: routePath.url }));
+  // }, [routePath.url, dispatch]);
 
   if (isLoading) return <Loading />;
 

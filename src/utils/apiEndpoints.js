@@ -45,7 +45,7 @@ const apiEndpoint = {
     video: {
       url: `${BASE_URL}movie/{_id}/videos?api_key=${API_KEY}`,
     },
-    images: {
+    photo: {
       url: `${BASE_URL}movie/{_id}/images?api_key=${API_KEY}`,
     },
   },

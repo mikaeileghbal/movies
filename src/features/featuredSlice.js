@@ -11,12 +11,12 @@ export const featuredSlice = createSlice({
     requestFeatured: (state, action) => {
       return state;
     },
-    setFeatured: (state, action) => {
+    recieveFeatured: (state, action) => {
       state.item = action.payload.data;
     },
   },
 });
 
-export const { requestFeatured, setFeatured } = featuredSlice.actions;
+export const { requestFeatured, recieveFeatured } = featuredSlice.actions;
 
 export default featuredSlice.reducer;
