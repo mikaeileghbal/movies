@@ -30,7 +30,7 @@ export default function Video() {
   const [videoCount, setVideoCount] = useState(0);
   const { videos } = useSelector((state) => state.detail);
   const { isLoading } = useSelector((state) => state.loading);
-  const dispatch = useDispatch(0);
+  //const dispatch = useDispatch();
 
   const { type, id } = useParams();
 
@@ -45,9 +45,9 @@ export default function Video() {
     setFilter(e.target.value);
   };
 
-  useEffect(() => {
-    dispatch(requestVideos({ url: routePath.url }));
-  }, [routePath.url, dispatch]);
+  // useEffect(() => {
+  //   //dispatch(requestVideos({ url: routePath.url }));
+  // }, [routePath.url, dispatch]);
 
   useEffect(() => {
     if (filter !== "all") {
