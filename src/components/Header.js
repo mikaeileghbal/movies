@@ -19,6 +19,11 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
 }));
 
 export default function Header({ movie }) {
+  let transitionIn = false;
+  if (movie.id) {
+    transitionIn = true;
+  }
+  console.log(transitionIn);
   return (
     <Grid
       container

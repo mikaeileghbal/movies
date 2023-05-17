@@ -4,9 +4,14 @@ import apiEndpoint from "../utils/apiEndpoints";
 import useMovie from "../hooks/useMovie";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
+import Loading from "../components/Loading";
 
 export default function Movie() {
   const { item, popular, top_rated, upcoming, now_playing } = useMovie();
+  const { isLoading } = useSelector((state) => state.loading);
+
+  if (isLoading) return <Loading />;
 
   return (
     <>

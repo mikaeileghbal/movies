@@ -10,7 +10,7 @@ export default function Home() {
   const { item, movies, tvs } = useHome();
   const { isLoading } = useSelector((state) => state.loading);
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <>

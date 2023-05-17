@@ -26,6 +26,8 @@ export default function List() {
 
 function ListView() {
   const { items } = useSelector((state) => state.collection);
+  const { isLoading } = useSelector((state) => state.loading);
+
   const dispatch = useDispatch();
 
   console.log("Render happend here ....................................");
@@ -55,6 +57,8 @@ function ListView() {
   useEffect(() => {
     dispatch(requestCollection({ url: urlWithPage }));
   }, [urlWithPage, dispatch]);
+
+  if (isLoading) return <Loading />;
 
   return (
     <Box

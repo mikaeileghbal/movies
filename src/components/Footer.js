@@ -6,8 +6,13 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { Stack } from "@mui/system";
 import { StyledIconButton } from "../styles/global";
+import { useSelector } from "react-redux";
 
 export default function Footer() {
+  const { isLoading } = useSelector((state) => state.loading);
+
+  if (isLoading) return null;
+
   return (
     <Box pl={7} ml="100px">
       <Typography component="p" variant="body2" sx={{ color: "gray", mb: 1 }}>

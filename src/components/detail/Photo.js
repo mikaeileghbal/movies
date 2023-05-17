@@ -34,7 +34,7 @@ export default function Photo({ items }) {
   //   //dispatch(requestPhotos({ url: routePath.url }));
   // }, [routePath.url, dispatch]);
 
-  if (isLoading) return <Loading />;
+  //if (isLoading) return <Loading />;
 
   return (
     <>

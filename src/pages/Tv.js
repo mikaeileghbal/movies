@@ -4,9 +4,14 @@ import apiEndpoint from "../utils/apiEndpoints";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
 import useTv from "../hooks/useTv";
+import { useSelector } from "react-redux";
+import Loading from "../components/Loading";
 
 export default function Tv() {
   const { item, popular, top_rated, on_the_air, airing_today } = useTv();
+  const { isLoading } = useSelector((state) => state.loading);
+
+  if (isLoading) return <Loading />;
 
   return (
     <>
