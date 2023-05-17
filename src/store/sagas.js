@@ -33,44 +33,44 @@ let callAPI = async ({ url, method, data }) => {
   });
 };
 
-export function* fetchDataSaga(action) {
-  const { listName, mediaType, url } = action.payload;
+// export function* fetchDataSaga(action) {
+//   const { listName, mediaType, url } = action.payload;
 
-  try {
-    yield put(processLoading({ isLoading: true }));
-    let result = yield call(callAPI, {
-      url,
-    });
+//   try {
+//     yield put(processLoading({ isLoading: true }));
+//     let result = yield call(callAPI, {
+//       url,
+//     });
 
-    if (mediaType === "movie")
-      yield put(recieveMovies({ listName, data: result.data.results }));
-    else {
-      yield put(recieveTvs({ listName, data: result.data.results }));
-    }
-    yield put(processLoading({ isLoading: false }));
-  } catch (e) {
-    yield put(processLoading({ isLoading: false }));
-  }
-}
+//     if (mediaType === "movie")
+//       yield put(recieveMovies({ listName, data: result.data.results }));
+//     else {
+//       yield put(recieveTvs({ listName, data: result.data.results }));
+//     }
+//     yield put(processLoading({ isLoading: false }));
+//   } catch (e) {
+//     yield put(processLoading({ isLoading: false }));
+//   }
+// }
 
-export function* watchMovie() {
-  console.log("watch");
-  yield takeEvery(requestMovies, fetchDataSaga);
-}
+// export function* watchMovie() {
+//   console.log("watch");
+//   yield takeEvery(requestMovies, fetchDataSaga);
+// }
 
-export function* watchTv() {
-  yield takeEvery(requestTvs, fetchDataSaga);
-}
+// export function* watchTv() {
+//   yield takeEvery(requestTvs, fetchDataSaga);
+// }
 
-export function* watchFeatured() {
-  while (true) {
-    const { payload } = yield take(requestFeatured);
-    console.log("Featured payload", payload);
-    let result = yield call(callAPI, { url: payload.url });
-    console.log("Featured result:", result);
-    yield put(recieveFeatured({ data: result.data }));
-  }
-}
+// export function* watchFeatured() {
+//   while (true) {
+//     const { payload } = yield take(requestFeatured);
+//     console.log("Featured payload", payload);
+//     let result = yield call(callAPI, { url: payload.url });
+//     console.log("Featured result:", result);
+//     yield put(recieveFeatured({ data: result.data }));
+//   }
+// }
 
 export function* watchCollection() {
   while (true) {

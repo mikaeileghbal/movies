@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 export default function Footer() {
   const { isLoading } = useSelector((state) => state.loading);
 
-  if (isLoading) return null;
+  //if (isLoading) return null;
 
   return (
     <Box pl={7} ml="100px">

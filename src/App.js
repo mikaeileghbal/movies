@@ -52,7 +52,6 @@ function App() {
             appear={true}
             unmountOnExit
             mountOnEnter
-            in={!isLoading}
           >
             <div>
               <Routes location={location}>
