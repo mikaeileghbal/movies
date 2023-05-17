@@ -7,7 +7,7 @@ import {
   requestFeatured,
   setFeatured,
 } from "../features/featuredSlice";
-import { processLoading } from "../features/loadingSlice";
+import { processError, processLoading } from "../features/loadingSlice";
 import {
   recieveCollection,
   requestCollection,
@@ -85,65 +85,67 @@ export function* watchCollection() {
   }
 }
 
-export function* watchDetail() {
-  while (true) {
-    const { payload } = yield take(requestVideos);
-    console.log("Detail payload", payload);
+// export function* watchDetail() {
+//   while (true) {
+//     const { payload } = yield take(requestVideos);
+//     console.log("Detail payload", payload);
 
-    yield put(processLoading({ isLoading: true }));
-    let result = yield call(callAPI, { url: payload.url });
-    console.log("Detail result", result.data.results);
-    yield put(recieveVideos({ data: result.data.results }));
-    yield put(processLoading({ isLoading: false }));
-  }
-}
+//     yield put(processLoading({ isLoading: true }));
+//     let result = yield call(callAPI, { url: payload.url });
+//     console.log("Detail result", result.data.results);
+//     yield put(recieveVideos({ data: result.data.results }));
+//     yield put(processLoading({ isLoading: false }));
+//   }
+// }
 
-export function* watchDetailPhotos() {
-  while (true) {
-    const { payload } = yield take(requestPhotos);
-    console.log("Photos payload", payload);
+// export function* watchDetailPhotos() {
+//   while (true) {
+//     const { payload } = yield take(requestPhotos);
+//     console.log("Photos payload", payload);
 
-    yield put(processLoading({ isLoading: true }));
-    let result = yield call(callAPI, { url: payload.url });
-    console.log("Photos result", result.data);
-    yield put(recievePhotos({ data: result.data }));
-    yield put(processLoading({ isLoading: false }));
-  }
-}
+//     yield put(processLoading({ isLoading: true }));
+//     let result = yield call(callAPI, { url: payload.url });
+//     console.log("Photos result", result.data);
+//     yield put(recievePhotos({ data: result.data }));
+//     yield put(processLoading({ isLoading: false }));
+//   }
+// }
 
-export function* watchDetailLike() {
-  while (true) {
-    const { payload } = yield take(requestLike);
-    console.log("Like payload", payload);
+// export function* watchDetailLike() {
+//   while (true) {
+//     const { payload } = yield take(requestLike);
+//     console.log("Like payload", payload);
 
-    yield put(processLoading({ isLoading: true }));
-    let result = yield call(callAPI, { url: payload.url });
-    console.log("Like result", result);
-    yield put(recieveLike({ data: result.data.results }));
-    yield put(processLoading({ isLoading: false }));
-  }
-}
+//     yield put(processLoading({ isLoading: true }));
+//     let result = yield call(callAPI, { url: payload.url });
+//     console.log("Like result", result);
+//     yield put(recieveLike({ data: result.data.results }));
+//     yield put(processLoading({ isLoading: false }));
+//   }
+// }
 
-export function* watchDetailCast() {
-  while (true) {
-    const { payload } = yield take(requestCast);
-    console.log("Cast payload", payload);
+// export function* watchDetailCast() {
+//   while (true) {
+//     const { payload } = yield take(requestCast);
+//     console.log("Cast payload", payload);
 
-    yield put(processLoading({ isLoading: true }));
-    let result = yield call(callAPI, { url: payload.url });
-    console.log("Cast result", result);
-    yield put(recieveCast({ data: result.data.cast }));
-    yield put(processLoading({ isLoading: false }));
-  }
-}
+//     yield put(processLoading({ isLoading: true }));
+//     let result = yield call(callAPI, { url: payload.url });
+//     console.log("Cast result", result);
+//     yield put(recieveCast({ data: result.data.cast }));
+//     yield put(processLoading({ isLoading: false }));
+//   }
+// }
 
 // Refactore Saga
 
 export function* loadFeatured({ url }) {
-  console.log("loadFeatured called", url);
-  const result = yield call(callAPI, { url });
-  console.log("result featured", result);
-  yield put(recieveFeatured({ data: result.data }));
+  try {
+    const result = yield call(callAPI, { url });
+    yield put(recieveFeatured({ data: result.data }));
+  } catch (e) {
+    yield put(processError({ error: "Error at loading fetured media" }));
+  }
 }
 
 export function* loadMovies(collection) {
@@ -204,7 +206,6 @@ export function* watchLoadHome() {
     console.log("payload in loadHome", payload);
     yield put(processLoading({ isLoading: true }));
 
-    yield call(loadFeatured, { url: featuredUrl });
     yield call(loadMovies, {
       url: trendingMoviesUrl,
       name: "trending",
@@ -213,6 +214,7 @@ export function* watchLoadHome() {
       url: trendingTvsUrl,
       name: "trending",
     });
+    yield call(loadFeatured, { url: featuredUrl });
 
     yield put(processLoading({ isLoading: false }));
   }
@@ -226,7 +228,6 @@ export function* watchLoadMovie() {
     console.log("payload in loadMovie", payload);
     yield put(processLoading({ isLoading: true }));
 
-    yield call(loadFeatured, { url: featuredUrl });
     yield call(loadMovies, {
       url: popular,
       name: "popular",
@@ -243,6 +244,7 @@ export function* watchLoadMovie() {
       url: nowPlaying,
       name: "now_playing",
     });
+    yield call(loadFeatured, { url: featuredUrl });
 
     yield put(processLoading({ isLoading: false }));
   }
@@ -256,7 +258,6 @@ export function* watchLoadTv() {
     console.log("payload in loadMovie", payload);
     yield put(processLoading({ isLoading: true }));
 
-    yield call(loadFeatured, { url: featuredUrl });
     yield call(loadTvs, {
       url: popular,
       name: "popular",
@@ -273,6 +274,7 @@ export function* watchLoadTv() {
       url: airingToday,
       name: "airing_today",
     });
+    yield call(loadFeatured, { url: featuredUrl });
 
     yield put(processLoading({ isLoading: false }));
   }
@@ -311,9 +313,5 @@ export default function* root() {
     fork(watchLoadTv),
     fork(watchLoadDetail),
     fork(watchCollection),
-    fork(watchDetail),
-    fork(watchDetailPhotos),
-    fork(watchDetailLike),
-    fork(watchDetailCast),
   ]);
 }
