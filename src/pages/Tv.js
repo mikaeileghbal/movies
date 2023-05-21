@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import useTv from "../hooks/useTv";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 export default function Tv() {
   const { item, popular, top_rated, on_the_air, airing_today } = useTv();
@@ -13,7 +14,7 @@ export default function Tv() {
 
   //if (isLoading) return <Loading />;
 
-  if (error) return <div>Mo data available</div>;
+  if (error) return <Error />;
 
   return (
     <>

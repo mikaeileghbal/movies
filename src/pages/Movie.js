@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 export default function Movie() {
   const { item, popular, top_rated, upcoming, now_playing } = useMovie();
@@ -13,7 +14,7 @@ export default function Movie() {
 
   //if (isLoading) return <Loading />;
 
-  if (error) return <div>Mo data available</div>;
+  if (error) return <Error />;
 
   return (
     <>
