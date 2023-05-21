@@ -32,7 +32,7 @@
 .slideUp-appear-active {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: all 0.6s ease-out 0s;
+  transition: all 0.5s ease-out 0s;
 }
 .slideUp-appear-done {
   opacity: 1;
@@ -46,7 +46,7 @@
 .slideUp-enter-active {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: all 0.6s ease-out 0s;
+  transition: all 0.5s ease-out 0s;
 }
 .slideUp-enter-done {
   opacity: 1;
