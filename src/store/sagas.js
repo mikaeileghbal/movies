@@ -251,6 +251,7 @@ export function* watchLoadHome() {
     yield put(recieveFeatured({ data: {} }));
 
     yield all([
+      call(loadFeatured, { url: featuredUrl }),
       call(loadMovies, {
         url: trendingMoviesUrl,
         name: "trending",
@@ -259,7 +260,6 @@ export function* watchLoadHome() {
         url: trendingTvsUrl,
         name: "trending",
       }),
-      call(loadFeatured, { url: featuredUrl }),
     ]);
 
     yield put(processLoading({ isLoading: false }));
@@ -276,6 +276,7 @@ export function* watchLoadMovie() {
     yield put(recieveFeatured({ data: {} }));
 
     yield all([
+      call(loadFeatured, { url: featuredUrl }),
       call(loadMovies, {
         url: popular,
         name: "popular",
@@ -292,7 +293,6 @@ export function* watchLoadMovie() {
         url: nowPlaying,
         name: "now_playing",
       }),
-      call(loadFeatured, { url: featuredUrl }),
     ]);
 
     // yield call(loadMovies, {
@@ -327,6 +327,7 @@ export function* watchLoadTv() {
     yield put(recieveFeatured({ data: {} }));
 
     yield all([
+      call(loadFeatured, { url: featuredUrl }),
       call(loadTvs, {
         url: popular,
         name: "popular",
@@ -344,7 +345,6 @@ export function* watchLoadTv() {
         url: airingToday,
         name: "airing_today",
       }),
-      call(loadFeatured, { url: featuredUrl }),
     ]);
     // yield call(loadTvs, {
     //   url: popular,
