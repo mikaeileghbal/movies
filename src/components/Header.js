@@ -19,6 +19,11 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
 }));
 
 export default function Header({ movie }) {
+  let transitionIn = false;
+  if (movie.id) {
+    transitionIn = true;
+  }
+  console.log(transitionIn);
   return (
     <Grid
       container
@@ -47,7 +52,7 @@ export default function Header({ movie }) {
         <CSSTransition
           in={movie.id}
           appear={true}
-          timeout={{ enter: 1000, exit: 200 }}
+          timeout={{ enter: 700, exit: 300 }}
           classNames="slideUp"
           key={movie.id}
           unmountOnExit

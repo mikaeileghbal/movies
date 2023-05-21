@@ -12,6 +12,7 @@ export default function Loading() {
         alignItems: "flex-start",
         minHeight: "100px",
         margin: "10px",
+        marginBottom: "50px",
       }}
     >
       <CircularLoading />

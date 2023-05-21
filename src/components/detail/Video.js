@@ -30,39 +30,43 @@ export default function Video() {
   const [videoCount, setVideoCount] = useState(0);
   const { videos } = useSelector((state) => state.detail);
   const { isLoading } = useSelector((state) => state.loading);
-  const dispatch = useDispatch(0);
+  //const dispatch = useDispatch();
 
-  const { type, id } = useParams();
+  // const { type, id } = useParams();
 
-  const routePath = { ...apiEndpoint[type].video };
+  // const routePath = { ...apiEndpoint[type].video };
 
-  routePath.url = routePath.url.replace("{_id}", id);
+  // routePath.url = routePath.url.replace("{_id}", id);
 
   //const { isLoading, videos } = useMovieVideos(routePath.url);
 
+  useEffect(() => {
+    setFilteredVideos(videos);
+  }, [videos]);
+
   const handleChange = (e) => {
     console.log(e.target.value);
-    setFilter(e.target.value);
+    // setFilter(e.target.value);
   };
 
-  useEffect(() => {
-    dispatch(requestVideos({ url: routePath.url }));
-  }, [routePath.url, dispatch]);
+  // useEffect(() => {
+  //   //dispatch(requestVideos({ url: routePath.url }));
+  // }, [routePath.url, dispatch]);
 
-  useEffect(() => {
-    if (filter !== "all") {
-      setFilteredVideos(
-        videos.filter(
-          (item) => item.type.toLowerCase() === filter.toLowerCase()
-        )
-      );
-    } else {
-      setFilteredVideos(videos);
-    }
-    setVideoCount(filteredVideos.length);
-  }, [filter, videos, filteredVideos.length]);
+  // useEffect(() => {
+  //   if (filter !== "all") {
+  //     setFilteredVideos(
+  //       videos.filter(
+  //         (item) => item.type.toLowerCase() === filter.toLowerCase()
+  //       )
+  //     );
+  //   } else {
+  //     setFilteredVideos(videos);
+  //   }
+  //   setVideoCount(filteredVideos.length);
+  // }, [filter, videos, filteredVideos.length]);
 
-  if (isLoading) return <Loading />;
+  //if (isLoading) return <Loading />;
 
   return (
     <>
@@ -105,7 +109,7 @@ export default function Video() {
         rowSpacing={5}
         sx={{ backgroundColor: "transparent" }}
       >
-        {filteredVideos?.map((video) => (
+        {videos?.map((video) => (
           <Grid item xs={4}>
             <Link
               to={`https://youtube.com/watch?v=${video.key}`}

@@ -12,9 +12,12 @@ export const loadingSlice = createSlice({
     processLoading: (state, action) => {
       state.isLoading = action.payload.isLoading;
     },
+    processError: (state, action) => {
+      state.error = action.payload.error;
+    },
   },
 });
 
-export const { processLoading } = loadingSlice.actions;
+export const { processLoading, processError } = loadingSlice.actions;
 
 export default loadingSlice.reducer;

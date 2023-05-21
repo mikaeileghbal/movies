@@ -8,9 +8,12 @@ import Loading from "../components/Loading";
 
 export default function Home() {
   const { item, movies, tvs } = useHome();
-  const { isLoading } = useSelector((state) => state.loading);
+  const { isLoading, error } = useSelector((state) => state.loading);
 
-  // if (isLoading) return <Loading />;
+  //if (isLoading) return <Loading />;
+
+  if (error)
+    return <div style={{ textAlign: "center" }}>No data is available</div>;
 
   return (
     <>
