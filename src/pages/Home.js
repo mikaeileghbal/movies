@@ -10,7 +10,7 @@ export default function Home() {
   const { item, movies, tvs } = useHome();
   const { isLoading, error } = useSelector((state) => state.loading);
 
-  if (isLoading) return <Loading />;
+  //if (isLoading) return <Loading />;
 
   if (error)
     return <div style={{ textAlign: "center" }}>No data is available</div>;

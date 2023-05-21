@@ -2,11 +2,7 @@ import Axios from "axios";
 import { put, call, takeEvery, take, fork, all } from "redux-saga/effects";
 import { recieveMovies, requestMovies } from "../features/movieSlice";
 import { recieveTvs, requestTvs } from "../features/tvSlice";
-import {
-  recieveFeatured,
-  requestFeatured,
-  setFeatured,
-} from "../features/featuredSlice";
+import { recieveFeatured, requestFeatured } from "../features/featuredSlice";
 import { processError, processLoading } from "../features/loadingSlice";
 import {
   recieveCollection,
@@ -141,61 +137,109 @@ export function* watchCollection() {
 
 export function* loadFeatured({ url }) {
   try {
+    yield put(processLoading({ isLoading: true }));
     const result = yield call(callAPI, { url });
     yield put(recieveFeatured({ data: result.data }));
+    yield put(processError({ error: "" }));
+    yield put(processLoading({ isLoading: false }));
   } catch (e) {
-    yield put(processError({ error: "Error at loading fetured media" }));
+    yield put(processError({ error: e.message }));
+    yield put(processLoading({ isLoading: false }));
   }
 }
 
 export function* loadMovies(collection) {
-  const result = yield call(callAPI, { url: collection.url });
-  yield put(
-    recieveMovies({
-      listName: collection.name,
-      data: result.data.results,
-    })
-  );
+  try {
+    yield put(processLoading({ isLoading: true }));
+    const result = yield call(callAPI, { url: collection.url });
+    yield put(
+      recieveMovies({
+        listName: collection.name,
+        data: result.data.results,
+      })
+    );
+    yield put(processLoading({ isLoading: false }));
+    yield put(processError({ error: "" }));
+  } catch (e) {
+    yield put(processError({ error: e.message }));
+    yield put(processLoading({ isLoading: false }));
+  }
 }
 
 export function* loadTvs(collection) {
-  const result = yield call(callAPI, { url: collection.url });
-  yield put(
-    recieveTvs({
-      listName: collection.name,
-      data: result.data.results,
-    })
-  );
+  try {
+    yield put(processLoading({ isLoading: true }));
+    const result = yield call(callAPI, { url: collection.url });
+    yield put(
+      recieveTvs({
+        listName: collection.name,
+        data: result.data.results,
+      })
+    );
+    yield put(processLoading({ isLoading: false }));
+    yield put(processError({ error: "" }));
+  } catch (e) {
+    yield put(processError({ error: e.message }));
+    yield put(processLoading({ isLoading: false }));
+  }
 }
 
 export function* loadCast({ url }) {
-  const result = yield call(callAPI, { url });
-  yield put(
-    recieveCast({
-      data: result.data.cast,
-    })
-  );
+  try {
+    yield put(processLoading({ isLoading: true }));
+    const result = yield call(callAPI, { url });
+    yield put(
+      recieveCast({
+        data: result.data.cast,
+      })
+    );
+    yield put(processLoading({ isLoading: false }));
+  } catch (e) {
+    yield put(processError({ error: e.message }));
+    yield put(processLoading({ isLoading: false }));
+  }
 }
 
 export function* loadLike({ url }) {
-  const result = yield call(callAPI, { url });
-  yield put(
-    recieveLike({
-      data: result.data.results,
-    })
-  );
+  try {
+    yield put(processLoading({ isLoading: true }));
+    const result = yield call(callAPI, { url });
+    yield put(
+      recieveLike({
+        data: result.data.results,
+      })
+    );
+    yield put(processLoading({ isLoading: false }));
+  } catch (e) {
+    yield put(processError({ error: e.message }));
+    yield put(processLoading({ isLoading: false }));
+  }
 }
 
 export function* loadPhotos({ url }) {
-  let result = yield call(callAPI, { url });
-  console.log("Photos result", result.data);
-  yield put(recievePhotos({ data: result.data }));
+  try {
+    yield put(processLoading({ isLoading: true }));
+    let result = yield call(callAPI, { url });
+    console.log("Photos result", result.data);
+    yield put(recievePhotos({ data: result.data }));
+    yield put(processLoading({ isLoading: false }));
+  } catch (e) {
+    yield put(processError({ error: e.message }));
+    yield put(processLoading({ isLoading: false }));
+  }
 }
 
 export function* loadVideos({ url }) {
-  let result = yield call(callAPI, { url });
-  console.log("videos result", result.data.results);
-  yield put(recieveVideos({ data: result.data.results }));
+  try {
+    yield put(processLoading({ isLoading: true }));
+    let result = yield call(callAPI, { url });
+    console.log("videos result", result.data.results);
+    yield put(recieveVideos({ data: result.data.results }));
+    yield put(processLoading({ isLoading: false }));
+  } catch (e) {
+    yield put(processError({ error: e.message }));
+    yield put(processLoading({ isLoading: false }));
+  }
 }
 
 export function* watchLoadHome() {
@@ -203,18 +247,20 @@ export function* watchLoadHome() {
     let { payload } = yield take(Actions.REQUEST_LOAD_HOME);
     const { featuredUrl, trendingMoviesUrl, trendingTvsUrl } = payload;
 
-    console.log("payload in loadHome", payload);
     yield put(processLoading({ isLoading: true }));
+    yield put(recieveFeatured({ data: {} }));
 
-    yield call(loadMovies, {
-      url: trendingMoviesUrl,
-      name: "trending",
-    });
-    yield call(loadTvs, {
-      url: trendingTvsUrl,
-      name: "trending",
-    });
-    yield call(loadFeatured, { url: featuredUrl });
+    yield all([
+      call(loadMovies, {
+        url: trendingMoviesUrl,
+        name: "trending",
+      }),
+      call(loadTvs, {
+        url: trendingTvsUrl,
+        name: "trending",
+      }),
+      call(loadFeatured, { url: featuredUrl }),
+    ]);
 
     yield put(processLoading({ isLoading: false }));
   }
@@ -226,25 +272,46 @@ export function* watchLoadMovie() {
     const { featuredUrl, popular, topRated, upcoming, nowPlaying } = payload;
 
     console.log("payload in loadMovie", payload);
-    yield put(processLoading({ isLoading: true }));
 
-    yield call(loadMovies, {
-      url: popular,
-      name: "popular",
-    });
-    yield call(loadMovies, {
-      url: topRated,
-      name: "top_rated",
-    });
-    yield call(loadMovies, {
-      url: upcoming,
-      name: "upcoming",
-    });
-    yield call(loadMovies, {
-      url: nowPlaying,
-      name: "now_playing",
-    });
-    yield call(loadFeatured, { url: featuredUrl });
+    yield put(recieveFeatured({ data: {} }));
+
+    yield all([
+      call(loadMovies, {
+        url: popular,
+        name: "popular",
+      }),
+      call(loadMovies, {
+        url: topRated,
+        name: "top_rated",
+      }),
+      call(loadMovies, {
+        url: upcoming,
+        name: "upcoming",
+      }),
+      call(loadMovies, {
+        url: nowPlaying,
+        name: "now_playing",
+      }),
+      call(loadFeatured, { url: featuredUrl }),
+    ]);
+
+    // yield call(loadMovies, {
+    //   url: popular,
+    //   name: "popular",
+    // });
+    // yield call(loadMovies, {
+    //   url: topRated,
+    //   name: "top_rated",
+    // });
+    // yield call(loadMovies, {
+    //   url: upcoming,
+    //   name: "upcoming",
+    // });
+    // yield call(loadMovies, {
+    //   url: nowPlaying,
+    //   name: "now_playing",
+    // });
+    // yield call(loadFeatured, { url: featuredUrl });
 
     yield put(processLoading({ isLoading: false }));
   }
@@ -257,25 +324,45 @@ export function* watchLoadTv() {
 
     console.log("payload in loadMovie", payload);
     yield put(processLoading({ isLoading: true }));
+    yield put(recieveFeatured({ data: {} }));
 
-    yield call(loadTvs, {
-      url: popular,
-      name: "popular",
-    });
-    yield call(loadTvs, {
-      url: topRated,
-      name: "top_rated",
-    });
-    yield call(loadTvs, {
-      url: onTheAir,
-      name: "on_the_air",
-    });
-    yield call(loadTvs, {
-      url: airingToday,
-      name: "airing_today",
-    });
-    yield call(loadFeatured, { url: featuredUrl });
+    yield all([
+      call(loadTvs, {
+        url: popular,
+        name: "popular",
+      }),
+      call(loadTvs, {
+        url: topRated,
+        name: "top_rated",
+      }),
 
+      call(loadTvs, {
+        url: onTheAir,
+        name: "on_the_air",
+      }),
+      call(loadTvs, {
+        url: airingToday,
+        name: "airing_today",
+      }),
+      call(loadFeatured, { url: featuredUrl }),
+    ]);
+    // yield call(loadTvs, {
+    //   url: popular,
+    //   name: "popular",
+    // });
+    // yield call(loadTvs, {
+    //   url: topRated,
+    //   name: "top_rated",
+    // });
+    // yield call(loadTvs, {
+    //   url: onTheAir,
+    //   name: "on_the_air",
+    // });
+    // yield call(loadTvs, {
+    //   url: airingToday,
+    //   name: "airing_today",
+    // });
+    //yield call(loadFeatured, { url: featuredUrl });
     yield put(processLoading({ isLoading: false }));
   }
 }
@@ -288,19 +375,34 @@ export function* watchLoadDetail() {
     console.log("payload in loadDetal", payload);
     yield put(processLoading({ isLoading: true }));
 
-    yield call(loadFeatured, { url: featuredUrl });
-    yield call(loadCast, {
-      url: cast,
-    });
-    yield call(loadLike, {
-      url: like,
-    });
-    yield call(loadPhotos, {
-      url: photos,
-    });
-    yield call(loadVideos, {
-      url: videos,
-    });
+    yield all([
+      call(loadFeatured, { url: featuredUrl }),
+      call(loadCast, {
+        url: cast,
+      }),
+      call(loadLike, {
+        url: like,
+      }),
+      call(loadPhotos, {
+        url: photos,
+      }),
+      call(loadVideos, {
+        url: videos,
+      }),
+    ]);
+    // yield call(loadFeatured, { url: featuredUrl });
+    // yield call(loadCast, {
+    //   url: cast,
+    // });
+    // yield call(loadLike, {
+    //   url: like,
+    // });
+    // yield call(loadPhotos, {
+    //   url: photos,
+    // });
+    // yield call(loadVideos, {
+    //   url: videos,
+    // });
 
     yield put(processLoading({ isLoading: false }));
   }

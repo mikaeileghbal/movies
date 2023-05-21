@@ -9,9 +9,11 @@ import Loading from "../components/Loading";
 
 export default function Movie() {
   const { item, popular, top_rated, upcoming, now_playing } = useMovie();
-  const { isLoading } = useSelector((state) => state.loading);
+  const { isLoading, error } = useSelector((state) => state.loading);
 
-  if (isLoading) return <Loading />;
+  //if (isLoading) return <Loading />;
+
+  if (error) return <div>Mo data available</div>;
 
   return (
     <>

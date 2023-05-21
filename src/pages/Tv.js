@@ -9,9 +9,11 @@ import Loading from "../components/Loading";
 
 export default function Tv() {
   const { item, popular, top_rated, on_the_air, airing_today } = useTv();
-  const { isLoading } = useSelector((state) => state.loading);
+  const { isLoading, error } = useSelector((state) => state.loading);
 
-  if (isLoading) return <Loading />;
+  //if (isLoading) return <Loading />;
+
+  if (error) return <div>Mo data available</div>;
 
   return (
     <>
