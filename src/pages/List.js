@@ -21,6 +21,7 @@ export default function List() {
 
   const dispatch = useDispatch();
 
+  console.log("Items :", items);
   console.log("Render happend here ....................................");
   //const { searchTerm } = useMovieContext();
   const [page, setPage] = useState(1);

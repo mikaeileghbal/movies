@@ -121,7 +121,7 @@ export function* watchLoadHome() {
     const { featuredUrl, trendingMoviesUrl, trendingTvsUrl } = payload;
 
     yield put(processLoading({ isLoading: true }));
-    yield put(recieveFeatured({ data: {} }));
+    //yield put(recieveFeatured({ data: {} }));
 
     yield all([
       call(loadFeatured, { url: featuredUrl }),
@@ -146,10 +146,9 @@ export function* watchLoadMovie() {
 
     console.log("payload in loadMovie", payload);
 
-    yield put(recieveFeatured({ data: {} }));
+    //yield put(recieveFeatured({ data: {} }));
 
     yield all([
-      call(loadFeatured, { url: featuredUrl }),
       call(loadMovies, {
         url: popular,
         name: "popular",
@@ -166,6 +165,7 @@ export function* watchLoadMovie() {
         url: nowPlaying,
         name: "now_playing",
       }),
+      //call(loadFeatured, { url: featuredUrl }),
     ]);
 
     yield put(processLoading({ isLoading: false }));
@@ -179,10 +179,9 @@ export function* watchLoadTv() {
 
     console.log("payload in loadMovie", payload);
     yield put(processLoading({ isLoading: true }));
-    yield put(recieveFeatured({ data: {} }));
+    //yield put(recieveFeatured({ data: {} }));
 
     yield all([
-      call(loadFeatured, { url: featuredUrl }),
       call(loadTvs, {
         url: popular,
         name: "popular",
@@ -200,6 +199,7 @@ export function* watchLoadTv() {
         url: airingToday,
         name: "airing_today",
       }),
+      //call(loadFeatured, { url: featuredUrl }),
     ]);
 
     yield put(processLoading({ isLoading: false }));
@@ -215,7 +215,6 @@ export function* watchLoadDetail() {
     yield put(processLoading({ isLoading: true }));
 
     yield all([
-      call(loadFeatured, { url: featuredUrl }),
       call(loadCast, {
         url: cast,
       }),
@@ -228,6 +227,7 @@ export function* watchLoadDetail() {
       call(loadVideos, {
         url: videos,
       }),
+      //call(loadFeatured, { url: featuredUrl }),
     ]);
 
     yield put(processLoading({ isLoading: false }));

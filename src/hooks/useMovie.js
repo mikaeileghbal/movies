@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
 import { useDispatch, useSelector } from "react-redux";
-import { requestFeatured } from "../features/featuredSlice";
+import { recieveFeatured, requestFeatured } from "../features/featuredSlice";
 import { requestMovies } from "../features/movieSlice";
 import { random } from "../utils/helper";
 import { Actions } from "../store/sagaActions";
@@ -14,6 +14,8 @@ export default function useMovie() {
   );
   const dispatch = useDispatch();
 
+  console.log("popular", popular);
+
   useEffect(() => {
     dispatch({
       type: Actions.REQUEST_LOAD_MOVIE,
@@ -25,6 +27,7 @@ export default function useMovie() {
         nowPlaying: apiEndpoint.movie.now_playing.url,
       },
     });
+    if (popular[0]) dispatch(recieveFeatured({ data: popular[0] }));
 
     // dispatch(
     //   requestFeatured({
@@ -59,7 +62,7 @@ export default function useMovie() {
     //     url: apiEndpoint.movie.now_playing.url,
     //   })
     // );
-  }, [dispatch, randomId]);
+  }, [dispatch]);
 
   return { item, popular, top_rated, upcoming, now_playing };
 }
