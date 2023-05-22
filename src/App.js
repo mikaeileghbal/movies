@@ -47,7 +47,7 @@ function App() {
         <TransitionGroup component="div">
           <CSSTransition
             key={location.pathname}
-            timeout={{ enter: 500, exit: 300 }}
+            timeout={{ enter: 600, exit: 300 }}
             classNames="fadeIn"
             appear={true}
             unmountOnExit

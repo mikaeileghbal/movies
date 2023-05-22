@@ -117,6 +117,7 @@ export function* loadVideos({ url }) {
 
 export function* watchLoadHome() {
   while (true) {
+    console.log("In Sagas Home:=======================");
     let { payload } = yield take(Actions.REQUEST_LOAD_HOME);
     const { featuredUrl, trendingMoviesUrl, trendingTvsUrl } = payload;
 

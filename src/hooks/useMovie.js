@@ -7,20 +7,21 @@ import { random } from "../utils/helper";
 import { Actions } from "../store/sagaActions";
 
 export default function useMovie() {
-  const randomId = useMemo(() => random(1, 100000), []);
   const { item } = useSelector((state) => state.featured);
   const { popular, top_rated, upcoming, now_playing } = useSelector(
     (state) => state.movie
   );
+
+  console.log("useMovie called :======================");
+
   const dispatch = useDispatch();
 
-  console.log("popular", popular);
-
   useEffect(() => {
+    console.log("Start dispatcing:======================");
     dispatch({
       type: Actions.REQUEST_LOAD_MOVIE,
       payload: {
-        featuredUrl: `${BASE_URL}movie/${random(1, 100000)}?api_key=${API_KEY}`,
+        //featuredUrl: `${BASE_URL}movie/${random(1, 100000)}?api_key=${API_KEY}`,
         popular: apiEndpoint.movie.popular.url,
         topRated: apiEndpoint.movie.top_rated.url,
         upcoming: apiEndpoint.movie.upcoming.url,
@@ -62,7 +63,7 @@ export default function useMovie() {
     //     url: apiEndpoint.movie.now_playing.url,
     //   })
     // );
-  }, [dispatch]);
+  }, []);
 
   return { item, popular, top_rated, upcoming, now_playing };
 }

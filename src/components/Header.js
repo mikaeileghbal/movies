@@ -52,10 +52,9 @@ export default function Header({ movie }) {
         <CSSTransition
           in={movie.id}
           appear={true}
-          timeout={{ enter: 700, exit: 300 }}
+          timeout={{ enter: 700, exit: 500 }}
           classNames="slideUp"
           key={movie.id}
-          unmountOnExit
           mountOnEnter
         >
           <FeaturedMovie movie={movie} />
