@@ -16,6 +16,15 @@ import useScrollObserver from "../hooks/useScrollObserver";
 import { useDispatch, useSelector } from "react-redux";
 import { requestCollection } from "../features/collectionSlice";
 
+function GridItem({ item }) {
+  return (
+    <Grid item xs={12 / 5} key={item.id}>
+      <MovieCard item={item} />
+    </Grid>
+  );
+}
+const MemoGridItem = memo(GridItem);
+
 export default function List() {
   const { items } = useSelector((state) => state.collection);
 
@@ -77,10 +86,11 @@ export default function List() {
             minHeight: "100vh",
           }}
         >
-          {items?.map((item) => (
-            <Grid item xs={12 / 5} key={item.id}>
+          {/* <Grid item xs={12 / 5} key={item.id}>
               <MovieCard item={item} />
-            </Grid>
+            </Grid> */}
+          {items?.map((item) => (
+            <MemoGridItem item={item} />
           ))}
         </Grid>
       </Box>

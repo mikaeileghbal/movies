@@ -34,16 +34,16 @@ export default function ViewSelectionItem({ routePath, listName, items }) {
 
   return (
     <>
-      <div>
+      {/* <div>
         Carousel is rendering check to see if carousel makes rendering slow
-      </div>
-      {/* <Carousel
-      items={items}
-      heading={title}
-      url={exploreUrl}
-      render={renderMovie}
-      groupSize={5}
-    /> */}
+      </div> */}
+      <Carousel
+        items={items}
+        heading={title}
+        url={exploreUrl}
+        render={renderMovie}
+        groupSize={5}
+      />
     </>
   );
   // const { url, title, exploreUrl } = routePath;

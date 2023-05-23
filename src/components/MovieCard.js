@@ -40,7 +40,7 @@ function MovieCard({ item }) {
             overflow: "hidden",
           }}
         >
-          <CardImage src={`${apiEndpoint.imageBaseUrl}${item.poster_path}`} />
+          {/* <CardImage src={`${apiEndpoint.imageBaseUrl}${item.poster_path}`} /> */}
         </Box>
         <CardContent
           sx={{
@@ -49,7 +49,7 @@ function MovieCard({ item }) {
             padding: "10px 0 0",
           }}
         >
-          <StyledCardTitle>
+          {/* <StyledCardTitle>
             {item.title ? item.title : item.name}
           </StyledCardTitle>
 
@@ -76,7 +76,7 @@ function MovieCard({ item }) {
                 </Box>
               </>
             )}
-          </Box>
+          </Box> */}
         </CardContent>
       </Box>
     </Card>
