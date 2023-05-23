@@ -19,11 +19,6 @@ const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
 }));
 
 export default function Header({ movie }) {
-  let transitionIn = false;
-  if (movie.id) {
-    transitionIn = true;
-  }
-  console.log(transitionIn);
   return (
     <Grid
       container
@@ -52,7 +47,7 @@ export default function Header({ movie }) {
         <CSSTransition
           in={movie.id}
           appear={true}
-          timeout={{ enter: 700, exit: 300 }}
+          timeout={{ enter: 700, exit: 500 }}
           classNames="slideUp"
           key={movie.id}
           unmountOnExit
@@ -98,8 +93,8 @@ function FeaturedMovie({ movie }) {
   return (
     <Box
       flex={{ xs: "1", lg: "0 0 500px" }}
-      width={{ xs: "80%", lg: "70%" }}
-      minWidth={{ xs: "80%", md: "100%", lg: "140%" }}
+      width={{ xs: "80%", lg: "90%" }}
+      minWidth={{ xs: "80%", md: "100%", lg: "152%" }}
       height="100%"
       pt={{ xs: 1, md: 1, lg: 2 }}
       display="flex"
@@ -107,7 +102,12 @@ function FeaturedMovie({ movie }) {
       justifyContent={{ xs: "flex-start", lg: "center" }}
       alignItems="flex-start"
     >
-      <Typography variant="h1" fontSize={34} fontWeight={400}>
+      <Typography
+        variant="h1"
+        fontSize={34}
+        fontWeight={400}
+        letterSpacing={0.4}
+      >
         {title || name}
       </Typography>
       <Stack
@@ -121,7 +121,11 @@ function FeaturedMovie({ movie }) {
         <StyledText2>{first_air_date?.slice(0, 4)}</StyledText2>
         <StyledText2>{runtime ? formatRuntime(runtime) : ""}</StyledText2>
       </Stack>
-      <Typography variant="body2" sx={{ lineHeight: 1.7 }} mt={3}>
+      <Typography
+        variant="body2"
+        sx={{ lineHeight: 1.7, fontSize: "15px" }}
+        mt={3}
+      >
         {trimText(overview)}
       </Typography>
       <Button

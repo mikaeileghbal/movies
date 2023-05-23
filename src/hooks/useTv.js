@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import apiEndpoint, { API_KEY, BASE_URL } from "../utils/apiEndpoints";
 import { random } from "../utils/helper";
-import { requestFeatured } from "../features/featuredSlice";
+import { recieveFeatured, requestFeatured } from "../features/featuredSlice";
 import { requestTvs } from "../features/tvSlice";
 import { Actions } from "../store/sagaActions";
 
@@ -13,6 +13,8 @@ export default function useTv() {
     (state) => state.tv
   );
   const dispatch = useDispatch();
+
+  console.log("popular", popular);
 
   useEffect(() => {
     dispatch({
@@ -25,6 +27,7 @@ export default function useTv() {
         airingToday: apiEndpoint.tv.airing_today.url,
       },
     });
+    if (popular[0]) dispatch(recieveFeatured({ data: popular[0] }));
     // dispatch(
     //   requestFeatured({ url: `${BASE_URL}tv/${randomId}?api_key=${API_KEY}` })
     // );
@@ -56,7 +59,7 @@ export default function useTv() {
     //     url: apiEndpoint.tv.airing_today.url,
     //   })
     // );
-  }, [dispatch, randomId]);
+  }, [dispatch]);
 
   return {
     item,

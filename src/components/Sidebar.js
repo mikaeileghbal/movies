@@ -22,6 +22,7 @@ export default function Sidebar() {
   const { pathname } = useLocation();
 
   const goToUrl = (url) => {
+    console.log("Menu Clicked ================================");
     navigate(url);
     //setShowSearch(false);
     dispatch(closeSearch());
