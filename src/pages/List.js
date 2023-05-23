@@ -40,7 +40,10 @@ export default function List() {
   const type = location.pathname.split("/")[1];
   const { url, title } = apiEndpoint[type][category];
 
-  const urlWithPage = useMemo(() => `${url}&page=${page}`, [url, page]);
+  const urlWithPage = useMemo(
+    () => `${url}&language=en-US&page=${page}`,
+    [url, page]
+  );
 
   //const { items, loading } = useMovieCollection(urlWithPage);
 

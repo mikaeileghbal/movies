@@ -122,7 +122,7 @@ export function* watchLoadHome() {
     const { featuredUrl, trendingMoviesUrl, trendingTvsUrl } = payload;
 
     yield put(processLoading({ isLoading: true }));
-    //yield put(recieveFeatured({ data: {} }));
+    yield put(recieveFeatured({ data: {} }));
 
     yield all([
       call(loadFeatured, { url: featuredUrl }),
@@ -147,7 +147,7 @@ export function* watchLoadMovie() {
 
     console.log("payload in loadMovie", payload);
 
-    //yield put(recieveFeatured({ data: {} }));
+    yield put(recieveFeatured({ data: {} }));
 
     yield all([
       call(loadMovies, {
@@ -180,7 +180,7 @@ export function* watchLoadTv() {
 
     console.log("payload in loadMovie", payload);
     yield put(processLoading({ isLoading: true }));
-    //yield put(recieveFeatured({ data: {} }));
+    yield put(recieveFeatured({ data: {} }));
 
     yield all([
       call(loadTvs, {
@@ -214,8 +214,10 @@ export function* watchLoadDetail() {
 
     console.log("payload in loadDetal", payload);
     yield put(processLoading({ isLoading: true }));
+    yield put(recieveFeatured({ data: {} }));
 
     yield all([
+      call(loadFeatured, { url: featuredUrl }),
       call(loadCast, {
         url: cast,
       }),
@@ -228,7 +230,6 @@ export function* watchLoadDetail() {
       call(loadVideos, {
         url: videos,
       }),
-      //call(loadFeatured, { url: featuredUrl }),
     ]);
 
     yield put(processLoading({ isLoading: false }));
