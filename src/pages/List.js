@@ -86,9 +86,6 @@ export default function List() {
             minHeight: "100vh",
           }}
         >
-          {/* <Grid item xs={12 / 5} key={item.id}>
-              <MovieCard item={item} />
-            </Grid> */}
           {items?.map((item) => (
             <MemoGridItem item={item} />
           ))}
