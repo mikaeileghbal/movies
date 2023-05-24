@@ -12,7 +12,8 @@ import Loading from "./Loading";
 import apiEndpoint from "../utils/apiEndpoints";
 import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { Error } from "@mui/icons-material";
 
 export default function SearchResult() {
   const [page, setPage] = useState(1);
@@ -28,11 +29,7 @@ export default function SearchResult() {
     [url, page, searchTerm]
   );
 
-  console.log("searchUrl: ", urlWithPage);
-
-  const { items, loading } = useMovieCollection(urlWithPage);
-
-  console.log("Search result: ", items);
+  const { items, error } = useMovieCollection(urlWithPage);
 
   let bottomBoundryRef = useRef(null);
 
@@ -46,19 +43,8 @@ export default function SearchResult() {
     }
   }, [bottomBoundryRef, scrollObserver]);
 
-  if (!items)
-    return (
-      <div style={{ maxWidth: "400px" }}>
-        <div>Data not available</div>
-        <p>
-          Looks like we are unable to fetch the data right now, please come back
-          and try again soon.
-        </p>
-        <p>
-          Back to our <Link to="/">home page</Link>
-        </p>
-      </div>
-    );
+  if (error) return <Error />;
+
   return (
     <Box
       component="section"
@@ -90,8 +76,9 @@ export default function SearchResult() {
           </Grid>
         ))}
       </Grid>
-      <div ref={bottomBoundryRef}></div>
-      {loading && <Loading />}
+      <div ref={bottomBoundryRef}>
+        <Loading />
+      </div>
     </Box>
   );
 }
