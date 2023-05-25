@@ -11,7 +11,7 @@ import {
 } from "redux-saga/effects";
 import { recieveMovies } from "../features/movieSlice";
 import { recieveTvs } from "../features/tvSlice";
-import { recieveFeatured } from "../features/featuredSlice";
+import { recieveFeatured, requestFeatured } from "../features/featuredSlice";
 import { processLoading } from "../features/loadingSlice";
 import {
   recieveCollection,
@@ -266,6 +266,13 @@ export function* watchSearch() {
       yield cancel(task);
     }
     task = yield fork(loadSearch, { url: payload.url });
+  }
+}
+
+function* watchFeatured() {
+  while (true) {
+    const { payload } = yield take(requestFeatured);
+    console.log("payload in featured");
   }
 }
 

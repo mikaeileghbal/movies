@@ -63,7 +63,7 @@ export default function useMovie() {
     //     url: apiEndpoint.movie.now_playing.url,
     //   })
     // );
-  }, []);
+  }, [dispatch, popular]);
 
   return { item, popular, top_rated, upcoming, now_playing };
 }
