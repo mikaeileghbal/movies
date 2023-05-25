@@ -18,7 +18,6 @@ export default function Search() {
   };
 
   const handleSearch = (e) => {
-    
     dispatch(setSearchTerm(e.target.value));
   };
 

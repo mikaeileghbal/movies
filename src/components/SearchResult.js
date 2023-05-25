@@ -43,6 +43,10 @@ export default function SearchResult() {
     }
   }, [bottomBoundryRef, scrollObserver]);
 
+  useEffect(() => {
+    if (searchTerm.length < 1) setPage(1);
+  }, [searchTerm]);
+
   if (error) return <Error />;
 
   return (
