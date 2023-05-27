@@ -28,6 +28,9 @@ export const searchSlice = createSlice({
     requestSearch: (state) => {
       return state;
     },
+    resetSearchItems: (state) => {
+      state.items = [];
+    },
     recieveSearch: (state, action) => {
       state.items = [...state.items, ...action.payload.data];
     },
@@ -42,6 +45,7 @@ export const {
   resetSearchTerm,
   requestSearch,
   recieveSearch,
+  resetSearchItems,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

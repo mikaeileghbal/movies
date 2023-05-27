@@ -14,13 +14,17 @@ import useMovieCollection from "../hooks/useMovieCollection";
 import useScrollObserver from "../hooks/useScrollObserver";
 import { useSearchParams } from "react-router-dom";
 import { Error } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { resetSearchItems } from "../features/searchSlice";
 
 export default function SearchResult() {
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
 
   const [searchParams] = useSearchParams();
 
-  const searchTerm = searchParams.get("q");
+  //const searchTerm = searchParams.get("q");
+  const { searchTerm } = useSelector((state) => state.search);
 
   const url = apiEndpoint.searchUrl;
 
@@ -44,8 +48,9 @@ export default function SearchResult() {
   }, [bottomBoundryRef, scrollObserver]);
 
   useEffect(() => {
-    if (searchTerm.length < 1) setPage(1);
-  }, [searchTerm]);
+    dispatch(resetSearchItems());
+    setPage(1);
+  }, [searchTerm, dispatch]);
 
   if (error) return <Error />;
 
