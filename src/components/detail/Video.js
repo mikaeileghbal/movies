@@ -4,21 +4,16 @@ import {
   FormControl,
   Grid,
   IconButton,
-  InputLabel,
   MenuItem,
   Select,
-  Typography,
 } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
-import { Link, useParams } from "react-router-dom";
-import apiEndpoint from "../../utils/apiEndpoints";
-import useMovieVideos from "../../hooks/useMovieVideos";
-import Loading from "../Loading";
+import { Link } from "react-router-dom";
+
 import styled from "@emotion/styled";
 import { StyledCardTitle, StyledSubText } from "../../styles/global";
-import { useDispatch, useSelector } from "react-redux";
-import { requestVideos } from "../../features/detailSlice";
+import { useSelector } from "react-redux";
 
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   fontSize: "12px",
@@ -26,47 +21,21 @@ const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
 
 export default function Video() {
   const [filter, setFilter] = useState("all");
-  const [filteredVideos, setFilteredVideos] = useState([]);
-  const [videoCount, setVideoCount] = useState(0);
   const { videos } = useSelector((state) => state.detail);
-  const { isLoading } = useSelector((state) => state.loading);
-  //const dispatch = useDispatch();
 
-  // const { type, id } = useParams();
+  const filteredVideos =
+    filter !== "all"
+      ? videos.filter(
+          (item) => item.type.toLowerCase() === filter.toLowerCase()
+        )
+      : videos;
 
-  // const routePath = { ...apiEndpoint[type].video };
-
-  // routePath.url = routePath.url.replace("{_id}", id);
-
-  //const { isLoading, videos } = useMovieVideos(routePath.url);
-
-  useEffect(() => {
-    setFilteredVideos(videos);
-  }, [videos]);
+  const videoCount = filteredVideos.length;
 
   const handleChange = (e) => {
     console.log(e.target.value);
-    // setFilter(e.target.value);
+    setFilter(e.target.value);
   };
-
-  // useEffect(() => {
-  //   //dispatch(requestVideos({ url: routePath.url }));
-  // }, [routePath.url, dispatch]);
-
-  // useEffect(() => {
-  //   if (filter !== "all") {
-  //     setFilteredVideos(
-  //       videos.filter(
-  //         (item) => item.type.toLowerCase() === filter.toLowerCase()
-  //       )
-  //     );
-  //   } else {
-  //     setFilteredVideos(videos);
-  //   }
-  //   setVideoCount(filteredVideos.length);
-  // }, [filter, videos, filteredVideos.length]);
-
-  //if (isLoading) return <Loading />;
 
   return (
     <>
@@ -109,7 +78,7 @@ export default function Video() {
         rowSpacing={5}
         sx={{ backgroundColor: "transparent" }}
       >
-        {videos?.map((video) => (
+        {filteredVideos?.map((video) => (
           <Grid item xs={4}>
             <Link
               to={`https://youtube.com/watch?v=${video.key}`}
