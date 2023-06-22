@@ -12,7 +12,6 @@ export default function Movie() {
   const { item, popular, top_rated, upcoming, now_playing } = useMovie();
   const { isLoading, error } = useSelector((state) => state.loading);
 
-  console.log("Movies Loadd ================================");
   //if (isLoading) return <Loading />;
 
   if (error) return <Error />;

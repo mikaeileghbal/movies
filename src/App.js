@@ -18,6 +18,7 @@ import SearchResult from "./components/SearchResult";
 import { ScrollToTop } from "./hooks/ScrollTop";
 import { useSelector } from "react-redux";
 import Loading from "./components/Loading";
+import Error from "./components/Error";
 
 const ColorModeContext = createContext({});
 export const useColorMode = () => useContext(ColorModeContext);
@@ -43,7 +44,6 @@ function App() {
         <CssBaseline />
         <ScrollToTop />
         <Sidebar />
-
         <TransitionGroup component="div">
           <CSSTransition
             key={location.pathname}

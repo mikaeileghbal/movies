@@ -16,6 +16,8 @@ export default function Detail() {
   const { item, cast, like, photos, videos } = useDetail();
   const routePath = apiEndpoint[type].like;
 
+  document.title = item.title;
+
   return (
     <>
       <Header movie={item} />

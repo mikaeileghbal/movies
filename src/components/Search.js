@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
-import { closeSearch, setSearchTerm } from "../features/searchSlice";
+import {
+  closeSearch,
+  resetSearchTerm,
+  setSearchTerm,
+} from "../features/searchSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Search() {
@@ -41,14 +45,14 @@ export default function Search() {
   }, [handleDocumnetnClick]);
 
   useEffect(() => {
-    if (searchTerm.length > 0) {
+    if (searchTerm.length >= 0) {
       setShowResult(true);
       navigate(`/search?q=${searchTerm}`);
     } else {
       setShowResult(false);
-      //navigate("/");
+      dispatch(resetSearchTerm());
     }
-  }, [searchTerm, navigate]);
+  }, [searchTerm, navigate, dispatch]);
 
   useEffect(() => {
     //if (showResult) navigate(`/search?q=${searchTerm}`);

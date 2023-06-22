@@ -59,7 +59,7 @@ export default function useTv() {
     //     url: apiEndpoint.tv.airing_today.url,
     //   })
     // );
-  }, [dispatch]);
+  }, [dispatch, popular]);
 
   return {
     item,
